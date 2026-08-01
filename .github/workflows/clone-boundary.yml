@@ -1,0 +1,59 @@
+# Clone-boundary check — every tracked file must be framework or science.
+#
+# This repo is the reference cell future assistants are cloned from, and the
+# Clone Agent refuses to birth a newborn while any file here is unclassified
+# (see modes/maintainer.md "## Assistant-as-template", which owns the boundary).
+# That refusal is deliberate, but it only lands at birth time — which is rare,
+# and blocks whoever is giving birth rather than whoever added the file.
+#
+# So the same check runs here, on every PR: the author who adds a file decides
+# what it is while they still remember why. The euclid mode, the JOSS paper and
+# the results-inspector MCP wiring each landed unclassified and silently blocked
+# every future birth before this existed.
+#
+# The rules live in modes/maintainer.md (prose) and are implemented in
+# PyAutoBrain's clone profiles; this job runs Brain's checker against this
+# checkout, so the two cannot drift apart unnoticed.
+name: clone-boundary
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the assistant
+        uses: actions/checkout@v4
+        with:
+          path: autogalaxy_assistant
+
+      # Declared-dependency escape hatch (PyAutoBrain#186): a PR paired with a
+      # not-yet-merged Brain change may declare `Brain-ref: <branch-or-sha>`
+      # on its own line in the PR body; the boundary then runs against that
+      # ref instead of main, so the paired PRs can both be green before the
+      # ordered merge. No declaration (or push events) -> main, as before.
+      # checkout constrains the ref to PyAutoLabs/PyAutoBrain; this gate is
+      # hygiene, not a security boundary.
+      - name: Resolve the Brain ref
+        id: brainref
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          ref="$(printf '%s' "$PR_BODY" | tr -d '\r' \
+            | sed -n 's|^Brain-ref:[[:space:]]*\([A-Za-z0-9._/-]*\).*|\1|p' | head -1)"
+          echo "ref=${ref:-main}" >> "$GITHUB_OUTPUT"
+          if [ -n "$ref" ]; then echo "Using declared PyAutoBrain ref: $ref"; fi
+
+      - name: Check out PyAutoBrain (implements the boundary)
+        uses: actions/checkout@v4
+        with:
+          repository: PyAutoLabs/PyAutoBrain
+          ref: ${{ steps.brainref.outputs.ref }}
+          path: PyAutoBrain
+
+      - name: Every tracked file falls on one side of the boundary
+        run: |
+          python3 PyAutoBrain/agents/conductors/clone/check_boundary.py \
+            autogalaxy_assistant
