@@ -32,7 +32,7 @@ sources:
       - .claude/hooks/validate_pyauto_code.py
     pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
 last_updated: 2026-08-01
-content_sha256: e594c604f396ad7dac62d4f787b78db19c8b20981cf379ed0a5f8b82e6043b06
+content_sha256: f31b1ecc8b237bfe50ccaa550be6e93cab490cadf7448f2c9a72cc937e0b426a
 ---
 
 # Sandbox / restricted-environment configuration
@@ -111,8 +111,16 @@ Levels 2 and 3 are the ones to reach for while iterating on a script's *structur
 level** — the parameter values are whatever the truncated or mocked run produced, so never
 quote a structural parameter measured in test mode.
 
-Two consequences of test mode are easy to trip over:
+Three consequences of test mode are easy to trip over:
 
+- **A level-2 or level-3 bypass writes no fit products.** The bypass path
+  (`PyAutoFit:autofit/non_linear/search/abstract_search.py` `_fit_bypass_test_mode`) saves
+  `files/samples.csv` and `files/samples_summary.json` and marks the fit complete, but it never
+  runs `perform_update` or `analysis.save_results`, so there is **no `model.results`, no
+  `model.info`, and nothing under `image/`** — no `dataset.png`, no `fit.png`, no `fit.fits`.
+  Level 1 goes through the normal path and *does* write all of them. So use level 1, not 2, when
+  the thing you are checking is the output folder or a figure; use 2 or 3 when you are checking
+  that the script runs at all.
 - **Output is namespaced.** Any active level inserts a `test_mode` segment directly after
   the output root, so results land in `output/test_mode/<path_prefix>/<name>/` rather than
   beside real runs (`PyAutoFit:autofit/non_linear/paths/abstract.py`). This is deliberate:

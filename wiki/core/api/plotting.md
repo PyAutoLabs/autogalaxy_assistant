@@ -36,7 +36,7 @@ sources:
       - scripts/ellipse/plot.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
 last_updated: 2026-08-01
-content_sha256: 37dc0bdc3b53aadbdbb7bb61a84fa0c2967ebda1e7443cde326ef9dde553b9dd
+content_sha256: 8448417f14908a000e38bb5285fdc5b1629745e291d7c9ce50274324ded63ba6
 ---
 
 # Plotting
@@ -97,8 +97,28 @@ output_format=None, lines=None, ax=None)`.
 
 ## Subplot functions
 
-Every one takes `output_path`, `output_format` and (mostly) `output_filename` directly, plus
-`colormap`, `use_log10` and `title_prefix`.
+Every one takes `output_path` and `output_format` directly, plus `colormap`, `use_log10` and
+`title_prefix`. **They do not share a naming kwarg**, and passing the wrong one raises
+`TypeError`:
+
+| How the file is named | Functions |
+|---|---|
+| `output_filename` | `subplot_imaging_dataset`, `subplot_imaging_dataset_list`, `subplot_interferometer_dataset`, `subplot_interferometer_dirty_images` (plus `plot_array` and `plot_grid` above) |
+| `auto_filename` (default `"galaxies"`) | `subplot_galaxies` |
+| **fixed stem**, no naming kwarg | everything else |
+
+The fixed stems, read off `_save_subplot(...)` in each function:
+`subplot_fit_imaging` and `subplot_fit_interferometer` → `fit`;
+`subplot_fit_imaging_of_galaxy` → `of_galaxy_<galaxy_index>`;
+`subplot_galaxy_images` → `galaxy_images`; `subplot_galaxy_light_profiles` → `image`;
+`subplot_galaxy_mass_profiles` → the quantity it drew (`convergence`, `potential`,
+`deflections_y`, `deflections_x` — one file per enabled flag);
+`subplot_basis_image` → `basis_image`; `subplot_adapt_images` → `adapt_images`;
+`subplot_fit_real_space` → `fit_real_space`; `subplot_fit_dirty_images` → `fit_dirty_images`;
+`subplot_fit_ellipse` → `fit_ellipse`; `subplot_ellipse_errors` → `ellipse_errors`.
+
+So for a fixed-stem subplot the **directory** is what distinguishes one context from another —
+give each fit, or each variant of a figure, its own folder.
 
 ### Datasets
 
@@ -226,8 +246,10 @@ aplt.plot_array(
 
 With no `output_path`, a figure is displayed. Pass `output_path` (a directory) and
 `output_format` and it is written as `{output_path}/{title}.{output_format}`; pass
-`output_filename` to name it explicitly. `output_format` also accepts a **list**, which writes the
-same figure in each format at once:
+`output_filename` to name it explicitly — **on the functions that accept it**, which is
+`plot_array`, `plot_grid` and the five subplots tabulated under "Subplot functions" above. Every
+other subplot writes a fixed stem, so name the *directory* instead. `output_format` also accepts
+a **list**, which writes the same figure in each format at once:
 
 ```python
 aplt.plot_array(

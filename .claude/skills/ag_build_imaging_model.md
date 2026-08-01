@@ -1,0 +1,1 @@
+../../skills/ag_build_imaging_model.md

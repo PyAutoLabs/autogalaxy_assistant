@@ -18,7 +18,7 @@ sources:
       - scripts/guides/results/start_here.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
 last_updated: 2026-08-01
-content_sha256: af178e766c1577fe0aed53c2c0ae8ea8cf664a8147d755b2f8fbde44782810fb
+content_sha256: 13439cc6b908483c12c5b907e921b9491bd3ee179fc328654c130e2ac1048fce
 ---
 
 # The non-linear search
@@ -222,7 +222,7 @@ search starts, not when it finishes:
 
 ```
 files/                    JSON + CSV, loadable Python objects
-    galaxies.json         max log likelihood Galaxies
+    galaxies.json         max log likelihood galaxies (loads as a list)
     model.json            the fitted af.Collection
     samples.csv           every accepted sample
     samples_summary.json  max log likelihood values + errors

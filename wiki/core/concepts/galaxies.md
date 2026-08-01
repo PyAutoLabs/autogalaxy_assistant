@@ -15,7 +15,7 @@ sources:
       - scripts/guides/units/cosmology.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
 last_updated: 2026-08-01
-content_sha256: 8d74a683b7ed668ad6d16068e0fa6405dd235d7166af5b45da00639f534ad308
+content_sha256: 0144d127e9cc512639375a9bea805e10afbb4527979a54004d25d39e35ab5ab1
 ---
 
 # Galaxy and Galaxies
@@ -187,7 +187,9 @@ so its profiles carry the solved intensities.
 [`linear_light_profiles_and_mge`](./linear_light_profiles_and_mge.md).
 
 The maximum-likelihood galaxies are also written to `files/galaxies.json` in the output
-folder and reload with `ag.from_json(...)`, behaving identically to the in-memory object.
+folder and reload with `ag.from_json(...)` — which returns a plain `list` of `Galaxy` objects,
+**not** an `ag.Galaxies`. Wrap it (`ag.Galaxies(galaxies=galaxies)`) before calling any of the
+collection methods below.
 
 ## Plotting
 

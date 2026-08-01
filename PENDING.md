@@ -90,29 +90,14 @@ where it is acted on — the run-time and GPU sections of `concepts/non_linear_s
 
 ## Phase 4a — the core modelling loop (9 skills)
 
-- [ ] `skills/ag_setup_environment.md` — grounding: `guides/modeling/bug_fix.py`, plus
-      `wiki/core/operations/installation.md` and `wiki/core/operations/sandbox.md` (both live
-      since Phase 3) and the RTD installation pages they were written from. `AGENTS.md`'s
-      session-start step and `skills/ag_audit_skill_apis.md` route environment failures here;
-      until it exists they route to `--check-install` and those two pages.
-- [ ] `skills/ag_prepare_imaging_data.md` — grounding:
-      `imaging/data_preparation/start_here.py`, `imaging/data_preparation/examples/`,
-      `imaging/data_preparation/gui/`. **This skill owns the real-data inspection gate's
-      procedure**, which `AGENTS.md` currently points at the workspace scripts for.
-- [ ] `skills/ag_simulate_dataset.md` — grounding: `imaging/simulator.py`,
-      `imaging/simulator_sersic.py`, `imaging/simulator_sample.py`.
-- [ ] `skills/ag_build_imaging_model.md` — grounding: `imaging/start_here.py`,
-      `imaging/modeling.py`, `guides/modeling/cookbook.py`.
-- [ ] `skills/ag_configure_search.md` — grounding: `guides/modeling/searches.py`,
-      `guides/modeling/customize.py`.
-- [ ] `skills/ag_run_search.md` — grounding: `imaging/modeling.py`,
-      `guides/modeling/bug_fix.py`.
-- [ ] `skills/ag_plot_fit.md` — grounding: `imaging/plot.py`, `guides/plot/start_here.py`,
-      `guides/plot/plotters.py`.
-- [ ] `skills/ag_load_results.md` — grounding: `guides/results/start_here.py`,
-      `guides/results/aggregator/`, `guides/results/latent_variables.py`.
-- [ ] `skills/ag_debug_fit_failure.md` — grounding: `guides/modeling/bug_fix.py`,
-      HowToGalaxy `chapter_2_modeling/tutorial_4_dealing_with_failure`.
+**Delivered.** All nine core-loop skills are on disk with `.claude/skills/` symlinks, rows in
+`wiki/core/external/skill_citation_map.md` and entries in the `skills/README.md` Index:
+`ag_setup_environment`, `ag_prepare_imaging_data`, `ag_simulate_dataset`,
+`ag_build_imaging_model`, `ag_configure_search`, `ag_run_search`, `ag_plot_fit`,
+`ag_load_results`, `ag_debug_fit_failure`. Two `AGENTS.md` hand-offs closed with them: the
+session-start environment repair now routes to `ag_setup_environment`, and the real-data
+inspection gate's procedure is owned by `ag_prepare_imaging_data` rather than pointing at the
+workspace scripts directly.
 
 ## Phase 4b — features beyond a single smooth profile (8 skills)
 

@@ -27,16 +27,62 @@ configured) via symlinks; the canonical files live here.
 
 ## Index — what exists today
 
-Seven skills are written: two meta, two project-workflow, three maintenance. **Everything
-else in this file is a plan, not a file** — the "Pending" section below is a catalogue of what
-has not been authored yet, and deliberately does not link to anything. Every entry here that
-is a link resolves; if you find a link that doesn't, that is a bug worth fixing rather than a
-file worth waiting for.
+Sixteen skills are written: nine for the core modelling loop, two meta, two project-workflow,
+three maintenance. **Everything else in this file is a plan, not a file** — the "Pending"
+section below is a catalogue of what has not been authored yet, and deliberately does not link
+to anything. Every entry here that is a link resolves; if you find a link that doesn't, that is
+a bug worth fixing rather than a file worth waiting for.
 
-No skill for *doing* galaxy science exists yet: the modelling loop arrives in Phase 4a and the
-feature skills in Phase 4b. Until then, answer a science request from the installed source and
-the grounding scripts named in the Pending tables, say that is what you did, and offer to
-author the skill via [`_bootstrap_skill.md`](./_bootstrap_skill.md).
+The core modelling loop is live; the feature skills (bases, pixelisations, ellipse fitting,
+multi-dataset, interferometry, multi-galaxy, search chaining) arrive in Phase 4b. For a request
+that falls outside the nine below, answer from the installed source and the grounding scripts
+named in the Pending tables, say that is what you did, and offer to author the skill via
+[`_bootstrap_skill.md`](./_bootstrap_skill.md).
+
+### Galaxy modelling — the core loop
+
+Read in this order for an end-to-end fit; each is usable on its own. Every one is
+**python-first**: the deliverable is a runnable script plus the understanding to evolve it.
+
+- [`ag_setup_environment.md`](./ag_setup_environment.md) — install, diagnose and repair the
+  PyAutoGalaxy environment so galaxy-modelling code can actually run: a fresh pip install, the
+  JAX and numba extras, writable caches for a sandbox, `activate.sh` interpreter resolution,
+  a shared/cluster checkout and the Colab entry point, ending in a saved verification script.
+- [`ag_prepare_imaging_data.md`](./ag_prepare_imaging_data.md) — load a user's own CCD imaging
+  from FITS into an `ag.Imaging` and get it ready to fit: pixel scale, flux units, RMS
+  noise-map, PSF, mask extent, contaminants, over-sampling and the `info.json` sidecars.
+  **Owns the real-data inspection gate.**
+- [`ag_simulate_dataset.md`](./ag_simulate_dataset.md) — simulate imaging (or visibilities) of a
+  galaxy with known truth: grid and over-sampling, PSF, exposure time and background sky, light
+  profiles, FITS output plus a `galaxies.json` truth record, S/N targeting, whole samples in a
+  loop, and the `should_simulate` convention.
+- [`ag_build_imaging_model.md`](./ag_build_imaging_model.md) — compose the model for an imaging
+  fit: an `af.Model` / `af.Collection` tree of light profiles on one or more galaxies plus the
+  `ag.AnalysisImaging` that scores it — single Sersic, bulge-plus-disk, linear profiles, MGE,
+  prior customisation, pairing and assertions, `ag.DatasetModel`, and checking with
+  `print(model.info)` before spending a search.
+- [`ag_configure_search.md`](./ag_configure_search.md) — choose and configure the non-linear
+  search: `af.Nautilus` for a quotable posterior, `af.MultiStartProdigy` for a fast MAP check,
+  `af.DynestyStatic` for ellipse fitting and cross-checks, plus `n_live` / `n_batch` /
+  `n_starts`, the output cadence, start-point initialisers, grid searches, and the
+  `unique_tag` resume semantics that silently reuse a fit across datasets.
+- [`ag_run_search.md`](./ag_run_search.md) — drive `search.fit(model=model, analysis=analysis)`
+  to completion and read what it wrote: the output-folder anatomy and on-the-fly announcement,
+  resume behaviour, quick updates, JAX/GPU acceleration and VRAM checks, the
+  `PYAUTO_TEST_MODE` smoke levels, and the `if __name__ == "__main__"` parallelisation fix.
+- [`ag_plot_fit.md`](./ag_plot_fit.md) — visualise a dataset, a galaxy or a fit with the
+  functional `aplt` API: dataset and fit subplots, individual residual / normalised-residual /
+  chi-squared panels, per-galaxy breakdowns, log10 stretch and fixed colour limits, overlays,
+  figures and FITS to disk — plus the residual-inspection discipline for judging a fit.
+- [`ag_load_results.md`](./ag_load_results.md) — get a completed fit back into Python and turn
+  it into science: the in-session `Result`, direct `from_json` / `SamplesNest.from_table`
+  loading of one output folder, the `Samples` API for medians and errors, and the aggregator
+  for a whole sample with its `ag.agg` generators, queries and CSV/FITS/PNG exports.
+- [`ag_debug_fit_failure.md`](./ag_debug_fit_failure.md) — triage a fit that crashed, stalled or
+  finished with parameters you do not believe, through a failure taxonomy (environment, data,
+  model, priors, search settings, stale result) and the probes that separate them — including
+  the two silent failures: a resumed fit whose identifier ignored the data, and a cached result
+  mistaken for a new one.
 
 ### Meta
 
@@ -90,20 +136,6 @@ and shrinks as each phase lands.
 **Until a skill exists, do not pretend it does.** Answer from the installed source and the
 named grounding scripts, say that is what you did, and offer to author the skill via
 [`_bootstrap_skill.md`](./_bootstrap_skill.md).
-
-### Phase 4a — the core modelling loop
-
-| Skill | Purpose | Grounding (`autogalaxy_workspace/scripts/`) |
-|-------|---------|--------------------------------------------|
-| `ag_setup_environment` | detect absent or broken PyAuto\* environments, install via pip or editable clones, configure caches, verify imports | `guides/modeling/bug_fix.py` + the RTD installation pages |
-| `ag_prepare_imaging_data` | load and preprocess FITS imaging, decide masking for real data, measure noise, prepare the PSF | `imaging/data_preparation/start_here.py`, `imaging/data_preparation/examples/`, `imaging/data_preparation/gui/` |
-| `ag_simulate_dataset` | synthesise a galaxy dataset from a ground-truth light model, including population samples | `imaging/simulator.py`, `imaging/simulator_sersic.py`, `imaging/simulator_sample.py` |
-| `ag_build_imaging_model` | compose a galaxy's light model (bulge, disk, single Sersic) and wrap it in an imaging analysis | `imaging/start_here.py`, `imaging/modeling.py`, `guides/modeling/cookbook.py` |
-| `ag_configure_search` | pick and tune a non-linear search or gradient optimizer for the problem at hand | `guides/modeling/searches.py`, `guides/modeling/customize.py` |
-| `ag_run_search` | execute `search.fit(model=..., analysis=...)`, monitor convergence, read the live output folder | `imaging/modeling.py`, `guides/modeling/bug_fix.py` |
-| `ag_plot_fit` | plot the model image, residuals, normalised residuals and chi-squared map | `imaging/plot.py`, `guides/plot/start_here.py`, `guides/plot/plotters.py` |
-| `ag_load_results` | load a completed fit's galaxies, samples, dataset and FITS products from its output folder | `guides/results/start_here.py`, `guides/results/aggregator/` |
-| `ag_debug_fit_failure` | diagnose a fit that didn't converge or produced unphysical structural parameters | `guides/modeling/bug_fix.py`, HowToGalaxy `chapter_2_modeling/tutorial_4_dealing_with_failure` |
 
 ### Phase 4b — features beyond a single smooth profile
 
