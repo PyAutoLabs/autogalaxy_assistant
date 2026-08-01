@@ -430,10 +430,10 @@ unphysical; it is the standard rescue when a search will not converge. Grounded 
 with a click-to-select GUI at
 `autogalaxy_workspace:scripts/imaging/data_preparation/gui/light_centre.py`.
 
-The on-disk layout these files belong to is not yet a wiki page — until it is, the
-per-dataset READMEs under `autogalaxy_workspace:dataset/` and
-`autogalaxy_workspace:scripts/imaging/data_preparation/start_here.py` are the ground truth
-([`../PENDING.md`](../PENDING.md) tracks the page).
+The on-disk layout these files belong to is not yet a wiki page — until it is,
+`autogalaxy_workspace:scripts/imaging/data_preparation/start_here.py` is the ground truth
+(the workspace simulates its imaging datasets on first run rather than committing them;
+[`../PENDING.md`](../PENDING.md) tracks the page).
 
 ## Combine — where this hands off
 
