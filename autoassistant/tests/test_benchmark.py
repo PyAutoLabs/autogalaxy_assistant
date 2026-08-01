@@ -16,20 +16,19 @@ REPO_PROMPTS = REPO_ROOT / "benchmarks" / "prompts"
 # must match the README verbatim (benchmarks/README.md "Comparability rules"), so a
 # newly-added card defaults to being checked rather than silently exempt. Add a stem
 # here only when a card is meant to diverge.
-CARDS_NOT_IN_README: frozenset = frozenset()
+#
+# The README advertises three starter prompts; only the second of them is a benchmark
+# (the easy card). The other three cards are benchmark-only — a medium model comparison,
+# a hard cross-feature synthesis and the teacher walkthrough — so they have no README
+# counterpart to stay identical to.
+CARDS_NOT_IN_README: frozenset = frozenset(
+    {
+        "medium_mge_bulge_disk",
+        "hard_multi_band_pixelization",
+        "teacher_workflow",
+    }
+)
 
-
-def _skip_until_cards_authored():
-    """Skip while benchmarks/prompts/ is still empty.
-
-    The prompt cards are authored in Phases 2 and 6; until then there is nothing to
-    check. This guards only the *absence* of cards — as soon as one lands, the checks
-    below run against it in full.
-    """
-    if not REPO_PROMPTS.is_dir() or not any(REPO_PROMPTS.glob("*.md")):
-        pytest.skip(
-            "benchmarks/prompts/ not yet authored — see PENDING.md (Phases 2, 6)"
-        )
 
 CARD = """\
 ---
@@ -167,8 +166,10 @@ def test_report_builds_leaderboard_and_pending(root):
 
 def test_repo_prompt_cards_parse():
     """Every committed prompt card must load: unique ids, frontmatter, rubric."""
-    _skip_until_cards_authored()
     card_files = sorted(REPO_PROMPTS.glob("*.md"))
+    # The suite ships four cards (easy/medium/hard/teacher). An empty prompts/ dir would
+    # make every loop below vacuous, so assert the cards are actually there.
+    assert card_files, f"no prompt cards found in {REPO_PROMPTS}"
     # load_cards raises on a duplicate id, so a shortfall here means a card file
     # failed to yield a card at all.
     cards = benchmark.load_cards(REPO_ROOT)
@@ -190,7 +191,6 @@ def test_repo_card_datasets_exist():
 
 def test_repo_readme_prompts_match_cards():
     """Cards that mirror README example prompts must stay textually identical."""
-    _skip_until_cards_authored()
     readme = (REPO_ROOT / "README.md").read_text()
     for path in sorted(REPO_PROMPTS.glob("*.md")):
         if path.stem in CARDS_NOT_IN_README:

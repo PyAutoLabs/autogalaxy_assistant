@@ -406,8 +406,8 @@ way that makes over-sampling necessary. `noise_sigma` replaces the exposure-time
 Poisson model. And the thing you *look at* is the dirty image, which is a diagnostic — the
 fit itself happens in the uv-plane. The physics is
 [`../wiki/core/concepts/interferometer_theory.md`](../wiki/core/concepts/interferometer_theory.md).
-Full interferometer modelling is a separate skill (`ag_build_interferometer_model`, not yet
-written — see [`../PENDING.md`](../PENDING.md)).
+Full interferometer modelling is a separate skill,
+[`ag_build_interferometer_model`](./ag_build_interferometer_model.md).
 
 ## The auto-simulation convention
 

@@ -23,21 +23,23 @@ benchmarks/
 
 ## The benchmarks
 
-**One card is written.** The easy card landed in Phase 2 alongside the bundled dataset and the
-README prompt it mirrors; the remaining three are authored in Phase 6 and the repo-root
-`PENDING.md` tracks them. Planned entries below are deliberately unlinked because their files
-do not exist yet.
+**All four cards are written.** The easy card landed in Phase 2 alongside the bundled dataset
+and the README prompt it mirrors; the other three landed in Phase 6. Every card carries the
+verbatim frozen prompt, what it measures, and a 100-point rubric split into
+**machine-checkable** rows (artifacts that exist or don't) and **judged** rows (quality graded
+by a human or a stated judge model).
 
 | Card | Mode | Difficulty | Exercises |
 |------|------|-----------|-----------|
 | [`prompts/easy_cosj100020_imaging.md`](prompts/easy_cosj100020_imaging.md) | assistant | easy | the built-in workflow on the bundled JWST imaging: inspect, mask, fit an MGE bulge with a free sky level, add a Sersic for the index, compare wavebands |
-| `prompts/medium_mge_bulge_disk.md` _(planned, Phase 6)_ | assistant | medium | pipeline design beyond bundled workflows: Bayesian model comparison of an MGE against a bulge+disk decomposition, runtime/HPC judgment |
-| `prompts/hard_multi_galaxy_cluster.md` _(planned, Phase 6)_ | assistant | hard | cross-package synthesis: multi_galaxy × cluster × imaging × interferometer, simulation + joint modeling |
-| `prompts/teacher_workflow.md` _(planned, Phase 6)_ | teacher | easy | pedagogy: end-to-end workflow walkthrough on simulated data |
+| [`prompts/medium_mge_bulge_disk.md`](prompts/medium_mge_bulge_disk.md) | assistant | medium | judgement with the workflow: a Bayesian model comparison of a linear bulge+disk decomposition against an MGE, in two bands at two pixel scales, with the un-subtracted sky unprompted |
+| [`prompts/hard_multi_band_pixelization.md`](prompts/hard_multi_band_pixelization.md) | assistant | hard | cross-skill synthesis: simulate a clumpy galaxy in two bands, fit them jointly through a factor graph with a pixelised component, export and interpret the reconstruction |
+| [`prompts/teacher_workflow.md`](prompts/teacher_workflow.md) | teacher | easy | pedagogy: an end-to-end walkthrough on self-simulated data, scored on explanation, pacing and routing rather than on the fit |
 
-Each card will carry the verbatim prompt, what it measures, and a 100-point
-rubric split into **machine-checkable** rows (artifacts that exist or don't)
-and **judged** rows (quality graded by a human or a stated judge model).
+Only the easy card mirrors a top-level `README.md` starter prompt; the other three are
+benchmark-only, and their stems are listed in `CARDS_NOT_IN_README` in
+`autoassistant/tests/test_benchmark.py` so the README-parity test knows they diverge by
+design.
 
 ## Running a benchmark
 

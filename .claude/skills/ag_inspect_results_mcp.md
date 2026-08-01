@@ -1,0 +1,1 @@
+../../skills/ag_inspect_results_mcp.md

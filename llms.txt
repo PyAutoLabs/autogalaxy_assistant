@@ -20,7 +20,7 @@ Read order: [AGENTS.md](./AGENTS.md) → [skills/README.md](./skills/README.md) 
 
 **⚠️ API currency — read before writing any PyAutoGalaxy code.** Older PyAutoGalaxy releases are heavily represented in model training data and their API is **out of date**. Do **not** write PyAutoGalaxy from memory. The single most common stale error: **plotting is functional now.** Use `aplt.subplot_fit_imaging(fit=fit, output_path=..., output_format="png")` and `aplt.subplot_imaging_dataset(dataset=..., output_path=..., output_filename=..., output_format="png")` — note that `output_filename` is accepted by the dataset subplots, `plot_array` and `plot_grid`, but **not** by `subplot_fit_imaging`, which writes a fixed `fit.png` into `output_path` (passing it raises `TypeError`). The old object-oriented plotters — `aplt.FitImagingPlotter`, `aplt.ImagingPlotter`, `aplt.GalaxyPlotter`, `aplt.GalaxiesPlotter`, `aplt.InversionPlotter` — and the `aplt.MatPlot2D` / `aplt.Include2D` / `aplt.Output` configuration objects have all been **removed**; never emit them. The whole plotting surface is module-level functions, and `dir(autogalaxy.plot)` is the authoritative list. If you can't point at a live example or a `dir()` listing for a call, say it's unverified rather than guessing.
 
-**⚠️ This assistant is young.** Twenty-four skills exist: the nine-skill core modelling loop (environment, data preparation, simulation, model building, search configuration, running the fit, plotting, results, debugging), the eight **feature** skills beyond a single smooth profile (bases and MGE, pixelisations, extra galaxies / sky / operated profiles, ellipse fitting, multi-dataset, interferometry, multi-galaxy and clusters, search chaining), two meta, two project-workflow and three maintenance. The rest of the benchmark suite (one of four cards is written) and the HPC folder are still being written, phase by phase. [`skills/README.md`](./skills/README.md) and [`PENDING.md`](./PENDING.md) say exactly what is present and what is planned, and every planned item names the `autogalaxy_workspace` script that grounds it. **Answer from those grounding scripts and say that you did** — never describe a pending skill or wiki page as though you had read it.
+**⚠️ This assistant is young, but it is complete.** Twenty-seven skills exist: the nine-skill core modelling loop (environment, data preparation, simulation, model building, search configuration, running the fit, plotting, results, debugging), the eight **feature** skills beyond a single smooth profile (bases and MGE, pixelisations, extra galaxies / sky / operated profiles, ellipse fitting, multi-dataset, interferometry, multi-galaxy and clusters, search chaining), two output surfaces (script→notebook, the read-only results-inspector MCP server), two meta, two project-workflow, one literature and three maintenance. The reference wiki, the four-card benchmark suite and the `hpc/` folder are all in place. What is *young* is the evidence: **no benchmark run has been scored yet** (`benchmarks/RESULTS.md` says so), so do not cite benchmark performance. [`skills/README.md`](./skills/README.md) is the index of what exists and [`ROADMAP.md`](./ROADMAP.md) is what is still wished for; **never describe anything on the roadmap as though you had read it**, and when a question falls outside the skills and wiki, answer from the installed source or the `autogalaxy_workspace` script and say that is what you did.
 
 ## Agent instructions (canonical)
 
@@ -28,7 +28,7 @@ Read order: [AGENTS.md](./AGENTS.md) → [skills/README.md](./skills/README.md) 
 
 ## What it can do
 
-- [skills/README.md](./skills/README.md): the skills that exist, then the phased roadmap of those that don't.
+- [skills/README.md](./skills/README.md): all twenty-seven skills that exist, then the short backlog of two that deliberately do not.
 
 ## The bundled dataset
 
@@ -36,9 +36,9 @@ Read order: [AGENTS.md](./AGENTS.md) → [skills/README.md](./skills/README.md) 
 
 ## Reference
 
-- [wiki/core/index.md](./wiki/core/index.md): curated PyAuto\* reference. The `stack/`, `api/`, `concepts/`, `operations/` and `external/` sections are live; the index itself names the pages still missing (the two HPC pages).
+- [wiki/core/index.md](./wiki/core/index.md): curated PyAuto\* reference. The `stack/`, `api/`, `concepts/`, `operations/` and `external/` sections are all complete; the index lists every page and states what "complete" does and does not claim.
 - [wiki/literature/index.md](./wiki/literature/index.md): the galaxy-structure science wiki — concepts (Sersic profiles, bulge–disk decomposition, MGE, isophotes, scaling relations, high-z structure…), survey/instrument entities, and per-topic annotated bibliographies, every citation verified.
-- [PENDING.md](./PENDING.md): the authoritative ledger of every unwritten skill and wiki page, with its grounding script and target phase.
+- [ROADMAP.md](./ROADMAP.md): what this assistant does not do yet and why — benchmark calibration, a second instrument's dataset, two ungrounded skills, upstream fixes to contribute. Nothing in the repo links to an item on it.
 
 ## Runnable examples & tutorials (elsewhere)
 

@@ -576,7 +576,8 @@ from any test-mode run are meaningless — say so rather than quoting them.
 Population-level inference over *different* galaxies is a different construction on the same
 graphical-model machinery;
 [`../wiki/core/concepts/hierarchical_models.md`](../wiki/core/concepts/hierarchical_models.md)
-covers it, and no skill owns it yet ([`../PENDING.md`](../PENDING.md)).
+covers it, and no skill owns it — that page says plainly that its composition is unvalidated,
+so treat it as the shape of the API rather than a recipe.
 
 When the joint fit is worth keeping, offer (default-yes) to record it in a dated
 `wiki/project/YYYY-MM-DD-<slug>.md` entry: which bands, what was shared and why, what was freed,

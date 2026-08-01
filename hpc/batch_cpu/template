@@ -1,0 +1,104 @@
+#!/bin/bash -l
+
+#SBATCH -J galaxy_run_cpu
+#SBATCH -n 1
+#SBATCH --cpus-per-task=4
+#SBATCH -o output/output.%A_%a.out
+#SBATCH -e error/error.%A_%a.err
+#SBATCH --partition=cpu
+#SBATCH -t 18:00:00
+#SBATCH --mem=64gb
+#SBATCH --array=0-0
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=your.email@example.com
+
+# -------------------------------
+# Generic CPU submit template.
+#
+# Copy or edit this file for your science case. Fill in the job name, --array
+# range, SCRIPT, sample and datasets below. The SLURM array runs one galaxy
+# per task, which is the natural unit for sample-scale structure work: a few
+# hundred independent objects, each cheap on its own. JAX is forced onto the
+# CPU and thread counts are pinned to the allocated cores; the script is run
+# with --use_cpu so Nautilus uses multicore parallelism instead of JAX/GPU.
+#
+# Sizing: a linear bulge-plus-disk or MGE fit on a masked cutout runs in tens
+# of minutes on 4 cores; a pixelised reconstruction is hours and wants the
+# memory. Request what the slowest galaxy in the list needs.
+# -------------------------------
+
+# -------------------------------
+# Environment
+#
+# Set PROJECT_PATH before submitting:
+#   export PROJECT_PATH=/path/to/your/project
+# -------------------------------
+if [ -z "${PROJECT_PATH:-}" ]; then
+    PROJECT_PATH=/path/to/your/project
+fi
+
+source $PROJECT_PATH/activate.sh
+
+# Force JAX to use CPU only (no GPU)
+export JAX_PLATFORM_NAME=cpu
+export JAX_PLATFORMS=cpu
+
+# Pin thread counts to the allocated CPUs
+THREADS=$SLURM_CPUS_PER_TASK
+export OPENBLAS_NUM_THREADS=$THREADS
+export MKL_NUM_THREADS=$THREADS
+export OMP_NUM_THREADS=$THREADS
+export VECLIB_MAXIMUM_THREADS=$THREADS
+export NUMEXPR_NUM_THREADS=$THREADS
+export NPROC=$THREADS
+
+# -------------------------------
+# Modeling script
+#
+# The pipeline script inside scripts/ to run (adapted from hpc/template.py).
+# Change to your script's filename.
+# -------------------------------
+SCRIPT=imaging.py
+
+# -------------------------------
+# Sample
+#
+# The sample is the subdirectory inside dataset/ that contains the datasets.
+# For a multi-waveband layout, this is <galaxy>/wavebands and each band below
+# is one array task.
+# -------------------------------
+sample=imaging
+
+# -------------------------------
+# Dataset list
+#
+# Each entry is the name of a subdirectory inside dataset/$sample/.
+# Update --array above to match the number of datasets (0 to N-1).
+# -------------------------------
+datasets=(
+my_galaxy
+)
+
+# -------------------------------
+# Select dataset for this array task
+# -------------------------------
+INDEX=$SLURM_ARRAY_TASK_ID
+dataset="${datasets[$INDEX]}"
+
+echo "=========================================="
+echo "Array job index: $INDEX"
+echo "Sample: $sample"
+echo "Dataset: $dataset"
+date
+
+# -------------------------------
+# Run the analysis script.
+#
+# All path management is handled inside the script via Path(__file__).
+# Dataset-specific values (pixel_scale, mask_radius, redshift, ...) are read
+# from dataset/$sample/$dataset/info.json automatically.
+# -------------------------------
+python3 $PROJECT_PATH/scripts/$SCRIPT --sample=$sample --dataset=$dataset --use_cpu --number_of_cores=$THREADS
+
+echo "Finished dataset: $dataset"
+date

@@ -5,10 +5,10 @@ sources:
     paths:
       - wiki/core/
       - skills/
-      - PENDING.md
-    pinned_commit: db52604f13305cb8a251fb3bb08bb5cc0ab84a55
+      - ROADMAP.md
+    pinned_commit: a083753c217e6d9c07f3c9cc40cb7133b478a439
 last_updated: 2026-08-01
-content_sha256: f08e139383d03937ce3a71b20700afedb0fa3a343a48f67f067b913184938e02
+content_sha256: 02c4f0d6bedb06af5c8528fcdf8261bff6a621f86ed900f7f8f16350cc81b8e0
 ---
 
 # Core wiki — PyAuto\* reference
@@ -24,12 +24,12 @@ Five sections, each with a different job:
 | [`stack/`](#stack) | Which library owns this, and what does it depend on? | 5 |
 | [`api/`](#api) | Which one exists, and when would I pick it? | 9 |
 | [`concepts/`](#concepts) | What is this, physically and statistically, and why? | 15 |
-| [`operations/`](#operations) | How do I install, configure and run it? | 3 |
+| [`operations/`](#operations) | How do I install, configure and run it? | 5 |
 | [`external/`](#external-resources) | Where do I send the user to read more? | 5 |
 
-Every link on this page resolves to a file that exists. Anything not listed here is not
-written yet, and [`../../PENDING.md`](../../PENDING.md) is the authoritative ledger of what
-is missing — see "Not written yet" at the foot of this page for the summary.
+Every link on this page resolves to a file that exists, and as of Phase 6 nothing this
+sub-wiki planned is still unwritten — see "Nothing is missing" at the foot of the page for
+what that does and does not claim.
 
 ## Stack
 
@@ -113,6 +113,12 @@ The physics and the inference behind the API.
 - [Sandbox / restricted environments](./operations/sandbox.md) — writable caches
   (`NUMBA_CACHE_DIR`, `MPLCONFIGDIR`, the JAX compilation cache), `PYAUTO_TEST_MODE` and the
   other short-circuit flags, and where this repo is allowed to write.
+- [HPC and cluster runs](./operations/hpc.md) — why galaxy work is sample-shaped, the two
+  kinds of parallelism, JAX on CPU versus GPU (and when the GPU is the wrong answer), sizing
+  an array job, per-job caches, and the resume trap on a sample run.
+- [HPC infrastructure shipped here](./operations/hpc_infrastructure.md) — the `hpc/` tree:
+  `template.py` and its interface contract, the CPU and GPU submit templates, and the `sync`
+  CLI for transfer and job control.
 
 ## External resources
 
@@ -127,20 +133,20 @@ Routing into the three resources outside this repo, by audience.
 - [Skill citation map](./external/skill_citation_map.md) — one row per skill; load-bearing
   for each skill's `## Further reading` block.
 
-## Not written yet
+## Nothing is missing
 
-Listed honestly rather than linked. `../../PENDING.md` names the grounding script for each.
+This section used to list the pages that had not been written. As of Phase 6 there are none:
+the two HPC operations pages were the last of them, and they landed with the `hpc/` tree they
+document. Every section above is complete, and every link on this page resolves to a file that
+exists.
 
-- **`operations/hpc.md`** and **`operations/hpc_infrastructure.md`** — cluster concepts, and
-  the `hpc/` templates and `sync` CLI. Both wait on Phase 6 actually shipping `hpc/`; the
-  interface contract a pipeline must preserve is documented meanwhile in
-  `autogalaxy_assistant:scripts/AGENTS.md`. For the science side now, read
-  `autogalaxy_workspace:scripts/guides/hpc/example_cpu_and_gpu.py` and
-  `autogalaxy_workspace:scripts/guides/using_jax.py`.
-
-Until a page lands, ground the answer in installed source or the `autogalaxy_workspace`
-scripts — and say that is what you did. (The galaxy-structure science reference lives in
-`../literature/` — see its own index.)
+That is a statement about *coverage of this sub-wiki's plan*, not a claim of omniscience. When
+a question falls outside these pages — a corner of the API nobody has needed yet, a workspace
+feature with no page here — ground the answer in installed source or the `autogalaxy_workspace`
+scripts and **say that is what you did**, rather than answering as though a page covered it.
+If the gap is real and recurring, `../../ROADMAP.md` is where it gets recorded and
+[`../../skills/ag_update_wiki.md`](../../skills/ag_update_wiki.md) is the workflow that fills
+it. (The galaxy-structure science reference lives in `../literature/` — see its own index.)
 
 ## How this sub-wiki is maintained
 

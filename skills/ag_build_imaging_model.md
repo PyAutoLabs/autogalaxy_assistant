@@ -39,8 +39,8 @@ wrong answer rather than an obvious failure. Simulated data is exempt.
 
 - *"One galaxy, or several whose light blends?"* The only structural choice. This skill
   assumes a single target with optional contaminating neighbours; two or more co-dominant
-  galaxies is a different skill (`ag_multi_galaxy_and_cluster`, not yet written — see
-  [`../PENDING.md`](../PENDING.md)).
+  galaxies is a different skill,
+  [`ag_multi_galaxy_and_cluster`](./ag_multi_galaxy_and_cluster.md).
 - *"A single Sersic to start, or straight to a bulge-plus-disk decomposition?"* Single Sersic
   first is almost always the right answer, even when you want the decomposition: it converges
   fast, tells you the galaxy's overall size and concentration, and gives you something to

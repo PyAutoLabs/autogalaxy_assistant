@@ -148,10 +148,10 @@ human-readable documentation so you can see what **PyAutoGalaxy** is doing.
 
 ## What Works Today, and What Is Coming
 
-This assistant is **public from birth and built in phases**, so this section is a status
-report rather than a feature list. [`PENDING.md`](PENDING.md) is the authoritative ledger of
-everything still missing, with the `autogalaxy_workspace` script that will ground each item.
-No file in this repository links to something that does not exist yet.
+This assistant was **built in public, in phases**, so this section is a status report rather
+than a feature list. Every phase has now landed; [`ROADMAP.md`](ROADMAP.md) is what comes next
+and what is deliberately not here yet. No file in this repository links to something that does
+not exist.
 
 **Live today:**
 
@@ -162,25 +162,34 @@ No file in this repository links to something that does not exist yet.
 - **The features beyond a single smooth profile — eight skills.** Basis profiles and MGE,
   pixelised reconstruction, extra galaxies / sky / operated profiles, ellipse fitting,
   multi-dataset fits, interferometer modelling, multi-galaxy and cluster fields, and search
-  chaining. Alongside both sets sit two meta-skills, two project-workflow skills and three
-  repository-maintenance skills — twenty-four in total, catalogued in
-  [`skills/README.md`](skills/README.md).
-- **The curated reference wiki**, [`wiki/core/`](wiki/core/index.md) — 37 pages across
+  chaining.
+- **Two output surfaces.** Converting a generated script into a Jupyter notebook, and a
+  read-only results-inspector MCP server so a chat client with no code execution can still
+  browse and compare your finished fits. Alongside all three sets sit two meta-skills, two
+  project-workflow skills, one literature skill and three repository-maintenance skills —
+  twenty-seven in total, catalogued in [`skills/README.md`](skills/README.md).
+- **The curated reference wiki**, [`wiki/core/`](wiki/core/index.md) — 39 pages across
   `stack/`, `api/`, `concepts/`, `operations/` and `external/`. Every page pins the source
   commits it was validated against.
+- **The literature wiki**, [`wiki/literature/`](wiki/literature/index.md) — a galaxy-structure
+  science reference: 16 concept pages, 10 survey/instrument entities and 13 annotated source
+  bibliographies over a BibTeX layer in which **every entry was verified against a public
+  record before it was allowed in**.
 - **This bundled dataset** — four real JWST NIRCam wavebands with full provenance, plus
   [`wiki/core/operations/dataset.md`](wiki/core/operations/dataset.md) documenting the
   on-disk layout and the `info.json` schema.
-- **One benchmark card** — Starter Prompt 2 above, frozen with a 100-point rubric under
-  [`benchmarks/`](benchmarks/README.md).
+- **Cluster support** — `hpc/` ships a pipeline template, CPU and GPU SLURM submit templates
+  and a `sync` CLI for transfers and job control, documented in
+  [`wiki/core/operations/hpc.md`](wiki/core/operations/hpc.md) and
+  [`hpc_infrastructure.md`](wiki/core/operations/hpc_infrastructure.md).
+- **Four benchmark cards** — easy (Starter Prompt 2 above), medium, hard and teacher, each
+  frozen with a 100-point rubric under [`benchmarks/`](benchmarks/README.md).
 
-**Still being written:**
-
-- **The literature wiki** (Phase 5) — a galaxy-structure science reference with cross-linked
-  concept, entity and source pages. Until it lands, the assistant will not cite it and must
-  not invent its contents.
-- **The remaining benchmark cards, and HPC support** (Phase 6) — medium, hard and teacher
-  cards, plus the `hpc/` templates and sync CLI for cluster runs.
+**The honest gap:** the benchmark suite has been *written* but not *run*.
+[`benchmarks/RESULTS.md`](benchmarks/RESULTS.md) records no scored runs, and it is regenerated
+mechanically rather than written by hand — so there is no performance claim here to believe or
+disbelieve yet. That, and everything else this assistant does not do, is in
+[`ROADMAP.md`](ROADMAP.md).
 
 The phased build is tracked at
 [PyAutoBrain#188](https://github.com/PyAutoLabs/PyAutoBrain/issues/188).

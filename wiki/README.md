@@ -10,17 +10,16 @@ because you can read it yet.
 | [`project/`](./project/) | *What did we do in this fork, and why?* | Dated journal entries | Agent + user, every meaningful session |
 | `literature/` | *What does the galaxy-structure literature say about X?* | Compiled syntheses of papers (PDFs typically kept outside the repo), with its own `concepts/` / `entities/` / `sources/` schema, `[[wiki-link]]` cross-references and a verified BibTeX bibliography | The user (via `ag_ingest_paper`), when extending the literature wiki from new papers |
 
-`core/` is itself partially built: only `stack/` (one page per source library) exists so far.
-[`core/index.md`](./core/index.md) states exactly which directories are still missing, and the
-repo-root [`PENDING.md`](../PENDING.md) is the authoritative ledger of unwritten pages with the
-grounding script for each.
+`core/` is complete: `stack/`, `api/`, `concepts/`, `operations/` and `external/` are all
+written, and [`core/index.md`](./core/index.md) lists every page with a closing section on what
+"complete" does and does not claim. Wishes beyond it live in the repo-root
+[`ROADMAP.md`](../ROADMAP.md), which nothing links into.
 
 ## When to read which
 
 - A user asks **"what does PyAutoFit contribute to the stack?"** → `core/stack/autofit.md`.
-- A user asks **"what's a Sersic index?"** or **"which searches can I use?"** → `core/`, once
-  its `concepts/` and `api/` pages land. Until then, ground the answer in the installed source
-  and the `autogalaxy_workspace` scripts, and say that is what you did.
+- A user asks **"what's a Sersic index?"** or **"which searches can I use?"** →
+  `core/concepts/light_profiles.md` and `core/api/searches.md`.
 - A user asks **"how does the Kormendy relation constrain this?"** or **"summarise the
   bulge-disk decomposition literature"** → this is `literature/` territory: start from
   [`literature/index.md`](./literature/index.md) and cite the concept or source page you
@@ -48,8 +47,8 @@ wiki/
 ├── README.md            # this file
 ├── core/                # PyAuto* reference
 │   ├── README.md  index.md
-│   ├── stack/           # one page per library — LIVE
-│   └── concepts/  api/  operations/  external/     # planned (see PENDING.md)
+│   ├── stack/           # one page per library
+│   └── concepts/  api/  operations/  external/     # all written
 ├── project/             # running journal for this fork
 │   ├── README.md
 │   ├── _template.md            # dated-entry template

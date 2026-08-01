@@ -59,9 +59,8 @@ Exit `3` = they were found but an import raised.
 
 **Do not audit against a half-installed stack.** Every symbol under a root that failed to
 import comes back `import_failed`, which is a flood of false positives, not a report. Repair
-the environment first — the environment skill that will own that procedure is not written
-yet (see [`../PENDING.md`](../PENDING.md)); until it is, diagnose from the `--check-install`
-output and the cache/environment variables in
+the environment first — [`ag_setup_environment`](./ag_setup_environment.md) owns that
+procedure, working from the `--check-install` output and the cache/environment variables in
 [`../wiki/core/operations/sandbox.md`](../wiki/core/operations/sandbox.md). Only a *later*
 `--check-version` exit 1 is genuine API drift.
 

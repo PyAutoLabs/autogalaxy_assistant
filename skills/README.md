@@ -27,17 +27,17 @@ configured) via symlinks; the canonical files live here.
 
 ## Index — what exists today
 
-Twenty-five skills are written: nine for the core modelling loop, eight for the features beyond
-a single smooth profile, two meta, two project-workflow, one literature, three maintenance. **Everything else in
-this file is a plan, not a file** — the "Pending" section below is a catalogue of what has not
-been authored yet, and deliberately does not link to anything. Every entry here that is a link
-resolves; if you find a link that doesn't, that is a bug worth fixing rather than a file worth
-waiting for.
+Twenty-seven skills are written: nine for the core modelling loop, eight for the features
+beyond a single smooth profile, two output surfaces, two meta, two project-workflow, one
+literature, three maintenance. **Everything else in this file is a plan, not a file** — the
+"Backlog" section below is a catalogue of what has not been authored, and deliberately does not
+link to anything. Every entry here that is a link resolves; if you find a link that doesn't,
+that is a bug worth fixing rather than a file worth waiting for.
 
-The core modelling loop and the feature set are both live. For a request that falls outside the
-seventeen galaxy-modelling skills below, answer from the installed source and the grounding
-scripts named in the Pending tables, say that is what you did, and offer to author the skill via
-[`_bootstrap_skill.md`](./_bootstrap_skill.md).
+The core modelling loop, the feature set and the output surfaces are all live. For a request
+that falls outside the nineteen galaxy-facing skills below, answer from the installed source and
+the `autogalaxy_workspace` script that covers it, say that is what you did, and offer to author
+the skill via [`_bootstrap_skill.md`](./_bootstrap_skill.md).
 
 ### Galaxy modelling — the core loop
 
@@ -130,6 +130,20 @@ composition, search and plotting conventions and changes one thing about them.
   bounded variants to narrow priors, `result.model` to keep the original ones, `result.instance` to
   fix a component outright, and the output-path convention that keeps a chain's searches together.
 
+### Output surfaces
+
+Once a script exists or a fit has finished, these two change *where* it can be read — neither
+adds science, and neither is a substitute for the skills above.
+
+- [`ag_to_notebook.md`](./ag_to_notebook.md) — convert a generated narrative-docstring script
+  into a Jupyter notebook: each top-level docstring becomes a markdown cell and the code
+  between becomes a code cell, so the physics and inference narrative survives the conversion.
+  Stdlib-only, and the `.py` stays the source of truth.
+- [`ag_inspect_results_mcp.md`](./ag_inspect_results_mcp.md) — run and configure the read-only
+  results-inspector MCP server, so a chat harness with no code execution can list completed
+  fits, read model and posterior summaries, render result images inline, and combine subplot
+  panels or extract FITS HDUs across a whole sample at once.
+
 ### Meta
 
 - [`_style.md`](./_style.md) — writing guide every skill is authored against. Read first
@@ -180,26 +194,16 @@ reviewable diff.
   upgrade, orchestrating the two above across all four drift surfaces (skills, wiki, source
   pins, generated scripts), with `autoassistant/refresh_api_docs.py` as its preflight.
 
-## Pending — the `ag_*` skill roadmap
+## Backlog — may never ship
 
-Not yet written. Grouped by the phase that will author them, each with the
-`autogalaxy_workspace` script(s) that ground its API — a skill is written *from* those
-scripts, never from memory, because older PyAutoGalaxy releases are heavily represented in
-model training data. The repo-root [`PENDING.md`](../PENDING.md) is the authoritative ledger
-and shrinks as each phase lands.
+Every skill the build planned is now on disk; what remains below was catalogued rather than
+scheduled. **Until a skill exists, do not pretend it does.** Answer from the installed source
+and the named grounding material, say that is what you did, and offer to author the skill via
+[`_bootstrap_skill.md`](./_bootstrap_skill.md). A skill is written *from* a grounding script,
+never from memory, because older PyAutoGalaxy releases are heavily represented in model
+training data — which is exactly why the two below are still unwritten.
 
-**Until a skill exists, do not pretend it does.** Answer from the installed source and the
-named grounding scripts, say that is what you did, and offer to author the skill via
-[`_bootstrap_skill.md`](./_bootstrap_skill.md).
-
-### Phase 6 — output surfaces
-
-| Skill | Purpose | Grounding |
-|-------|---------|-----------|
-| `ag_to_notebook` | convert a generated narrative-docstring script to a Jupyter notebook (docstrings → markdown cells, code → code cells) | `autoassistant/to_notebook.py` |
-| `ag_inspect_results_mcp` | the read-only results-inspector MCP server: browse fits, summaries and result images from chat harnesses without code execution | `autoassistant/mcp/galaxy_tools.py` |
-
-### Backlog — may never ship
+### No grounding script exists
 
 Catalogued so the gap is visible, but with **no `autogalaxy_workspace` script that grounds
 them**. Neither may be authored by porting the equivalent skill from a sibling assistant: a
@@ -217,13 +221,13 @@ supplies the missing ground truth.
 If a skill is ever committed as a scaffold rather than a complete recipe — frontmatter and
 the Orient/Ask/Branch/Combine skeleton in place, but `Branch` recipes left as TODO markers —
 it **must** be marked `(stub)` in this index on the same commit, and it must appear in
-`PENDING.md` with the grounding script that will complete it.
+[`../ROADMAP.md`](../ROADMAP.md) with the grounding script that will complete it.
 
 The rule exists because an unmarked stub is worse than a missing file: an agent that reads
 this index trusts it, activates the skill, and emits a recipe that was never grounded. A
 sibling assistant once shipped an index listing 45 skills of which 13 existed. Prefer an
-honest gap in the Pending tables above over a hollow entry in the Index.
+honest gap in the Backlog above over a hollow entry in the Index.
 
 The same rule governs links. An entry under "Index — what exists today" carries a relative
-link; an entry anywhere in "Pending" carries none, so a broken link is always a real defect
-and never an expected placeholder.
+link; an entry under "Backlog" carries none, so a broken link is always a real defect and
+never an expected placeholder.

@@ -92,10 +92,12 @@ Store as `PROJECT_DESCRIPTION`.
 > Point me at files, describe the science case so I can scan the workspace (use the Explore
 > agent), or skip and add them later.
 
-There is no skill that scaffolds a pipeline yet. `scripts/AGENTS.md` carries the workspace
-pipeline-reference table — which script group to adapt for which science case — and the
-roadmap for the `ag_*` skills that will automate this is in `skills/README.md` and
-`PENDING.md`. Adapt by hand from the named group's `start_here.py` until then.
+There is deliberately no skill that scaffolds a pipeline, because galaxy work has no single
+default worth scaffolding. `scripts/AGENTS.md` carries the workspace pipeline-reference table —
+which script group to adapt for which science case — and
+[`../hpc/template.py`](../hpc/template.py) is the shape to start from if the project will run on
+a cluster. Compose the `ag_*` skills for the science and adapt the named group's
+`start_here.py` by hand.
 
 ### 5. Scaffold the project (thin, refer-back — replaces the old whole-assistant rsync)
 
@@ -427,7 +429,10 @@ description) when it does. Empty for now:
   (Work / Collaborate reuse it).
 - [`../scripts/AGENTS.md`](../scripts/AGENTS.md) — the workspace pipeline-reference table and
   the HPC interface contract a `scripts/` pipeline must preserve.
-- `autogalaxy_workspace:scripts/imaging/data_preparation/start_here.py` — dataset layout and
-  preparation, until the `wiki/core/operations/` pages land (see `../PENDING.md`).
+- [`../wiki/core/operations/dataset.md`](../wiki/core/operations/dataset.md) — dataset layout
+  and `info.json`, with `autogalaxy_workspace:scripts/imaging/data_preparation/start_here.py`
+  as the preparation ground truth behind it.
+- [`../wiki/core/operations/hpc_infrastructure.md`](../wiki/core/operations/hpc_infrastructure.md)
+  — the `hpc/` folder this skill optionally copies into a project.
 - CITATION.cff: https://citation-file-format.github.io/ · Zenodo–GitHub archiving:
   https://docs.github.com/repositories/archiving-a-github-repository/referencing-and-citing-content

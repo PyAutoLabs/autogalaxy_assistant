@@ -158,8 +158,8 @@ Two reasons to reach for it. **Isophote fitting**: use it whenever the analysis 
 cross-check**: a posterior that reproduces under a different nested sampler is far more
 convincing than one that does not, and this is the cheapest such check available. Ellipse
 fitting has its own page,
-[`../wiki/core/api/ellipse.md`](../wiki/core/api/ellipse.md), and gets its own skill in a
-later phase (`ag_ellipse_fitting` — see [`../PENDING.md`](../PENDING.md)).
+[`../wiki/core/api/ellipse.md`](../wiki/core/api/ellipse.md), and its own skill,
+[`ag_ellipse_fitting`](./ag_ellipse_fitting.md).
 
 ## Branch — the rest of the catalogue
 
