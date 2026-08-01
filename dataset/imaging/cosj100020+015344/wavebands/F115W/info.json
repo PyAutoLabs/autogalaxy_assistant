@@ -1,0 +1,15 @@
+{
+    "pixel_scale": 0.03,
+    "centre_ra": 150.085317,
+    "centre_dec": 1.895805,
+    "axis_ratio": 0.886,
+    "position_angle": 98.8,
+    "effective_radius_arcsec_rough": 0.297,
+    "moment_semimajor_sigma_arcsec": 0.285,
+    "peak_snr": 47.8,
+    "peak_value": 24.2005,
+    "background_sky_level": 0.26236,
+    "background_sky_rms": 0.0332,
+    "curve_of_growth_max_arcsec": 3.0,
+    "segment_area_pixels": 2756
+}

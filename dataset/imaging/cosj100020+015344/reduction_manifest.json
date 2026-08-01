@@ -1,0 +1,354 @@
+{
+    "F115W": {
+        "pixel_scale": 0.03,
+        "cutout_shape": [
+            419,
+            419
+        ],
+        "data_units": "MJy/sr",
+        "n_exposures": 12,
+        "exposures": [
+            "jw01727138001_02101_00001_nrcb1_cal.fits",
+            "jw01727138001_02101_00001_nrcb2_cal.fits",
+            "jw01727138001_02101_00001_nrcb3_cal.fits",
+            "jw01727138001_02101_00001_nrcb4_cal.fits",
+            "jw01727138001_02101_00002_nrcb1_cal.fits",
+            "jw01727138001_02101_00002_nrcb2_cal.fits",
+            "jw01727138001_02101_00002_nrcb3_cal.fits",
+            "jw01727138001_02101_00002_nrcb4_cal.fits",
+            "jw01727138001_02101_00003_nrcb1_cal.fits",
+            "jw01727138001_02101_00003_nrcb2_cal.fits",
+            "jw01727138001_02101_00004_nrcb1_cal.fits",
+            "jw01727138001_02101_00004_nrcb2_cal.fits"
+        ],
+        "n_skipped_off_target": 52,
+        "correlated_noise_factor": 1.5253968253968253,
+        "noise_recipe": "R * ERR (propagated by calwebb_image3 resample)",
+        "weight_uniformity_cutout": {
+            "wht_rms_over_median": 0.28581055998802185,
+            "limit": 0.2,
+            "acceptable": false
+        },
+        "n_masked_bad_pixels": 0,
+        "psf": {
+            "method": "stpsf-tier2b-mosaic",
+            "shipped_as": "psf.fits",
+            "kernel_shape": [
+                21,
+                21
+            ],
+            "normalisation": "unit sum",
+            "stpsf_version": "2.2.0",
+            "ext": "DET_DIST (detector-sampled, geometric distortion included)",
+            "n_frames_combined": 2,
+            "detectors": [
+                "NRCB1"
+            ],
+            "weighting": "exptime",
+            "pixfrac_drop_convolved": 1.0,
+            "resample": "local-affine frame->mosaic Jacobian at the target",
+            "moment_fwhm_pix": 4.967852165977171,
+            "central_pixel_flux_fraction": 0.24691423891227005,
+            "frames": [
+                {
+                    "exposure": "jw01727138001_02101_00003_nrcb1_cal.fits",
+                    "chip": 1,
+                    "weight_exptime": 257.682,
+                    "detector": "NRCB1",
+                    "detector_position": [
+                        1580.7435433103335,
+                        462.9434393821838
+                    ]
+                },
+                {
+                    "exposure": "jw01727138001_02101_00004_nrcb1_cal.fits",
+                    "chip": 1,
+                    "weight_exptime": 257.682,
+                    "detector": "NRCB1",
+                    "detector_position": [
+                        1584.8938023187532,
+                        268.6342388443356
+                    ]
+                }
+            ],
+            "caveat": "model PSF: no as-flown wavefront drift for this epoch; drop convolution + local-affine resample are first-order. The PSF is the dominant systematic in any fit to this dataset."
+        },
+        "psf_pipeline_tier1_rejected": {
+            "method": "epsf-tier1",
+            "n_stars_used": 72,
+            "oversampling": 2,
+            "fwhm_pix": 4.47213595499958,
+            "reason_rejected": "The pipeline's tier-1 mosaic ePSF stage ran and produced this kernel, but it is NOT the shipped psf.fits. Its DAOStarFinder star list on this deep extragalactic field is ~76% resolved compact galaxies rather than stars, so the stacked kernel is far too broad and rings negative. The rejected kernels are not shipped with this dataset; they are retained with the reduction run. See README.md section 5b."
+        }
+    },
+    "F150W": {
+        "pixel_scale": 0.03,
+        "cutout_shape": [
+            419,
+            419
+        ],
+        "data_units": "MJy/sr",
+        "n_exposures": 12,
+        "exposures": [
+            "jw01727138001_04101_00001_nrcb1_cal.fits",
+            "jw01727138001_04101_00001_nrcb2_cal.fits",
+            "jw01727138001_04101_00001_nrcb3_cal.fits",
+            "jw01727138001_04101_00001_nrcb4_cal.fits",
+            "jw01727138001_04101_00002_nrcb1_cal.fits",
+            "jw01727138001_04101_00002_nrcb2_cal.fits",
+            "jw01727138001_04101_00002_nrcb3_cal.fits",
+            "jw01727138001_04101_00002_nrcb4_cal.fits",
+            "jw01727138001_04101_00003_nrcb1_cal.fits",
+            "jw01727138001_04101_00003_nrcb2_cal.fits",
+            "jw01727138001_04101_00004_nrcb1_cal.fits",
+            "jw01727138001_04101_00004_nrcb2_cal.fits"
+        ],
+        "n_skipped_off_target": 52,
+        "correlated_noise_factor": 1.5253968253968253,
+        "noise_recipe": "R * ERR (propagated by calwebb_image3 resample)",
+        "weight_uniformity_cutout": {
+            "wht_rms_over_median": 0.2866322994232178,
+            "limit": 0.2,
+            "acceptable": false
+        },
+        "n_masked_bad_pixels": 0,
+        "psf": {
+            "method": "stpsf-tier2b-mosaic",
+            "shipped_as": "psf.fits",
+            "kernel_shape": [
+                21,
+                21
+            ],
+            "normalisation": "unit sum",
+            "stpsf_version": "2.2.0",
+            "ext": "DET_DIST (detector-sampled, geometric distortion included)",
+            "n_frames_combined": 2,
+            "detectors": [
+                "NRCB1"
+            ],
+            "weighting": "exptime",
+            "pixfrac_drop_convolved": 1.0,
+            "resample": "local-affine frame->mosaic Jacobian at the target",
+            "moment_fwhm_pix": 4.8803662334164395,
+            "central_pixel_flux_fraction": 0.18264542103264655,
+            "frames": [
+                {
+                    "exposure": "jw01727138001_04101_00003_nrcb1_cal.fits",
+                    "chip": 1,
+                    "weight_exptime": 257.682,
+                    "detector": "NRCB1",
+                    "detector_position": [
+                        1580.75013686257,
+                        462.9224621938993
+                    ]
+                },
+                {
+                    "exposure": "jw01727138001_04101_00004_nrcb1_cal.fits",
+                    "chip": 1,
+                    "weight_exptime": 257.682,
+                    "detector": "NRCB1",
+                    "detector_position": [
+                        1584.899647642625,
+                        268.6239693053857
+                    ]
+                }
+            ],
+            "caveat": "model PSF: no as-flown wavefront drift for this epoch; drop convolution + local-affine resample are first-order. The PSF is the dominant systematic in any fit to this dataset."
+        },
+        "psf_pipeline_tier1_rejected": {
+            "method": "epsf-tier1",
+            "n_stars_used": 89,
+            "oversampling": 2,
+            "fwhm_pix": 2.8284271247461903,
+            "reason_rejected": "The pipeline's tier-1 mosaic ePSF stage ran and produced this kernel, but it is NOT the shipped psf.fits. Its DAOStarFinder star list on this deep extragalactic field is ~76% resolved compact galaxies rather than stars, so the stacked kernel is far too broad and rings negative. The rejected kernels are not shipped with this dataset; they are retained with the reduction run. See README.md section 5b."
+        }
+    },
+    "F277W": {
+        "pixel_scale": 0.06,
+        "cutout_shape": [
+            209,
+            209
+        ],
+        "data_units": "MJy/sr",
+        "n_exposures": 4,
+        "exposures": [
+            "jw01727138001_02101_00001_nrcblong_cal.fits",
+            "jw01727138001_02101_00002_nrcblong_cal.fits",
+            "jw01727138001_02101_00003_nrcblong_cal.fits",
+            "jw01727138001_02101_00004_nrcblong_cal.fits"
+        ],
+        "n_skipped_off_target": 12,
+        "correlated_noise_factor": 1.538372093023256,
+        "noise_recipe": "R * ERR (propagated by calwebb_image3 resample)",
+        "weight_uniformity_cutout": {
+            "wht_rms_over_median": 0.08479592949151993,
+            "limit": 0.2,
+            "acceptable": true
+        },
+        "n_masked_bad_pixels": 0,
+        "psf": {
+            "method": "stpsf-tier2b-mosaic",
+            "shipped_as": "psf.fits",
+            "kernel_shape": [
+                21,
+                21
+            ],
+            "normalisation": "unit sum",
+            "stpsf_version": "2.2.0",
+            "ext": "DET_DIST (detector-sampled, geometric distortion included)",
+            "n_frames_combined": 4,
+            "detectors": [
+                "NRCBLONG"
+            ],
+            "weighting": "exptime",
+            "pixfrac_drop_convolved": 1.0,
+            "resample": "local-affine frame->mosaic Jacobian at the target",
+            "moment_fwhm_pix": 4.570972517804071,
+            "central_pixel_flux_fraction": 0.1838074555167187,
+            "frames": [
+                {
+                    "exposure": "jw01727138001_02101_00001_nrcblong_cal.fits",
+                    "chip": 1,
+                    "weight_exptime": 257.682,
+                    "detector": "NRCBLONG",
+                    "detector_position": [
+                        1040.8394488727095,
+                        1187.9808875733115
+                    ]
+                },
+                {
+                    "exposure": "jw01727138001_02101_00002_nrcblong_cal.fits",
+                    "chip": 1,
+                    "weight_exptime": 257.682,
+                    "detector": "NRCBLONG",
+                    "detector_position": [
+                        1037.7469047561729,
+                        1283.292762500006
+                    ]
+                },
+                {
+                    "exposure": "jw01727138001_02101_00003_nrcblong_cal.fits",
+                    "chip": 1,
+                    "weight_exptime": 257.682,
+                    "detector": "NRCBLONG",
+                    "detector_position": [
+                        1826.4067785504917,
+                        1281.4274656083066
+                    ]
+                },
+                {
+                    "exposure": "jw01727138001_02101_00004_nrcblong_cal.fits",
+                    "chip": 1,
+                    "weight_exptime": 257.682,
+                    "detector": "NRCBLONG",
+                    "detector_position": [
+                        1828.66204067103,
+                        1185.9547221500577
+                    ]
+                }
+            ],
+            "caveat": "model PSF: no as-flown wavefront drift for this epoch; drop convolution + local-affine resample are first-order. The PSF is the dominant systematic in any fit to this dataset."
+        },
+        "psf_pipeline_tier1_rejected": {
+            "method": "epsf-tier1",
+            "n_stars_used": 154,
+            "oversampling": 2,
+            "fwhm_pix": 0.0,
+            "reason_rejected": "The pipeline's tier-1 mosaic ePSF stage ran and produced this kernel, but it is NOT the shipped psf.fits. Its DAOStarFinder star list on this deep extragalactic field is ~76% resolved compact galaxies rather than stars, so the stacked kernel is far too broad and rings negative. The rejected kernels are not shipped with this dataset; they are retained with the reduction run. See README.md section 5b."
+        }
+    },
+    "F444W": {
+        "pixel_scale": 0.06,
+        "cutout_shape": [
+            209,
+            209
+        ],
+        "data_units": "MJy/sr",
+        "n_exposures": 4,
+        "exposures": [
+            "jw01727138001_04101_00001_nrcblong_cal.fits",
+            "jw01727138001_04101_00002_nrcblong_cal.fits",
+            "jw01727138001_04101_00003_nrcblong_cal.fits",
+            "jw01727138001_04101_00004_nrcblong_cal.fits"
+        ],
+        "n_skipped_off_target": 12,
+        "correlated_noise_factor": 1.538372093023256,
+        "noise_recipe": "R * ERR (propagated by calwebb_image3 resample)",
+        "weight_uniformity_cutout": {
+            "wht_rms_over_median": 0.07922098785638809,
+            "limit": 0.2,
+            "acceptable": true
+        },
+        "n_masked_bad_pixels": 0,
+        "psf": {
+            "method": "stpsf-tier2b-mosaic",
+            "shipped_as": "psf.fits",
+            "kernel_shape": [
+                21,
+                21
+            ],
+            "normalisation": "unit sum",
+            "stpsf_version": "2.2.0",
+            "ext": "DET_DIST (detector-sampled, geometric distortion included)",
+            "n_frames_combined": 4,
+            "detectors": [
+                "NRCBLONG"
+            ],
+            "weighting": "exptime",
+            "pixfrac_drop_convolved": 1.0,
+            "resample": "local-affine frame->mosaic Jacobian at the target",
+            "moment_fwhm_pix": 5.335327502270906,
+            "central_pixel_flux_fraction": 0.10184916347006297,
+            "frames": [
+                {
+                    "exposure": "jw01727138001_04101_00001_nrcblong_cal.fits",
+                    "chip": 1,
+                    "weight_exptime": 257.682,
+                    "detector": "NRCBLONG",
+                    "detector_position": [
+                        1040.9046447059848,
+                        1188.330174567066
+                    ]
+                },
+                {
+                    "exposure": "jw01727138001_04101_00002_nrcblong_cal.fits",
+                    "chip": 1,
+                    "weight_exptime": 257.682,
+                    "detector": "NRCBLONG",
+                    "detector_position": [
+                        1037.8309514065854,
+                        1283.615469705321
+                    ]
+                },
+                {
+                    "exposure": "jw01727138001_04101_00003_nrcblong_cal.fits",
+                    "chip": 1,
+                    "weight_exptime": 257.682,
+                    "detector": "NRCBLONG",
+                    "detector_position": [
+                        1826.4409614311226,
+                        1281.7350505543343
+                    ]
+                },
+                {
+                    "exposure": "jw01727138001_04101_00004_nrcblong_cal.fits",
+                    "chip": 1,
+                    "weight_exptime": 257.682,
+                    "detector": "NRCBLONG",
+                    "detector_position": [
+                        1828.6940367692023,
+                        1186.2695027529182
+                    ]
+                }
+            ],
+            "caveat": "model PSF: no as-flown wavefront drift for this epoch; drop convolution + local-affine resample are first-order. The PSF is the dominant systematic in any fit to this dataset."
+        },
+        "psf_pipeline_tier1_rejected": {
+            "method": "epsf-tier1",
+            "n_stars_used": 130,
+            "oversampling": 2,
+            "fwhm_pix": 6.324555320336759,
+            "reason_rejected": "The pipeline's tier-1 mosaic ePSF stage ran and produced this kernel, but it is NOT the shipped psf.fits. Its DAOStarFinder star list on this deep extragalactic field is ~76% resolved compact galaxies rather than stars, so the stacked kernel is far too broad and rings negative. The rejected kernels are not shipped with this dataset; they are retained with the reduction run. See README.md section 5b."
+        }
+    }
+}
