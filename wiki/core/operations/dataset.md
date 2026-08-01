@@ -13,14 +13,13 @@ sources:
     paths:
       - scripts/imaging/start_here.py
       - scripts/imaging/data_preparation/start_here.py
-      - dataset/.gitignore
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
   - project: autogalaxy_assistant
     paths:
       - dataset/imaging/cosj100020+015344/README.md
       - dataset/imaging/cosj100020+015344/info.json
       - dataset/imaging/cosj100020+015344/reduction_manifest.json
-    pinned_commit: db52604f13305cb8a251fb3bb08bb5cc0ab84a55
+    pinned_commit: 9100260c56c5a5c8eed4e370190ae9c5b94109af
 last_updated: 2026-08-01
 content_sha256: b84a33bbbab1269544755a2648e5337bc4b8962ec1b6bf9a523fbd84c13a0a00
 ---
