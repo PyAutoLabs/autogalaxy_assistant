@@ -27,8 +27,8 @@ configured) via symlinks; the canonical files live here.
 
 ## Index — what exists today
 
-Twenty-four skills are written: nine for the core modelling loop, eight for the features beyond
-a single smooth profile, two meta, two project-workflow, three maintenance. **Everything else in
+Twenty-five skills are written: nine for the core modelling loop, eight for the features beyond
+a single smooth profile, two meta, two project-workflow, one literature, three maintenance. **Everything else in
 this file is a plan, not a file** — the "Pending" section below is a catalogue of what has not
 been authored yet, and deliberately does not link to anything. Every entry here that is a link
 resolves; if you find a link that doesn't, that is a bug worth fixing rather than a file worth
@@ -149,6 +149,15 @@ composition, search and plotting conventions and changes one thing about them.
   push it either to your collaborator branch on `PyAutoLabs/autogalaxy_assistant`
   or to your fork, and open a draft PR into `PyAutoLabs/autogalaxy_assistant`.
 
+### Literature
+
+- [`ag_ingest_paper.md`](./ag_ingest_paper.md) — add a galaxy-structure paper to the
+  literature record: project-local `wiki/project/bibliography.md` by default inside a science
+  project, or the shared `wiki/literature/` wiki plus its canonical BibTeX layer in the
+  assistant clone. Verifies the metadata against a public record *before* recording it,
+  writes a compact claim-oriented source entry, and closes with
+  `make validate-literature-citations`.
+
 ### Maintenance
 
 These three keep this repo's own content honest against the installed stack. They are
@@ -182,12 +191,6 @@ and shrinks as each phase lands.
 **Until a skill exists, do not pretend it does.** Answer from the installed source and the
 named grounding scripts, say that is what you did, and offer to author the skill via
 [`_bootstrap_skill.md`](./_bootstrap_skill.md).
-
-### Phase 5 — literature
-
-| Skill | Purpose | Grounding |
-|-------|---------|-----------|
-| `ag_ingest_paper` | add a galaxy-structure paper (local PDF or arXiv URL): project-local `wiki/project/bibliography.md` by default inside a science project; shared `wiki/literature/` in the assistant clone or on explicit promotion | `wiki/literature/` schema (arrives in the same phase) |
 
 ### Phase 6 — output surfaces
 

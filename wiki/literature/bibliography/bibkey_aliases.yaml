@@ -1,0 +1,6 @@
+# Common or project-local key: canonical autogalaxy_literature.bib key
+#
+# One flat `alias: canonical` mapping per line. Add an alias only for a key that is
+# actually in use somewhere (a user's paper .bib, a legacy source entry); never
+# speculatively. `python -m autoassistant.literature validate-citations` fails if a
+# canonical target here is missing from the bibliography.

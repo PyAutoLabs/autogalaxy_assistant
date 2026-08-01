@@ -146,16 +146,13 @@ Three grounding notes, recorded so nobody re-derives them:
 
 ## Phase 5 — `wiki/literature` corpus
 
-- [ ] `wiki/literature/` — `AGENTS.md` schema, `index.md`, `README.md`, `log.md`, plus
-      `concepts/`, `entities/`, `sources/` and `autogalaxy_literature.bib`. Topics: Sersic and
-      bulge-disk decomposition, isophotes and multipoles, MGE, early-type structure, scaling
-      relations, high-z morphology. Entities: surveys (COSMOS-Web, CANDELS, MaNGA/SAMI, Euclid
-      morphology).
-- [ ] `skills/ag_ingest_paper.md` — grounding: the `wiki/literature/` schema authored in the
-      same phase.
-- [ ] Every citation verified by web search against ADS/arXiv before it is recorded. A
-      fabricated citation is the worst possible artifact for a public repo, and prior
-      experience is that a memory-sourced paper's metadata is wrong often enough to matter.
+**Delivered.** 16 concept pages, 10 entity pages, 13 per-topic source bibliographies
+(158 annotated paper sections), the sub-wiki's own `AGENTS.md` schema + index + log, a
+253-entry `autogalaxy_literature.bib` in which **every entry was verified against
+arXiv/CrossRef/ADS before inclusion** (the verification rule is now part of the schema), and
+`skills/ag_ingest_paper.md` as the only growth path. `make validate-literature-citations` is
+the gate. Known honest gaps recorded in `wiki/literature/log.md` (e.g. weak-lensing-adjacent
+halo references excluded by scope; three entity-prose-only bib entries).
 
 ## Phase 6 — benchmarks, HPC, ledger retirement
 

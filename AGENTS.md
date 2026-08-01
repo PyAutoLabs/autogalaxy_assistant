@@ -101,12 +101,14 @@ Map every request onto one or more layers:
 > **Rule of thumb.** *How do I do X?* → a skill. *What / which / why X?* → the wiki. *Build
 > something end-to-end?* → compose skills, citing wiki pages as you go.
 
-The wiki has two sub-wikis today and a third planned: **`wiki/core/`** (curated PyAuto\*
-reference, read-only — refreshed by `ag_update_wiki`) and **`wiki/project/`** (this clone's
-running journal + `profile.md`). **`wiki/literature/`** — the galaxy-structure science
-reference, with its own `[[wiki-link]]` schema — arrives in a later phase (`PENDING.md`); until
-it does, do not cite it and do not invent its contents. "The wiki" means `wiki/core/` unless
-`project/` is named. `wiki/core/` now has `stack/`, `api/`, `concepts/`, `operations/` and
+The wiki has three sub-wikis: **`wiki/core/`** (curated PyAuto\* reference, read-only —
+refreshed by `ag_update_wiki`), **`wiki/project/`** (this clone's running journal +
+`profile.md`), and **`wiki/literature/`** — the galaxy-structure science reference
+(concepts, survey/instrument entities, per-topic source bibliographies), with its own
+`[[wiki-link]]` schema and a verified BibTeX bibliography; its contract is
+[`wiki/literature/AGENTS.md`](./wiki/literature/AGENTS.md) and papers enter it via
+[`skills/ag_ingest_paper.md`](./skills/ag_ingest_paper.md). "The wiki" means `wiki/core/`
+unless `project/` or `literature/` is named. `wiki/core/` now has `stack/`, `api/`, `concepts/`, `operations/` and
 `external/`; [`wiki/core/index.md`](./wiki/core/index.md) lists every page that exists and
 states plainly what is still missing (the two HPC operations pages).
 

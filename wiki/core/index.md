@@ -8,7 +8,7 @@ sources:
       - PENDING.md
     pinned_commit: db52604f13305cb8a251fb3bb08bb5cc0ab84a55
 last_updated: 2026-08-01
-content_sha256: dceace8177c3d85b8dcf6b1b7abbed457432ece4f7356bd9531d846877641b5c
+content_sha256: f08e139383d03937ce3a71b20700afedb0fa3a343a48f67f067b913184938e02
 ---
 
 # Core wiki — PyAuto\* reference
@@ -137,11 +137,10 @@ Listed honestly rather than linked. `../../PENDING.md` names the grounding scrip
   `autogalaxy_assistant:scripts/AGENTS.md`. For the science side now, read
   `autogalaxy_workspace:scripts/guides/hpc/example_cpu_and_gpu.py` and
   `autogalaxy_workspace:scripts/guides/using_jax.py`.
-- **`wiki/literature/`** — the galaxy-structure science reference, with its own
-  `[[wiki-link]]` schema. A later phase; do not cite it or invent its contents.
 
 Until a page lands, ground the answer in installed source or the `autogalaxy_workspace`
-scripts — and say that is what you did.
+scripts — and say that is what you did. (The galaxy-structure science reference lives in
+`../literature/` — see its own index.)
 
 ## How this sub-wiki is maintained
 
