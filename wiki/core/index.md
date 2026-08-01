@@ -8,7 +8,7 @@ sources:
       - PENDING.md
     pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
 last_updated: 2026-08-01
-content_sha256: 2b29d5755643eea526f721b6d3ca71f94079c8ca9cbc85cde8f6f634e3827052
+content_sha256: f3ce9c7260b61228d57003c2630d5cbc80ee9eab6606a9fd54cd56ce113bf95b
 ---
 
 # Core wiki — PyAuto\* reference
@@ -128,9 +128,9 @@ Routing into the three resources outside this repo, by audience.
 Listed honestly rather than linked. `../../PENDING.md` names the grounding script for each.
 
 - **`operations/dataset.md`** — on-disk dataset layout and `info.json`. Arrives with the
-  bundled dataset (Phase 2); until then use the per-dataset READMEs in
-  `autogalaxy_workspace:dataset/` and
-  `autogalaxy_workspace:scripts/imaging/data_preparation/start_here.py`.
+  bundled dataset (Phase 2); until then ground data handling in
+  `autogalaxy_workspace:scripts/imaging/data_preparation/start_here.py` (the workspace
+  simulates its imaging datasets on first run rather than committing them).
 - **`operations/hpc.md`** and **`operations/hpc_infrastructure.md`** — cluster concepts, and
   the `hpc/` templates and `sync` CLI. Both wait on Phase 6 actually shipping `hpc/`; the
   interface contract a pipeline must preserve is documented meanwhile in
