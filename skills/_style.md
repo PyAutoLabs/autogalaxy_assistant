@@ -379,17 +379,30 @@ back up the skills.
 ## Plot output and path announcement
 
 Skills that produce visualisations save them through the function-style plotting API
-imported as `aplt` — every entry point takes `output_path` / `output_filename`
-/ `output_format` kwargs directly. Three rules:
+imported as `aplt` — every entry point takes `output_path` / `output_format` kwargs
+directly, and *some* also take `output_filename`. Three rules:
 
-1. **Pass `output_path` / `output_filename` / `output_format` directly to
-   each plot function.** Every `plot_*` and `subplot_*` helper in `aplt` accepts
-   these kwargs, e.g. `aplt.subplot_imaging_dataset(dataset=…,
+1. **Pass `output_path` / `output_format` directly to each plot function**, plus
+   `output_filename` on the functions that accept it, e.g.
+   `aplt.subplot_imaging_dataset(dataset=…,
    output_path="scripts/scratch/<context>/", output_filename=…,
    output_format="png")`. Never rely on interactive display — the user is
    often running the script from a terminal where `plt.show()` flashes and
    vanishes. The `<context>` slug is usually the dataset name; for general
    exploration any short slug works.
+
+   **`output_filename` is not universal, and passing it where it does not exist
+   raises `TypeError`.** It is accepted by `plot_array`, `plot_grid`,
+   `subplot_imaging_dataset`, `subplot_imaging_dataset_list`,
+   `subplot_interferometer_dataset` and `subplot_interferometer_dirty_images`.
+   `subplot_galaxies` names its file with
+   `auto_filename` instead. Every other subplot writes a **fixed stem** into
+   `output_path` — `subplot_fit_imaging` → `fit.png`,
+   `subplot_fit_imaging_of_galaxy` → `of_galaxy_<index>.png`,
+   `subplot_galaxy_images` → `galaxy_images.png` — so give each fit or each
+   variant of a figure its own directory rather than trying to rename the file.
+   Check the signature; [`../wiki/core/api/plotting.md`](../wiki/core/api/plotting.md)
+   tabulates the whole split.
 2. **`print(...)` each plot's path** at the end of the Python recipe so the
    absolute location lands in stdout. Use
    `print(f"Saved to: {PLOT_DIR.resolve()}")` once per branch (sufficient

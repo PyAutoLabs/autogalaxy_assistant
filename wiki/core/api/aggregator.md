@@ -22,7 +22,7 @@ sources:
       - scripts/ellipse/database.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
 last_updated: 2026-08-01
-content_sha256: 765f038d0ede9d9517685d0bf9d9f0da2fb2be5e78a506fcce0427c8f0593902
+content_sha256: 3d3a0d22f674bca887b20671b36eb9d2b4b6cdd2eb5477b65ca56cbcc02bf6f4
 ---
 
 # Aggregator
@@ -37,7 +37,7 @@ Two layers stack:
 
 1. **PyAutoFit's aggregator** loads whatever a search wrote to disk: samples, the model, the
    dataset, stored FITS and PNG files.
-2. **PyAutoGalaxy's `ag.agg`** rebuilds *galaxy-domain* objects from those files — `ag.Galaxies`,
+2. **PyAutoGalaxy's `ag.agg`** rebuilds *galaxy-domain* objects from those files — galaxy lists,
    `ag.FitImaging`, `ag.Ellipse` — as generators, so you can compute a galaxy quantity per fit
    without holding every fit in memory.
 
@@ -141,7 +141,7 @@ Each `*Agg` class takes an aggregator and hands back a generator of PyAutoGalaxy
 |---|---|
 | `ag.agg.ImagingAgg` | `ag.Imaging` datasets as fitted |
 | `ag.agg.InterferometerAgg` | `ag.Interferometer` datasets |
-| `ag.agg.GalaxiesAgg` | `ag.Galaxies` |
+| `ag.agg.GalaxiesAgg` | a plain `list` of `ag.Galaxy` — **not** an `ag.Galaxies` |
 | `ag.agg.FitImagingAgg` | `ag.FitImaging` |
 | `ag.agg.FitInterferometerAgg` | `ag.FitInterferometer` |
 | `ag.agg.EllipsesAgg` | `ag.Ellipse` lists |
@@ -160,6 +160,13 @@ for galaxies, dataset in zip(galaxies_gen, dataset_gen):
 ```
 
 Adapted from `autogalaxy_workspace:scripts/guides/results/aggregator/models.py`.
+
+**`GalaxiesAgg` yields a list, not an `ag.Galaxies`** (`PyAutoGalaxy:autogalaxy/aggregator/galaxies.py`
+returns `List[Galaxy]`), exactly as `ag.from_json` on a `files/galaxies.json` does. The list is
+enough for indexing (`galaxies[0].bulge`), for `ag.FitImaging(dataset=…, galaxies=galaxies)`, and
+for `aplt.subplot_galaxies` (which wraps it internally) — but it has no collection methods, so
+`galaxies.image_2d_from(grid=grid)` raises `AttributeError`. Re-wrap when you need them:
+`galaxies = ag.Galaxies(galaxies=galaxies)`.
 
 The dataset classes expose `dataset_gen_from()`. The model classes share four generators, which is
 where the aggregator earns its keep for population work:

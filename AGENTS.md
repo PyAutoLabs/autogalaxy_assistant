@@ -21,12 +21,11 @@ ask one focused question — never default to the longest possible explanation.
    ```
    Exit 0 = documented API matches the stack. Exit 1 = genuine drift: recommend the pinned
    version or an audit — [`skills/ag_audit_skill_apis.md`](./skills/ag_audit_skill_apis.md)
-   owns that procedure. Exit 2/3 = absent/broken stack: report the interpreter, then diagnose
-   and repair the environment directly
-   ([`wiki/core/operations/installation.md`](./wiki/core/operations/installation.md) for the
-   install routes, [`wiki/core/operations/sandbox.md`](./wiki/core/operations/sandbox.md) for
-   the cache env vars). The `ag_setup_environment` skill that will own the repair itself is not
-   written yet; `PENDING.md` tracks it. Skip this step by default in maintainer mode.
+   owns that procedure. Exit 2/3 = absent/broken stack: report the interpreter, then follow
+   [`skills/ag_setup_environment.md`](./skills/ag_setup_environment.md), which owns the repair
+   (`wiki/core/operations/installation.md` for the install routes and
+   `wiki/core/operations/sandbox.md` for the cache env vars are the pages it cites).
+   Skip this step by default in maintainer mode.
 
 ## Safety invariants — default non-negotiable
 
@@ -44,10 +43,11 @@ deliberate refactor). Two are NEVER overridden: the real-data gate and never-rew
   real data. **If you can't plot it yourself — no code execution, e.g. a GitHub-connector chat
   — the gate is not waived: ask the user to plot and inspect the data, and to confirm both (a)
   contaminants and (b) the mask extent, before you compose the fit.** These are the questions
-  every real-data run must ask, on every harness. Ground the procedure in
+  every real-data run must ask, on every harness. The procedure itself is owned by
+  [`skills/ag_prepare_imaging_data.md`](./skills/ag_prepare_imaging_data.md) — read it before
+  the first real-data fit; it is grounded in
   `autogalaxy_workspace:scripts/imaging/data_preparation/start_here.py` and the
-  `imaging/start_here.py` masking section until the `ag_prepare_imaging_data` skill that will own
-  it is written (see `PENDING.md`). Simulated data is exempt.
+  `imaging/start_here.py` masking section. Simulated data is exempt.
 - **Code gate.** A PreToolUse hook validates PyAuto* symbols against the installed library
   and blocks ones written from memory. If blocked, don't guess — grep `skills/` or introspect
   `dir()`, then re-run. The hook fires only on harnesses with hook support (Claude Code);
@@ -81,10 +81,13 @@ Map every request onto one or more layers:
    task. Library-API skills are `ag_<task>.md` and produce/evolve a Python script;
    project-workflow skills (`start-new-project.md`, `contribute-upstream.md`) drive repo-level
    operations. Skills starting with `_` (`_style.md`, `_bootstrap_skill.md`) are meta-skills —
-   don't surface them when answering science questions. **No `ag_*` skill for doing galaxy
-   science is written yet**: the three that exist (`ag_audit_skill_apis`, `ag_update_wiki`,
-   `ag_refresh_api_docs`) are maintenance workflows for this repo's own content.
-   `skills/README.md` lists all seven live skills and catalogues the rest by phase with the
+   don't surface them when answering science questions. The **core modelling loop** is live —
+   `ag_setup_environment`, `ag_prepare_imaging_data`, `ag_simulate_dataset`,
+   `ag_build_imaging_model`, `ag_configure_search`, `ag_run_search`, `ag_plot_fit`,
+   `ag_load_results`, `ag_debug_fit_failure` — and is what a galaxy-science request routes to.
+   Three further `ag_*` skills (`ag_audit_skill_apis`, `ag_update_wiki`, `ag_refresh_api_docs`)
+   are maintenance workflows for this repo's own content, not science workflows.
+   `skills/README.md` lists all sixteen live skills and catalogues the rest by phase with the
    `autogalaxy_workspace` script that grounds each one. Never activate a skill name you
    have not confirmed is a file on disk.
 3. **Wiki** (`wiki/**/*.md`) — *content*: what a Sersic profile is, which searches exist,
@@ -226,8 +229,8 @@ When **not** in maintainer mode, commit at natural checkpoints (a script + its
 - **Working directories.** Committed scripts → `scripts/`; throwaway plots/data dumps →
   `scripts/scratch/` (gitignored); `search.fit(...)` output → `./output/`.
 - **Plot path announcement.** The plot API is **functional-only**: pass
-  `output_path="scripts/scratch/<context>/"`, `output_filename=...`, `output_format="png"`
-  straight to the `aplt.*` call (e.g. `aplt.subplot_imaging_dataset`, `aplt.subplot_fit_imaging`).
+  `output_path="scripts/scratch/<context>/"` and `output_format="png"` straight to the `aplt.*`
+  call (e.g. `aplt.subplot_imaging_dataset`, `aplt.subplot_fit_imaging`).
   **The object-oriented plotters (`aplt.FitImagingPlotter`, `ImagingPlotter`, `GalaxyPlotter`,
   `GalaxiesPlotter`, `InversionPlotter`, …) and the `aplt.MatPlot2D` / `aplt.Include2D` /
   `aplt.Output` objects have been removed — do not use them.
@@ -235,7 +238,16 @@ When **not** in maintainer mode, commit at natural checkpoints (a script + its
   connector chat).** Wrong:
   `aplt.FitImagingPlotter(fit=fit, mat_plot_2d=aplt.MatPlot2D(...)).subplot_fit_imaging()`.
   Right:
-  `aplt.subplot_fit_imaging(fit=fit, output_path="scripts/scratch/ring/", output_filename="fit", output_format="png")`.
+  `aplt.subplot_fit_imaging(fit=fit, output_path="scripts/scratch/ngc1300/", output_format="png")`.
+  **`output_filename` is not universal** — passing it to a call that does not take it raises
+  `TypeError`. Only `plot_array`, `plot_grid`, `subplot_imaging_dataset`,
+  `subplot_imaging_dataset_list`, `subplot_interferometer_dataset` and
+  `subplot_interferometer_dirty_images` accept it;
+  `subplot_galaxies` names its file with `auto_filename`; and the remaining fit and galaxy
+  subplots write a **fixed stem** into `output_path` (`subplot_fit_imaging` → `fit.png`), so the
+  *directory* is what separates one context from another. Check the signature —
+  [`skills/ag_plot_fit.md`](./skills/ag_plot_fit.md) and
+  [`wiki/core/api/plotting.md`](./wiki/core/api/plotting.md) carry the full split.
   If unsure a PyAuto* symbol exists, ground it against `skills/` or `dir(aplt)` — never write it
   from memory. Then `print(...)` the absolute path, and after running **quote that absolute path**
   and offer to open it (platform opener: `open` on macOS, `xdg-open` on Linux,

@@ -9,7 +9,7 @@ sources:
       - PENDING.md
     pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
 last_updated: 2026-08-01
-content_sha256: 8dc3621b0d65e14454bf56d459923b9d7a246c7087b124c157ec5f51c8f71fe5
+content_sha256: 1d29ca6a67048d5e548dd83006597944a348f31ade73b852b625800a64d1f40b
 ---
 
 # Skill → external resource map
@@ -53,18 +53,32 @@ Default to `.ipynb` for student-leaning users and `.py` for returning PyAutoGala
 | `ag_audit_skill_apis` | _ | _ | _ |
 | `ag_update_wiki` | _ | _ | _ |
 | `ag_refresh_api_docs` | _ | _ | _ |
+| `ag_setup_environment` | `chapter_1_introduction/tutorial_0_visualization` | `installation/overview` | `imaging/start_here.py` |
+| `ag_prepare_imaging_data` | `chapter_1_introduction/tutorial_2_data` | `overview/overview_2_new_user_guide` | `imaging/data_preparation/start_here.py` |
+| `ag_simulate_dataset` | `chapter_1_introduction/tutorial_1_grids_and_galaxies` | `overview/overview_1_start_here` | `imaging/simulator.py` |
+| `ag_build_imaging_model` | `chapter_2_modeling/tutorial_3_realism_and_complexity` | `general/model_cookbook` | `imaging/modeling.py` |
+| `ag_configure_search` | `chapter_2_modeling/tutorial_1_non_linear_search` | `general/configs` | `guides/modeling/searches.py` |
+| `ag_run_search` | `chapter_2_modeling/tutorial_2_practicalities` | `overview/overview_2_new_user_guide` | `imaging/start_here.py` |
+| `ag_plot_fit` | `chapter_1_introduction/tutorial_3_fitting` | `api/plot` | `guides/plot/start_here.py` |
+| `ag_load_results` | `chapter_2_modeling/tutorial_7_results` | `api/fitting` | `guides/results/start_here.py` |
+| `ag_debug_fit_failure` | `chapter_2_modeling/tutorial_4_dealing_with_failure` | `general/likelihood_function` | `guides/modeling/bug_fix.py` |
 
-Every cell is `_` today, and that is the correct state rather than an omission: all seven
-skills are **internal to the workspace** — two meta-skills, two repo-workflow skills, and
+The first seven rows are entirely `_`, and that is the correct state rather than an omission:
+those skills are **internal to the workspace** — two meta-skills, two repo-workflow skills, and
 the three maintenance skills that audit and refresh this repo's own content. None of them
 teaches a galaxy-modelling task, so none has an external resource that would help a user,
 and per `_style.md` a skill whose row is entirely `_` omits the `## Further reading` block
 altogether.
 
-The first rows with real cells arrive with the modelling skills in a later phase — a
-data-preparation skill will cite `imaging/data_preparation/start_here.py`, a model-building
-skill will cite `general/model_cookbook` and `imaging/start_here.py`, and so on. Author the
-row and the skill in the same change, from the grounding script named in
+The nine core-loop rows beneath them are the first with real cells, one per skill in the
+modelling loop. Each skill's `## Further reading` block was written from its row here, and
+each cell was confirmed to resolve against the target repo's catalogue (or the RTD page map)
+before it was recorded. A skill may cite an *extra* tutorial inline within a bullet — the
+masking lecture under `ag_prepare_imaging_data`, the optional searches chapter under
+`ag_configure_search` — but the row holds the one primary cell per audience.
+
+Rows for the Phase-4b feature skills arrive with those skills. Author the row and the skill in
+the same change, from the grounding script named in
 [`../../../PENDING.md`](../../../PENDING.md), never from memory.
 
 ## Template for the inserted skill block

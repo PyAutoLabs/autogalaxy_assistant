@@ -20,7 +20,7 @@ sources:
       - scripts/guides/units/flux.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
 last_updated: 2026-08-01
-content_sha256: e9dc51e8b79c37b55ba7cdee9c2ac4fd76fa00bb1783064cb3584c76314ab1b2
+content_sha256: 927b725b1dde11c399bf9f2925683f06a21131d8496e57f6e315e074c46ae89a
 ---
 
 # Samples and posteriors
@@ -216,8 +216,12 @@ print(samples.max_log_likelihood())
 ```
 
 `autogalaxy_workspace:scripts/guides/results/start_here.py`. `search.paths.output_path` saves
-you from constructing the `<unique_hash>` by hand. The loaded objects behave identically to the
-in-memory ones — `galaxies.json` in particular already carries solved intensities.
+you from constructing the `<unique_hash>` by hand. `galaxies.json` already carries the solved
+intensities of any linear profile, so the profiles themselves are as good as the in-memory ones
+— but **it deserialises to a plain `list` of `Galaxy` objects, not an `ag.Galaxies`**. Indexing
+(`galaxies[0].bulge`) and `ag.FitImaging(dataset=…, galaxies=galaxies)` work on the list;
+collection methods like `image_2d_from` do not. Re-wrap for those:
+`galaxies = ag.Galaxies(galaxies=galaxies)`.
 
 ## Many fits — the aggregator
 
