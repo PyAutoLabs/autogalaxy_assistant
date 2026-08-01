@@ -158,8 +158,12 @@ No file in this repository links to something that does not exist yet.
 - **The core modelling loop — nine skills.** Environment setup, imaging data preparation,
   dataset simulation, model building, search configuration, running the fit, plotting the
   fit, loading results, and debugging a failed fit. A galaxy-science request routes into
-  these. Alongside them sit two meta-skills, two project-workflow skills and three
-  repository-maintenance skills — sixteen in total, catalogued in
+  these.
+- **The features beyond a single smooth profile — eight skills.** Basis profiles and MGE,
+  pixelised reconstruction, extra galaxies / sky / operated profiles, ellipse fitting,
+  multi-dataset fits, interferometer modelling, multi-galaxy and cluster fields, and search
+  chaining. Alongside both sets sit two meta-skills, two project-workflow skills and three
+  repository-maintenance skills — twenty-four in total, catalogued in
   [`skills/README.md`](skills/README.md).
 - **The curated reference wiki**, [`wiki/core/`](wiki/core/index.md) — 37 pages across
   `stack/`, `api/`, `concepts/`, `operations/` and `external/`. Every page pins the source
@@ -172,10 +176,6 @@ No file in this repository links to something that does not exist yet.
 
 **Still being written:**
 
-- **Feature skills beyond a single smooth profile** (Phase 4b): basis profiles and MGE,
-  pixelisations, ellipse fitting, multi-dataset and interferometer modelling, multi-galaxy
-  and cluster fields, and search chaining. The underlying PyAutoGalaxy features all exist and
-  the reference wiki covers them; what is pending is the dedicated procedural skill for each.
 - **The literature wiki** (Phase 5) — a galaxy-structure science reference with cross-linked
   concept, entity and source pages. Until it lands, the assistant will not cite it and must
   not invent its contents.

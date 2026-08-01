@@ -18,7 +18,7 @@ sources:
       - scripts/guides/results/start_here.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
 last_updated: 2026-08-01
-content_sha256: 13439cc6b908483c12c5b907e921b9491bd3ee179fc328654c130e2ac1048fce
+content_sha256: 05120accc325720145ce1d7fbf2decebb9f93bb5df5ff617fe842ebb7a1c5010
 ---
 
 # The non-linear search
@@ -191,22 +191,37 @@ not. Use tight priors to encode real knowledge, not to steer a search.
 
 ## Search chaining
 
-A search can be initialised from the posterior of a previous one. `result.model` returns a new
-model whose priors are `TruncatedGaussianPrior`s centred on the previous median-PDF values,
-with widths taken from each parameter's `width_modifier` in the priors configuration:
+A search can be initialised from the posterior of a previous one. The attribute that does the
+narrowing is **`result.model_centred`**: it returns a new model whose priors are
+`TruncatedGaussianPrior`s centred on the previous median-PDF values, with widths taken from each
+parameter's `width_modifier` in the priors configuration:
 
 ```python
-bulge = result_1.model.galaxies.galaxy.bulge
-disk = result_1.model.galaxies.galaxy.disk
+bulge = result_1.model_centred.galaxies.galaxy.bulge
+disk = result_1.model_centred.galaxies.galaxy.disk
 
 galaxy = af.Model(ag.Galaxy, redshift=0.5, bulge=bulge, disk=disk)
 model_2 = af.Collection(galaxies=af.Collection(galaxy=galaxy))
 ```
 
-`autogalaxy_workspace:scripts/guides/modeling/chaining.py`. Whole profiles or whole galaxies
-can be passed this way. The alternative, `result_1.instance...`, passes the maximum-likelihood
-values as **fixed** numbers, removing them from the search — useful for fixing a light model
-in an intermediate stage and freeing it again later.
+Three variants override that width: `model_centred_absolute(a=)` (one absolute `sigma` for every
+parameter), `model_centred_relative(r=)` (`sigma = r × mean`) and
+`model_centred_max_lh_bounded(b=)` (a `UniformPrior` at `mean ± b`).
+
+**`result.model` does not narrow anything.** On the released stack it returns the fitted model
+with its **original priors unchanged** — `samples_summary.model.mapper_via_defaults_from()` maps
+every prior to itself (`PyAutoFit:autofit/non_linear/result.py`) — so a component passed that way
+brings its composition across but no information from the fit. Reach for it only when that is
+what you want; the prose in
+`autogalaxy_workspace:scripts/guides/modeling/chaining.py` still describes `result.model` as
+producing narrowed Gaussians and is out of date on this point.
+[`../../../skills/ag_chain_searches.md`](../../../skills/ag_chain_searches.md) is the procedural
+recipe and carries the full three-way split.
+
+Whole profiles or whole galaxies can be passed either way. The third alternative,
+`result_1.instance...`, passes the maximum-likelihood values as **fixed** numbers, removing them
+from the search — useful for fixing a light model in an intermediate stage and freeing it again
+later.
 
 Chaining is what makes hard fits tractable: start with a simple parametric model, then chain
 into a pixelisation or a many-component basis with the simple fit's posterior as the starting

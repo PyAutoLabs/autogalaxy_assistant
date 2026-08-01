@@ -27,16 +27,16 @@ configured) via symlinks; the canonical files live here.
 
 ## Index — what exists today
 
-Sixteen skills are written: nine for the core modelling loop, two meta, two project-workflow,
-three maintenance. **Everything else in this file is a plan, not a file** — the "Pending"
-section below is a catalogue of what has not been authored yet, and deliberately does not link
-to anything. Every entry here that is a link resolves; if you find a link that doesn't, that is
-a bug worth fixing rather than a file worth waiting for.
+Twenty-four skills are written: nine for the core modelling loop, eight for the features beyond
+a single smooth profile, two meta, two project-workflow, three maintenance. **Everything else in
+this file is a plan, not a file** — the "Pending" section below is a catalogue of what has not
+been authored yet, and deliberately does not link to anything. Every entry here that is a link
+resolves; if you find a link that doesn't, that is a bug worth fixing rather than a file worth
+waiting for.
 
-The core modelling loop is live; the feature skills (bases, pixelisations, ellipse fitting,
-multi-dataset, interferometry, multi-galaxy, search chaining) arrive in Phase 4b. For a request
-that falls outside the nine below, answer from the installed source and the grounding scripts
-named in the Pending tables, say that is what you did, and offer to author the skill via
+The core modelling loop and the feature set are both live. For a request that falls outside the
+seventeen galaxy-modelling skills below, answer from the installed source and the grounding
+scripts named in the Pending tables, say that is what you did, and offer to author the skill via
 [`_bootstrap_skill.md`](./_bootstrap_skill.md).
 
 ### Galaxy modelling — the core loop
@@ -83,6 +83,52 @@ Read in this order for an end-to-end fit; each is usable on its own. Every one i
   model, priors, search settings, stale result) and the probes that separate them — including
   the two silent failures: a resumed fit whose identifier ignored the data, and a cached result
   mistaken for a new one.
+
+### Features beyond a single smooth profile
+
+Reach for one of these once the core loop is running and a single Sersic — or a plain
+bulge-plus-disk on one CCD image — is no longer the right model. Each assumes the core loop's
+composition, search and plotting conventions and changes one thing about them.
+
+- [`ag_basis_profiles.md`](./ag_basis_profiles.md) — fit morphology with a *basis* rather than one
+  or two smooth profiles: linear light profiles (`ag.lp_linear`), a Multi-Gaussian Expansion or a
+  shapelet expansion, where every component's `intensity` is solved analytically by a linear
+  inversion instead of sampled by the search — with the positive-only versus signed solver, the
+  compact nuclear basis, and how to read solved intensities back out of a fit.
+- [`ag_pixelization.md`](./ag_pixelization.md) — reconstruct clumpy or irregular light directly on
+  a regularized pixel mesh, using `ag.Pixelization` alongside a parametric `ag.lp_linear` bulge:
+  choosing an `ag.mesh` and an `ag.reg` scheme and what each costs, why `mesh_shape` must be fixed
+  before the fit, `over_sample_size_pixelization`, noise scaling instead of hard masking, and
+  reading the reconstruction and its evidence terms out of the `Inversion`.
+- [`ag_light_model_extras.md`](./ag_light_model_extras.md) — the three components that sit beside a
+  galaxy's own light profiles: contaminating extra galaxies, a residual background sky via
+  `ag.DatasetModel`, and operated (already-PSF-convolved) profiles for compact nuclear emission —
+  worked against the bundled real dataset, which has both an un-subtracted sky and a faint
+  neighbour 2.6" out.
+- [`ag_ellipse_fitting.md`](./ag_ellipse_fitting.md) — measure morphology non-parametrically by
+  fitting isophotes with `ag.Ellipse` / `ag.FitEllipse` / `ag.AnalysisEllipse`, one ellipse at a
+  time at fixed `major_axis`, producing radial axis-ratio and position-angle profiles instead of a
+  light-profile model — plus `ag.EllipseMultipole`, `af.Drawer` and the `ag.agg` classes that read
+  many fits back.
+- [`ag_multi_dataset.md`](./ag_multi_dataset.md) — fit several datasets of the same galaxy jointly
+  (multi-wavelength bands, repeated exposures, imaging together with visibilities) through the
+  `af.AnalysisFactor` + `af.FactorGraphModel` construction that is the only way to combine them:
+  what is shared versus freed per dataset, a wavelength relation via prior arithmetic, and
+  astrometric offsets.
+- [`ag_build_interferometer_model.md`](./ag_build_interferometer_model.md) — model a galaxy
+  observed with a radio or millimetre interferometer by fitting its complex visibilities in the
+  uv-plane: loading an `ag.Interferometer` against a real-space mask, choosing the transformer by
+  visibility count, why there is no PSF and no over-sampling, and reading dirty images as
+  diagnostics rather than data.
+- [`ag_multi_galaxy_and_cluster.md`](./ag_multi_galaxy_and_cluster.md) — model several galaxies
+  whose light blends on the sky: an interacting or projected pair, a compact multiple, or a cluster
+  field with a brightest cluster galaxy plus a catalogue-driven member tier
+  (`ag.galaxy_table_from_csv`) whose intensities tie to one shared normalization, so population
+  size costs no dimensions — plus per-galaxy decomposed photometry.
+- [`ag_chain_searches.md`](./ag_chain_searches.md) — break one hard fit into a sequence of easier
+  searches, each initialized from the last: `result.model_centred` and its absolute / relative /
+  bounded variants to narrow priors, `result.model` to keep the original ones, `result.instance` to
+  fix a component outright, and the output-path convention that keeps a chain's searches together.
 
 ### Meta
 
@@ -136,19 +182,6 @@ and shrinks as each phase lands.
 **Until a skill exists, do not pretend it does.** Answer from the installed source and the
 named grounding scripts, say that is what you did, and offer to author the skill via
 [`_bootstrap_skill.md`](./_bootstrap_skill.md).
-
-### Phase 4b — features beyond a single smooth profile
-
-| Skill | Purpose | Grounding (`autogalaxy_workspace/scripts/`) |
-|-------|---------|--------------------------------------------|
-| `ag_basis_profiles` | linear light profiles, Multi-Gaussian Expansion and shapelets — flexible bases that solve for intensity by linear inversion | `imaging/features/linear_light_profiles/`, `imaging/features/multi_gaussian_expansion/`, `imaging/features/shapelets/` |
-| `ag_pixelization` | pixelised reconstruction of an irregular or clumpy galaxy, with regularisation | `imaging/features/pixelization/` |
-| `ag_light_model_extras` | blended neighbours, sky background, and already-PSF-convolved (operated) components | `imaging/features/extra_galaxies/`, `imaging/features/sky_background/`, `imaging/features/operated_light_profile/` |
-| `ag_ellipse_fitting` | non-parametric isophote fitting and multipole perturbations | `ellipse/modeling.py`, `ellipse/multipoles.py`, `ellipse/database.py` (note: `ellipse/` has no `start_here.py`) |
-| `ag_multi_dataset` | simultaneous fits across wavebands or instruments via the factor graph | `multi_dataset/start_here.py`, `multi_dataset/features/` |
-| `ag_build_interferometer_model` | uv-plane modelling of ALMA / JVLA observations | `interferometer/start_here.py`, `interferometer/modeling.py` |
-| `ag_multi_galaxy_and_cluster` | 2+ blended galaxies each with a free light model; BCG + catalogue-driven member population in a cluster field | `multi_galaxy/start_here.py`, `cluster/start_here.py` |
-| `ag_chain_searches` | sequence searches so a later fit inherits priors from an earlier one | `guides/modeling/chaining.py`, HowToGalaxy `chapter_3_search_chaining` |
 
 ### Phase 5 — literature
 

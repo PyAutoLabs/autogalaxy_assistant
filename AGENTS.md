@@ -85,11 +85,16 @@ Map every request onto one or more layers:
    `ag_setup_environment`, `ag_prepare_imaging_data`, `ag_simulate_dataset`,
    `ag_build_imaging_model`, `ag_configure_search`, `ag_run_search`, `ag_plot_fit`,
    `ag_load_results`, `ag_debug_fit_failure` — and is what a galaxy-science request routes to.
-   Three further `ag_*` skills (`ag_audit_skill_apis`, `ag_update_wiki`, `ag_refresh_api_docs`)
-   are maintenance workflows for this repo's own content, not science workflows.
-   `skills/README.md` lists all sixteen live skills and catalogues the rest by phase with the
-   `autogalaxy_workspace` script that grounds each one. Never activate a skill name you
-   have not confirmed is a file on disk.
+   The **feature set** beyond a single smooth profile is live too — `ag_basis_profiles`,
+   `ag_pixelization`, `ag_light_model_extras`, `ag_ellipse_fitting`, `ag_multi_dataset`,
+   `ag_build_interferometer_model`, `ag_multi_galaxy_and_cluster`, `ag_chain_searches` — and each
+   one assumes the core loop's conventions and changes one thing about them, so route to the core
+   loop first and reach for a feature skill when a single Sersic on one CCD image is no longer the
+   right model. Three further `ag_*` skills (`ag_audit_skill_apis`, `ag_update_wiki`,
+   `ag_refresh_api_docs`) are maintenance workflows for this repo's own content, not science
+   workflows. `skills/README.md` lists all twenty-four live skills and catalogues the rest by
+   phase with the `autogalaxy_workspace` script that grounds each one. Never activate a skill
+   name you have not confirmed is a file on disk.
 3. **Wiki** (`wiki/**/*.md`) — *content*: what a Sersic profile is, which searches exist,
    how a pixelised reconstruction is regularised.
 
