@@ -23,15 +23,14 @@ benchmarks/
 
 ## The benchmarks
 
-**No cards are written yet.** `benchmarks/prompts/` is empty: the easy card is authored in
-Phase 2 alongside the bundled dataset and the README prompts it must mirror, the rest in
-Phase 6. The repo-root `PENDING.md` tracks them. The planned set below is a plan, so the
-entries are deliberately unlinked, and the two repo-level tests in
-`autoassistant/tests/test_benchmark.py` skip until the first card lands.
+**One card is written.** The easy card landed in Phase 2 alongside the bundled dataset and the
+README prompt it mirrors; the remaining three are authored in Phase 6 and the repo-root
+`PENDING.md` tracks them. Planned entries below are deliberately unlinked because their files
+do not exist yet.
 
 | Card | Mode | Difficulty | Exercises |
 |------|------|-----------|-----------|
-| `prompts/easy_<bundled-dataset>_sersic.md` _(planned, Phase 2 — named with the dataset)_ | assistant | easy | the built-in workflow on the bundled JWST imaging: inspect, mask, fit a single Sersic, read the result |
+| [`prompts/easy_cosj100020_imaging.md`](prompts/easy_cosj100020_imaging.md) | assistant | easy | the built-in workflow on the bundled JWST imaging: inspect, mask, fit an MGE bulge with a free sky level, add a Sersic for the index, compare wavebands |
 | `prompts/medium_mge_bulge_disk.md` _(planned, Phase 6)_ | assistant | medium | pipeline design beyond bundled workflows: Bayesian model comparison of an MGE against a bulge+disk decomposition, runtime/HPC judgment |
 | `prompts/hard_multi_galaxy_cluster.md` _(planned, Phase 6)_ | assistant | hard | cross-package synthesis: multi_galaxy × cluster × imaging × interferometer, simulation + joint modeling |
 | `prompts/teacher_workflow.md` _(planned, Phase 6)_ | teacher | easy | pedagogy: end-to-end workflow walkthrough on simulated data |

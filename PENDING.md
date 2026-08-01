@@ -26,25 +26,34 @@ named.
 
 ## Phase 2 — dataset, README front door, external signposts
 
-- [ ] `dataset/imaging/<galaxy>/` — a real multi-band JWST COSMOS-Web NIRCam cutout of a
-      non-lens galaxy: `wavebands/<BAND>/{data,noise_map,psf}.fits` + `info.json`, plus a
-      per-dataset provenance README. Every `info.json` number measured by a committed script
-      or cited — never invented. Gated on the user approving the cutout + archive identifiers.
-- [ ] `dataset/imaging/<galaxy>/mask_extra_galaxies.fits` — only if the cutout has real
-      neighbours. Grounding: `imaging/data_preparation/gui/mask_extra_galaxies.py`.
-- [ ] `wiki/core/operations/dataset.md` — on-disk dataset layout and `info.json`. **Moved here
-      from Phase 3**: the page describes the bundled dataset's tree, so it cannot be written
-      honestly before that dataset exists. Grounding:
-      `imaging/data_preparation/start_here.py` and the workspace `dataset/` trees. Until it
-      lands, `wiki/core/index.md` names it as pending and routes to those two sources.
-- [ ] `docs/make_readme_figures.py` + the hero PNG it renders + a vendored-sources README.
-      `docs/` is outside the audit scan set, so it is validated by execution from a fresh venv.
-- [ ] `README.md` v2 — science framing, three anchored example prompts, and an explicit "what
-      works today / what's coming" section.
-- [ ] `benchmarks/prompts/easy_<bundled-dataset>_sersic.md` — the easy assistant card, whose
-      prompt text must match the README verbatim (enforced by
-      `autoassistant/tests/test_benchmark.py::test_repo_readme_prompts_match_cards`, currently
-      skipped). Grounding: `imaging/start_here.py`.
+**Delivered.** `dataset/imaging/cosj100020+015344/` ships a real four-band JWST/NIRCam cutout
+reduced through `PyAutoReduce` from COSMOS-Web (program 1727) exposures: `F115W` and `F150W` at
+0.03"/pixel, `F277W` and `F444W` at 0.06"/pixel, each with `{data,noise_map,psf}.fits` and its
+own `info.json`, plus a dataset-level `info.json`, a `reduction_manifest.json` and a
+full-provenance `README.md`. Every `info.json` number is measured from the delivered cutouts;
+the redshift and catalogue identifiers are cited rather than measured, and the sky pedestal and
+model-PSF caveats are stated rather than smoothed over.
+`wiki/core/operations/dataset.md` documents the layout, the schema and those caveats, and is
+listed in `wiki/core/index.md`. `docs/make_readme_figures.py` rebuilds the README hero
+(`docs/images/cosj100020+015344_dataset.png`) offline from the shipped FITS alone — no
+third-party asset is vendored, which `docs/images/sources/README.md` records explicitly.
+`README.md` v2 is the real front door, and `benchmarks/prompts/easy_cosj100020_imaging.md`
+freezes its second starter prompt with a 100-point rubric — which un-skips the two repo-level
+tests in `autoassistant/tests/test_benchmark.py`.
+
+The card shipped as `easy_cosj100020_imaging.md`, not the planned
+`easy_<bundled-dataset>_sersic.md`: its prompt fits an MGE bulge with a free sky level and adds
+a single Sersic only as a comparison, so naming it for one profile would have described less
+than it measures.
+
+### Still open
+
+- [ ] `dataset/imaging/cosj100020+015344/mask_extra_galaxies.fits` — the bundled cutout *does*
+      have a real neighbour, so this line stays live: a faint source **2.6" from the centre**,
+      inside any mask wide enough to reach the galaxy's outer isophotes. (A brighter one 8.0"
+      out is already excluded by a <~4" mask.) No mask ships today, so that source has to be
+      masked or modelled per session — the dataset README and the README hero figure both flag
+      it. Grounding: `imaging/data_preparation/gui/mask_extra_galaxies.py`.
 - [ ] External signpost PRs (shipped from their own repos, merged after this phase):
       `autogalaxy_workspace` llms.txt + README, `PyAutoGalaxy/llms.txt`, `HowToGalaxy/llms.txt`,
       and the org profile README — four places that currently advertise this assistant.

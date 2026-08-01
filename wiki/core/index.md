@@ -6,9 +6,9 @@ sources:
       - wiki/core/
       - skills/
       - PENDING.md
-    pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
+    pinned_commit: db52604f13305cb8a251fb3bb08bb5cc0ab84a55
 last_updated: 2026-08-01
-content_sha256: f3ce9c7260b61228d57003c2630d5cbc80ee9eab6606a9fd54cd56ce113bf95b
+content_sha256: dceace8177c3d85b8dcf6b1b7abbed457432ece4f7356bd9531d846877641b5c
 ---
 
 # Core wiki — PyAuto\* reference
@@ -24,7 +24,7 @@ Five sections, each with a different job:
 | [`stack/`](#stack) | Which library owns this, and what does it depend on? | 5 |
 | [`api/`](#api) | Which one exists, and when would I pick it? | 9 |
 | [`concepts/`](#concepts) | What is this, physically and statistically, and why? | 15 |
-| [`operations/`](#operations) | How do I install, configure and run it? | 2 |
+| [`operations/`](#operations) | How do I install, configure and run it? | 3 |
 | [`external/`](#external-resources) | Where do I send the user to read more? | 5 |
 
 Every link on this page resolves to a file that exists. Anything not listed here is not
@@ -103,6 +103,10 @@ The physics and the inference behind the API.
 
 ## Operations
 
+- [Dataset layout and `info.json`](./operations/dataset.md) — the `wavebands/<BAND>/` on-disk
+  convention, every `info.json` field and where it comes from, how to load one waveband, the
+  bundled dataset's sky and PSF caveats, and the workspace auto-simulation pattern for data
+  that is not bundled.
 - [Installation](./operations/installation.md) — the pip route and its extras, the
   editable-clone route, version floors and caps, `activate.sh`, and how to prove the install
   works.
@@ -127,10 +131,6 @@ Routing into the three resources outside this repo, by audience.
 
 Listed honestly rather than linked. `../../PENDING.md` names the grounding script for each.
 
-- **`operations/dataset.md`** — on-disk dataset layout and `info.json`. Arrives with the
-  bundled dataset (Phase 2); until then ground data handling in
-  `autogalaxy_workspace:scripts/imaging/data_preparation/start_here.py` (the workspace
-  simulates its imaging datasets on first run rather than committing them).
 - **`operations/hpc.md`** and **`operations/hpc_infrastructure.md`** — cluster concepts, and
   the `hpc/` templates and `sync` CLI. Both wait on Phase 6 actually shipping `hpc/`; the
   interface contract a pipeline must preserve is documented meanwhile in

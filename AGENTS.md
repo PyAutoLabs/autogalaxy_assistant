@@ -103,7 +103,7 @@ reference, with its own `[[wiki-link]]` schema — arrives in a later phase (`PE
 it does, do not cite it and do not invent its contents. "The wiki" means `wiki/core/` unless
 `project/` is named. `wiki/core/` now has `stack/`, `api/`, `concepts/`, `operations/` and
 `external/`; [`wiki/core/index.md`](./wiki/core/index.md) lists every page that exists and
-states plainly what is still missing (the dataset-layout and HPC operations pages).
+states plainly what is still missing (the two HPC operations pages).
 
 ---
 
@@ -276,13 +276,18 @@ Load operational references on demand, not every session:
 - **The reference wiki itself** → [`wiki/core/index.md`](./wiki/core/index.md) lists every
   page that exists, by section.
 
-Two operational references are still unwritten (`PENDING.md` lists both with their grounding
-scripts). Until they land, use the ground truth directly rather than citing a page that does
-not exist:
+- **Dataset layout + `info.json`** →
+  [`wiki/core/operations/dataset.md`](./wiki/core/operations/dataset.md) — the
+  `wavebands/<BAND>/` convention, the `info.json` schema, loading one waveband, and the
+  bundled dataset's sky and PSF caveats. **One dataset ships with this repo**:
+  `dataset/imaging/cosj100020+015344/`, a four-band real JWST/NIRCam cutout of an early-type
+  galaxy at z = 0.3422 — its own `README.md` there is the authority for its provenance, and
+  the real-data gate above applies to it in full.
 
-- **Dataset layout + `info.json`** → the `dataset/imaging/<name>/` trees and per-dataset
-  READMEs in `autogalaxy_workspace`, plus
-  `autogalaxy_workspace:scripts/imaging/data_preparation/start_here.py`.
+The two HPC operational references are still unwritten (`PENDING.md` lists both with their
+grounding scripts). Until they land, use the ground truth directly rather than citing a page
+that does not exist:
+
 - **HPC science** (cores, JAX/GPU, SLURM concepts) →
   `autogalaxy_workspace:scripts/guides/hpc/example_cpu_and_gpu.py` and
   `autogalaxy_workspace:scripts/guides/using_jax.py`. The `hpc/` infrastructure folder is not
