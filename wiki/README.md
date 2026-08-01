@@ -8,7 +8,7 @@ because you can read it yet.
 |---|---|---|---|
 | [`core/`](./core/) | *What is X / which X / why X* in the PyAuto\* stack? | Curated from source repos listed in [`../sources.yaml`](../sources.yaml) | `ag_update_wiki` skill, against pinned source commits |
 | [`project/`](./project/) | *What did we do in this fork, and why?* | Dated journal entries | Agent + user, every meaningful session |
-| `literature/` — **planned** | *What does the galaxy-structure literature say about X?* | Compiled syntheses of papers (PDFs typically kept outside the repo), with its own `concepts/` / `entities/` / `sources/` schema and `[[wiki-link]]` cross-references | The user, when extending the literature wiki from new papers |
+| `literature/` | *What does the galaxy-structure literature say about X?* | Compiled syntheses of papers (PDFs typically kept outside the repo), with its own `concepts/` / `entities/` / `sources/` schema, `[[wiki-link]]` cross-references and a verified BibTeX bibliography | The user (via `ag_ingest_paper`), when extending the literature wiki from new papers |
 
 `core/` is itself partially built: only `stack/` (one page per source library) exists so far.
 [`core/index.md`](./core/index.md) states exactly which directories are still missing, and the
@@ -22,9 +22,9 @@ grounding script for each.
   its `concepts/` and `api/` pages land. Until then, ground the answer in the installed source
   and the `autogalaxy_workspace` scripts, and say that is what you did.
 - A user asks **"how does the Kormendy relation constrain this?"** or **"summarise the
-  bulge-disk decomposition literature"** → this is `literature/` territory. It does not exist
-  yet: answer from what the user supplies or from a source you can cite and verify, and never
-  imply you read a page here.
+  bulge-disk decomposition literature"** → this is `literature/` territory: start from
+  [`literature/index.md`](./literature/index.md) and cite the concept or source page you
+  actually read.
 - A user asks **"what fits have we already tried on this galaxy?"** → `project/`, grep for the
   dataset name.
 
@@ -36,10 +36,10 @@ grounding script for each.
 - **`project/`** is append-only. After any session where the agent helps with a real
   modeling decision, dataset change, pipeline tweak, or interpretation, ask the user
   whether to add a journal entry. Use [`project/_template.md`](./project/_template.md).
-- **`literature/`** will have its own schema when it lands. Do not create it ad-hoc as part
-  of unrelated work; it is authored as a phase, so that its citations can all be verified
-  against ADS/arXiv in one pass. A fabricated citation is the worst artifact this repo could
-  publish.
+- **`literature/`** grows only through [`ag_ingest_paper`](../skills/ag_ingest_paper.md),
+  which verifies every citation against ADS/arXiv/CrossRef before it is recorded and ends by
+  running `make validate-literature-citations`. A fabricated citation is the worst artifact
+  this repo could publish; its own contract is [`literature/AGENTS.md`](./literature/AGENTS.md).
 
 ## Sub-wiki layout
 
@@ -54,5 +54,9 @@ wiki/
 │   ├── README.md
 │   ├── _template.md            # dated-entry template
 │   └── _profile_template.md    # user-profile template
-└── literature/          # planned — galaxy-structure scientific reference
+└── literature/          # galaxy-structure scientific reference (own AGENTS.md schema)
+    ├── concepts/               # the science: profiles, decomposition, scaling relations…
+    ├── entities/               # surveys and instruments
+    ├── sources/                # per-topic annotated bibliographies
+    └── bibliography/           # autogalaxy_literature.bib (verified) + aliases
 ```
