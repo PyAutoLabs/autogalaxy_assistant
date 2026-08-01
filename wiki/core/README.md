@@ -15,9 +15,10 @@ Session notes and per-clone findings belong in `../project/`.
 - [`index.md`](./index.md) — top-level map; the entry point for an agent or human reader.
 - [`stack/`](./stack/) — one page per source library, plus an overview of how they fit
   together.
-- `concepts/`, `api/`, `operations/`, `external/` — physics/framework explanations,
-  task-oriented API catalogues, operational guides and external-resource routing. These
-  arrive in a later phase; the repo-root `PENDING.md` lists what is still missing.
+- [`concepts/`](./concepts/), [`api/`](./api/), [`operations/`](./operations/),
+  [`external/`](./external/) — physics/framework explanations, task-oriented API catalogues,
+  operational guides and external-resource routing. All four are written; `index.md` is the
+  page-by-page list.
 
 ## Page format
 

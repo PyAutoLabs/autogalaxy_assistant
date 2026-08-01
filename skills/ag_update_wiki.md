@@ -193,9 +193,9 @@ what [`_style.md`](./_style.md) warns against — the wiki exists to back the sk
    `--check-provenance`, `--check-citations` — because a refresh pulls in upstream text and
    is a normal way for a symbol or a dead construction to get *introduced*. This is the same
    five-leg set the `wiki-currency` workflow runs, so running it locally is running CI early.
-3. Update [`../PENDING.md`](../PENDING.md) if the refresh delivered something it lists, and
-   `wiki/core/index.md` if a page was added, renamed or removed. An index entry pointing at
-   a page that is not there is worse than an admitted gap.
+3. Update `wiki/core/index.md` if a page was added, renamed or removed, and
+   [`../ROADMAP.md`](../ROADMAP.md) if the refresh closed something it records. An index entry
+   pointing at a page that is not there is worse than an admitted gap.
 4. Commit on the chosen cadence — one page per commit, or
    `git commit -m "wiki: refresh against <project>@<short-sha>"` for a batch.
 
@@ -227,5 +227,5 @@ that renames a section heading breaks every anchor pointing at it.
 3. Diff `__init__.py` exports across the pin range; fold new APIs into existing pages, and
    list anything needing a new page to the user without writing it.
 4. Run the five currency checks; fix what they surface.
-5. Reconcile `wiki/core/index.md` and `PENDING.md` with what actually changed.
+5. Reconcile `wiki/core/index.md` and `ROADMAP.md` with what actually changed.
 6. Show `git diff wiki/`; commit on the user's cadence.

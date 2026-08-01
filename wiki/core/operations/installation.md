@@ -36,7 +36,7 @@ sources:
       - autoassistant/audit_skill_apis.py
     pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
 last_updated: 2026-08-01
-content_sha256: 7b6388da6f066a30993b0ab8acd1923820c68650916c8cafbe57575fddc76865
+content_sha256: f28ec528c30b1059aad594de3d1f3be69411e7719359e9aa02425c84387a511c
 ---
 
 # Installation
@@ -55,9 +55,9 @@ That is the whole install for most users. Everything below is detail: which extr
 add, what the version floors mean, and how to prove the install works before you fit a
 galaxy with it.
 
-This page is the *rationale*. The environment-setup skill that will drive install and
-repair in code is not written yet (`PENDING.md` tracks it); until it lands, the checks in
-"Verifying the install" below are the mechanical part.
+This page is the *rationale*; [`../../../skills/ag_setup_environment.md`](../../../skills/ag_setup_environment.md)
+is the procedure that drives install and repair in code, and it cites this page. The checks in
+"Verifying the install" below are the mechanical part either way.
 
 ## Python version
 

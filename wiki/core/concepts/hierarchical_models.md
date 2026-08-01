@@ -16,7 +16,7 @@ sources:
       - scripts/guides/results/aggregator/queries.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
 last_updated: 2026-08-01
-content_sha256: d8a9ef07484c5a5da3e722145297413baad159728e053161611c668f2eee4539
+content_sha256: a096ebbf0740937ffff8f0936d91acb6b27bf882cf6ec86bbed7bb9023fde172
 ---
 
 # Hierarchical and graphical models over galaxy samples
@@ -35,8 +35,8 @@ Source: `PyAutoFit:autofit/graphical/`.
 > multi-dataset analyses". This page is therefore **conceptual**, with every `af.*` symbol
 > verified against the installed PyAutoFit but the *galaxy-structure* composition left to you.
 > Treat the code below as the shape of the API, not as a script lifted from a validated example,
-> and check `model.info` at every step. The repo-root [`PENDING.md`](../../../PENDING.md) is
-> where a grounded worked example would be tracked.
+> and check `model.info` at every step. If a grounded worked example ever appears upstream, the
+> repo-root [`ROADMAP.md`](../../../ROADMAP.md) is where the gap gets recorded.
 
 ## What "hierarchical" means
 
@@ -192,4 +192,5 @@ built from sampled ones. See
   quantities.
 - [`non_linear_search`](./non_linear_search.md) — the searches a graph is fitted with.
 - [`../stack/autofit`](../stack/autofit.md) — the graphical-model layer in context.
-- [`../../../PENDING.md`](../../../PENDING.md) — where a grounded worked example is tracked.
+- [`../../../ROADMAP.md`](../../../ROADMAP.md) — where the missing grounded worked example is
+  recorded.

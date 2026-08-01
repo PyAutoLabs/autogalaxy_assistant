@@ -62,8 +62,7 @@ It does **not** run the version, idiom, provenance or citation checks, and it re
 nothing. It is a repeatable starting point, not the job. If the preflight fails, stop and fix
 the environment first — a refresh against a broken env produces noise, not signal
 (`--check-install` in [`ag_audit_skill_apis.md`](./ag_audit_skill_apis.md) is the structured
-diagnosis, and the environment skill that will own repair is still pending; see
-[`../PENDING.md`](../PENDING.md)).
+diagnosis, and [`ag_setup_environment.md`](./ag_setup_environment.md) owns the repair).
 
 Then take the baseline reading, because it tells you whether the *stack* moved or only the
 *docs*:
@@ -191,9 +190,9 @@ python autoassistant/audit_skill_apis.py --write-baseline
 Commit `wiki/core/api_audit_baseline.json` with the sweep. Re-pinning *before* the sweep is
 clean would silence the very signal that told you to run it.
 
-Finally, reconcile the ledgers: delete anything from [`../PENDING.md`](../PENDING.md) the
-sweep actually delivered, and update `wiki/core/index.md` and
-[`README.md`](./README.md) if the page or skill set changed.
+Finally, reconcile the ledgers: update `wiki/core/index.md` and [`README.md`](./README.md) if
+the page or skill set changed, and delete anything from [`../ROADMAP.md`](../ROADMAP.md) the
+sweep actually delivered.
 
 ## When NOT to invoke this skill
 
@@ -218,5 +217,5 @@ sweep actually delivered, and update `wiki/core/index.md` and
 7. Sweep `skills/*.md` recipes, citations, cross-links and `## Further reading` blocks.
 8. Re-run until all five checks are clean; smoke-test materially changed recipes.
 9. `--write-baseline` only if this followed a deliberate upgrade and the sweep is clean.
-10. Reconcile `PENDING.md`, `wiki/core/index.md` and `skills/README.md`; show the grouped
+10. Reconcile `wiki/core/index.md`, `skills/README.md` and `ROADMAP.md`; show the grouped
     diff; commit.

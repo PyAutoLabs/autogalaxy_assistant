@@ -12,15 +12,14 @@ All scripts here follow the **Generated script style** (title + `__Contents__` h
 
 ## HPC interface template
 
-> **Not shipped yet.** The `hpc/` folder — batch templates, the `sync` CLI and
-> `hpc/template.py` — arrives in a later phase; see the repo-root `PENDING.md`. The
-> contract below is documented now because it is what a pipeline script in this folder must
-> preserve, and because scripts written before `hpc/` lands should already conform. Do not
-> link to `hpc/` paths or claim the templates are present until they are.
-
-The standard interface between the HPC batch templates and Python modeling code will live at
-`hpc/template.py`, paired with `hpc/batch_cpu/template` and `hpc/batch_gpu/template`. It
-includes:
+The standard interface between the HPC batch templates and Python modeling code lives at
+[`../hpc/template.py`](../hpc/template.py), paired with `hpc/batch_cpu/template` and
+`hpc/batch_gpu/template`. The whole folder — templates, the `sync` CLI and its config
+examples — is documented in
+[`../wiki/core/operations/hpc_infrastructure.md`](../wiki/core/operations/hpc_infrastructure.md),
+with the science of cluster runs in
+[`../wiki/core/operations/hpc.md`](../wiki/core/operations/hpc.md). The contract below is what
+a pipeline script in this folder must preserve. It includes:
 
 - **`parse_fit_args()`** — parses `--sample`, `--dataset`, `--iterations_per_quick_update`,
   `--number_of_cores`, and `--use_cpu` from the command line
@@ -39,9 +38,10 @@ reason: they are per-clone copies of a generic mechanism, not tracked content.
 ## Workspace pipeline reference
 
 There is no single canonical galaxy pipeline — the right starting script depends on the data
-and the science question — and no skill that scaffolds one yet; the roadmap for the `ag_*`
-skills that will is in `skills/README.md` and `PENDING.md`. Until then, adapt from the
-`autogalaxy_workspace` catalogue by hand.
+and the science question — and deliberately no skill that scaffolds one, because there is no
+default worth scaffolding. Compose the `ag_*` skills for the science
+([`../skills/README.md`](../skills/README.md) indexes them) and adapt the closest script from
+the `autogalaxy_workspace` catalogue below.
 
 Every path below is relative to `autogalaxy_workspace/scripts/`. Each group's
 `start_here.py` (where one exists) is the always-current reference for that group; read it

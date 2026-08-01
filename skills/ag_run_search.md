@@ -297,12 +297,13 @@ easier to read, and you can drop a debugger or a `print` into code JAX would oth
 compile. That is the first lever to pull when deciding whether a failure is a JAX problem at
 all — see [`ag_debug_fit_failure`](./ag_debug_fit_failure.md).
 
-For running on a cluster — SLURM array jobs, one dataset per task, the CPU and GPU batch
-scripts, and `number_of_cores` read from `SLURM_CPUS_PER_TASK` — the ground truth is
-`autogalaxy_workspace:scripts/guides/hpc/example_cpu_and_gpu.py`. The Python modeling code is
-identical for a GPU run; only the batch script changes. This repo has no HPC operations page
-yet ([`../PENDING.md`](../PENDING.md)), so cite that script rather than a page that does not
-exist.
+For running on a cluster — SLURM array jobs, one galaxy per task, the CPU and GPU batch
+scripts, and `number_of_cores` read from `SLURM_CPUS_PER_TASK` — read
+[`../wiki/core/operations/hpc.md`](../wiki/core/operations/hpc.md) for the concepts and
+[`../wiki/core/operations/hpc_infrastructure.md`](../wiki/core/operations/hpc_infrastructure.md)
+for the `hpc/` templates and `sync` CLI this repo ships; the upstream ground truth behind both
+is `autogalaxy_workspace:scripts/guides/hpc/example_cpu_and_gpu.py`. The Python modeling code
+is identical for a GPU run; only the batch script changes.
 
 ## Branch — the smoke test, before you spend hours
 

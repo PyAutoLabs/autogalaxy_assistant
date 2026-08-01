@@ -21,6 +21,19 @@ hpc/sync_jump.conf
 output/
 failed/
 
+# ...but the SLURM log directories under hpc/batch_*/ are named output/ and
+# error/ too, and their .gitignore keepers must be tracked so the directories
+# exist in a fresh clone (sbatch fails if the -o/-e paths are missing). Without
+# these negations `git add hpc/` silently skips them.
+!hpc/batch_cpu/output/
+!hpc/batch_cpu/error/
+!hpc/batch_gpu/output/
+!hpc/batch_gpu/error/
+!hpc/batch_cpu/output/.gitignore
+!hpc/batch_cpu/error/.gitignore
+!hpc/batch_gpu/output/.gitignore
+!hpc/batch_gpu/error/.gitignore
+
 # Agent scratch — throwaway plots and data dumps from exploration. Committed
 # user/agent Python lives in scripts/ (notebook-convertible); only this scratch
 # area is ignored. Persistent fit results go to output/ (above).

@@ -6,10 +6,10 @@ sources:
       - skills/
       - skills/_style.md
       - skills/README.md
-      - PENDING.md
-    pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
+      - ROADMAP.md
+    pinned_commit: a083753c217e6d9c07f3c9cc40cb7133b478a439
 last_updated: 2026-08-01
-content_sha256: 64f9a361cee2627eb4f7fc2be4f77eb06bc8a7e80fb4beb29a981b01ff08a701
+content_sha256: 85756d5daf2dce5003c8c192005da407f4b7f7119eee2983e2feaba897becd21
 ---
 
 # Skill → external resource map
@@ -20,9 +20,10 @@ One row per skill, three audience-tagged cells. **This table is load-bearing**: 
 the agent surfaces *one* of the three bullets in conversation based on the audience —
 the other two stay in the block as fallbacks.
 
-**The table lists only skills that exist.** It grows one row per skill as each phase lands;
-`../../../PENDING.md` is the ledger of what has not been authored yet. Never add a row for
-a planned skill — a row here reads as "this skill exists and cites this page".
+**The table lists only skills that exist**, and as of Phase 6 that is all twenty-seven of
+them. Never add a row for a skill that is only planned — a row here reads as "this skill
+exists and cites this page". Anything still wished for lives in `../../../ROADMAP.md`, which
+is deliberately not a place rows are drawn from.
 
 ## URL expansion
 
@@ -70,13 +71,19 @@ Default to `.ipynb` for student-leaning users and `.py` for returning PyAutoGala
 | `ag_build_interferometer_model` | `chapter_1_introduction/tutorial_3_fitting` | `overview/overview_3_features` | `interferometer/start_here.py` |
 | `ag_multi_galaxy_and_cluster` | `chapter_3_search_chaining/tutorial_3_x2_galaxies` | `overview/overview_2_new_user_guide` | `cluster/start_here.py` |
 | `ag_chain_searches` | `chapter_3_search_chaining/tutorial_1_search_chaining` | `general/configs` | `guides/modeling/chaining.py` |
+| `ag_ingest_paper` | _ | _ | _ |
+| `ag_to_notebook` | _ | _ | _ |
+| `ag_inspect_results_mcp` | _ | _ | _ |
 
-The first seven rows are entirely `_`, and that is the correct state rather than an omission:
-those skills are **internal to the workspace** — two meta-skills, two repo-workflow skills, and
-the three maintenance skills that audit and refresh this repo's own content. None of them
-teaches a galaxy-modelling task, so none has an external resource that would help a user,
-and per `_style.md` a skill whose row is entirely `_` omits the `## Further reading` block
-altogether.
+The first seven rows and the last three are entirely `_`, and that is the correct state rather
+than an omission: those skills are **internal to the workspace** — two meta-skills, two
+repo-workflow skills, the three maintenance skills that audit and refresh this repo's own
+content, the literature-ingest workflow, and the two output surfaces (`ag_to_notebook` converts
+a script the assistant already wrote; `ag_inspect_results_mcp` configures this repo's own MCP
+server). None of them teaches a galaxy-modelling task, so none has an external resource that
+would help a user, and per `_style.md` a skill whose row is entirely `_` omits the
+three-audience `## Further reading` block. A few of them do carry a short block of *internal*
+pointers under the same heading — that is not the external block this table drives.
 
 The nine core-loop rows beneath them are the first with real cells, one per skill in the
 modelling loop. Each skill's `## Further reading` block was written from its row here, and
@@ -125,8 +132,8 @@ Rules, from `_style.md`:
 ## Maintenance
 
 When a skill is added: append its row here, write its `## Further reading` block from that
-row, register the skill in [`../../../skills/README.md`](../../../skills/README.md), and
-delete its line from `PENDING.md`. When a skill is removed or renamed, its row goes with it
+row, register the skill in [`../../../skills/README.md`](../../../skills/README.md), and add
+the `.claude/skills/` symlink. When a skill is removed or renamed, its row goes with it
 — a row for a file that is not on disk is the same defect as a link to a missing page.
 
 ## See also

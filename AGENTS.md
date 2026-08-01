@@ -90,11 +90,12 @@ Map every request onto one or more layers:
    `ag_build_interferometer_model`, `ag_multi_galaxy_and_cluster`, `ag_chain_searches` — and each
    one assumes the core loop's conventions and changes one thing about them, so route to the core
    loop first and reach for a feature skill when a single Sersic on one CCD image is no longer the
-   right model. Three further `ag_*` skills (`ag_audit_skill_apis`, `ag_update_wiki`,
-   `ag_refresh_api_docs`) are maintenance workflows for this repo's own content, not science
-   workflows. `skills/README.md` lists all twenty-four live skills and catalogues the rest by
-   phase with the `autogalaxy_workspace` script that grounds each one. Never activate a skill
-   name you have not confirmed is a file on disk.
+   right model. Two **output-surface** skills (`ag_to_notebook`, `ag_inspect_results_mcp`) turn a
+   finished script or a finished fit into something shareable. Three further `ag_*` skills
+   (`ag_audit_skill_apis`, `ag_update_wiki`, `ag_refresh_api_docs`) are maintenance workflows for
+   this repo's own content, not science workflows. `skills/README.md` lists all twenty-seven live
+   skills, with the `autogalaxy_workspace` script or module that grounds each one. Never activate
+   a skill name you have not confirmed is a file on disk.
 3. **Wiki** (`wiki/**/*.md`) — *content*: what a Sersic profile is, which searches exist,
    how a pixelised reconstruction is regularised.
 
@@ -108,9 +109,10 @@ refreshed by `ag_update_wiki`), **`wiki/project/`** (this clone's running journa
 `[[wiki-link]]` schema and a verified BibTeX bibliography; its contract is
 [`wiki/literature/AGENTS.md`](./wiki/literature/AGENTS.md) and papers enter it via
 [`skills/ag_ingest_paper.md`](./skills/ag_ingest_paper.md). "The wiki" means `wiki/core/`
-unless `project/` or `literature/` is named. `wiki/core/` now has `stack/`, `api/`, `concepts/`, `operations/` and
-`external/`; [`wiki/core/index.md`](./wiki/core/index.md) lists every page that exists and
-states plainly what is still missing (the two HPC operations pages).
+unless `project/` or `literature/` is named. `wiki/core/` has `stack/`, `api/`, `concepts/`,
+`operations/` and `external/`, and is complete as of Phase 6 —
+[`wiki/core/index.md`](./wiki/core/index.md) lists every page that exists, and its closing
+section says exactly what "complete" does and does not claim.
 
 ---
 
@@ -282,6 +284,10 @@ Load operational references on demand, not every session:
   depth" carries the same routing as a writing rule.
 - **The reference wiki itself** → [`wiki/core/index.md`](./wiki/core/index.md) lists every
   page that exists, by section.
+- **What this assistant does *not* do yet** → [`ROADMAP.md`](./ROADMAP.md) — benchmark
+  calibration runs (no run has been scored, so never cite benchmark performance), a second
+  instrument's dataset, two skills with no grounding script, upstream fixes to contribute.
+  **No file links to an item on it, and no agent may answer as though it had read one.**
 
 - **Dataset layout + `info.json`** →
   [`wiki/core/operations/dataset.md`](./wiki/core/operations/dataset.md) — the
@@ -291,15 +297,14 @@ Load operational references on demand, not every session:
   galaxy at z = 0.3422 — its own `README.md` there is the authority for its provenance, and
   the real-data gate above applies to it in full.
 
-The two HPC operational references are still unwritten (`PENDING.md` lists both with their
-grounding scripts). Until they land, use the ground truth directly rather than citing a page
-that does not exist:
-
-- **HPC science** (cores, JAX/GPU, SLURM concepts) →
-  `autogalaxy_workspace:scripts/guides/hpc/example_cpu_and_gpu.py` and
-  `autogalaxy_workspace:scripts/guides/using_jax.py`. The `hpc/` infrastructure folder is not
-  shipped in this clone yet; `scripts/AGENTS.md` documents the interface contract a pipeline
-  must preserve for when it is.
+- **HPC science** (why galaxy work is sample-shaped, one galaxy per array task, JAX on CPU
+  versus GPU, sizing a SLURM job, the resume trap on a sample run) →
+  [`wiki/core/operations/hpc.md`](./wiki/core/operations/hpc.md); **the `hpc/` infrastructure
+  shipped here** (`hpc/template.py`, the CPU/GPU batch templates, the `sync` CLI) →
+  [`wiki/core/operations/hpc_infrastructure.md`](./wiki/core/operations/hpc_infrastructure.md).
+  `scripts/AGENTS.md` states the interface contract a pipeline script must preserve, and
+  `hpc/` is outside the audit's scan set — it is validated by running `hpc/template.py`, not
+  by a checker.
 
 <!-- repos_sync:history:begin -->
 ## Never rewrite history

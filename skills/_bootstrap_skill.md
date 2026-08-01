@@ -113,9 +113,10 @@ Save the new skill at `skills/ag_<task>.md`. Follow `_style.md`:
 ln -s ../../skills/ag_<task>.md .claude/skills/ag_<task>.md
 ```
 
-Add an entry under "Index — what exists today" in `skills/README.md`, and remove the skill's
-line from `PENDING.md` in the same change. If you must land it as a scaffold rather than a
-complete recipe, mark it `(stub)` — the stub-tracking discipline at the bottom of
+Add an entry under "Index — what exists today" in `skills/README.md`, and a row in
+`wiki/core/external/skill_citation_map.md`, in the same change; if the skill was listed in
+[`../ROADMAP.md`](../ROADMAP.md), delete its entry there too. If you must land it as a scaffold
+rather than a complete recipe, mark it `(stub)` — the stub-tracking discipline at the bottom of
 [`./README.md`](./README.md) is not optional.
 
 ## Step 8 — verify
@@ -158,7 +159,7 @@ When it runs, tell the user:
 4. Read the relevant source. Take signature notes.
 5. Read or draft the matching wiki page(s).
 6. Write `skills/ag_<task>.md`.
-7. Add symlink under `.claude/skills/`; add entry to `skills/README.md`; drop its
-   `PENDING.md` line.
+7. Add symlink under `.claude/skills/`; add entry to `skills/README.md` and a row to
+   `wiki/core/external/skill_citation_map.md`; drop any `ROADMAP.md` entry.
 8. Generate the user-specific script in `scripts/`. Run it with `PYAUTO_TEST_MODE=1`.
 9. Report to the user: skill name, script path, new wiki pages, suggested chain.

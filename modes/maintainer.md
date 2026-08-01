@@ -30,8 +30,8 @@ Use the existing skills, not new docs:
 - Authoring or evolving a skill → [`skills/_bootstrap_skill.md`](../skills/_bootstrap_skill.md).
 - Regenerating `wiki/core/` against pinned sources → `ag_update_wiki`.
 - API gate / version baseline → `autoassistant/audit_skill_apis.py` directly (`--scope all`,
-  `--lint-idioms`, `--check-citations`, `--check-version`, `--write-baseline`). The
-  `ag_audit_skill_apis` skill that will document this is pending — see `../PENDING.md`.
+  `--lint-idioms`, `--check-citations`, `--check-version`, `--write-baseline`), documented by
+  [`skills/ag_audit_skill_apis.md`](../skills/ag_audit_skill_apis.md).
 
 ## Release-time wiki-currency check (two triggers, one check)
 
@@ -64,10 +64,10 @@ a cloning workflow cuts along, and the four bold markers are read literally by t
 do not rename or reorder them. Do not generalise anything pre-emptively; just avoid entangling
 the two sides.
 
-Several items below do not exist yet. They are listed anyway, because the partition is a
-statement about *where a file belongs when it lands*, and a newborn cloned from this repo must
-inherit the classification rather than rediscover it. `../PENDING.md` says which are still
-missing.
+Everything listed below now exists, but the partition is a statement about *where a file
+belongs*, not an inventory — a newborn cloned from this repo must inherit the classification
+rather than rediscover it, including for files it has not written yet. `../ROADMAP.md` records
+what this repo itself still wants.
 
 **Generic assistant infrastructure** (clones to any domain assistant near-verbatim):
 `AGENTS.md`'s skeleton (session start, safety invariants, three-layer model, mode
@@ -79,8 +79,9 @@ and its read-only/update rules, the science-project lifecycle (`start-new-projec
 `contribute-upstream`), `sources.yaml` + the source registry pattern, the API gate
 (`autoassistant/audit_skill_apis.py` + the `wiki-currency` / `clone-boundary` workflows), the
 profile template, the benchmark machinery (the `benchmarks/AGENTS.md` contract + the
-`autoassistant/benchmark.py` harness), `PENDING.md` as a mechanism (an honest ledger every
-newborn needs, though never its contents), and `.mcp.json` (it wires the results-inspector
+`autoassistant/benchmark.py` harness), the honest-ledger mechanism itself — a newborn needs a
+`PENDING.md` while it is under construction and a `ROADMAP.md` afterwards, though never either
+one's contents — and `.mcp.json` (it wires the results-inspector
 MCP, which *is* `autoassistant.mcp` — generic tooling, so the wiring carries no domain
 either).
 

@@ -399,10 +399,11 @@ Say these out loud rather than letting a user discover them:
 - [`ag_configure_search`](./ag_configure_search.md) — the posterior is too coarse, or you need
   errors an optimiser cannot give.
 
-There is a second, lighter route to a result planned for this assistant: an MCP tool surface
-for inspecting a fit's output folder without writing a script. It is **not built yet** —
-[`../PENDING.md`](../PENDING.md) tracks it with its grounding module. Until it lands, this
-skill's Python is the way in; do not tell a user to invoke a tool that does not exist.
+There is a second, lighter route to a result: the read-only results-inspector MCP server,
+which lets a chat harness with no code execution list fits, read summaries and view result
+images without a script — [`ag_inspect_results_mcp`](./ag_inspect_results_mcp.md). It is the
+fallback, not the upgrade: whenever code execution is available, this skill's Python is richer
+and is the way in.
 
 When a load turns into real analysis — a table, a derived quantity, a comparison across fits —
 offer (default-yes) the dated `wiki/project/YYYY-MM-DD-<slug>.md` entry: the science question,
