@@ -20,11 +20,13 @@ ask one focused question — never default to the longest possible explanation.
    python autoassistant/audit_skill_apis.py --check-version
    ```
    Exit 0 = documented API matches the stack. Exit 1 = genuine drift: recommend the pinned
-   version or an audit. Exit 2/3 = absent/broken stack: report the interpreter, then diagnose
-   and repair the environment directly (`pip install autogalaxy`, cache env vars — see
-   "Sandboxed / restricted runs" conventions below). The `ag_setup_environment` and
-   `ag_audit_skill_apis` skills that will own these procedures are not written yet; `PENDING.md`
-   tracks them. Skip this step by default in maintainer mode.
+   version or an audit — [`skills/ag_audit_skill_apis.md`](./skills/ag_audit_skill_apis.md)
+   owns that procedure. Exit 2/3 = absent/broken stack: report the interpreter, then diagnose
+   and repair the environment directly
+   ([`wiki/core/operations/installation.md`](./wiki/core/operations/installation.md) for the
+   install routes, [`wiki/core/operations/sandbox.md`](./wiki/core/operations/sandbox.md) for
+   the cache env vars). The `ag_setup_environment` skill that will own the repair itself is not
+   written yet; `PENDING.md` tracks it. Skip this step by default in maintainer mode.
 
 ## Safety invariants — default non-negotiable
 
@@ -52,8 +54,8 @@ deliberate refactor). Two are NEVER overridden: the real-data gate and never-rew
   **on any other harness (Codex, Gemini, OpenCode, Copilot, chat) self-enforce it**: run
   `python autoassistant/audit_skill_apis.py --code "<snippet>"` (or `--file <script.py>`) on
   generated PyAuto* code before executing it. Bypass a genuine edge case with
-  `PYAUTO_SKIP_API_GATE=1`; `python autoassistant/audit_skill_apis.py --help` lists the other
-  checks.
+  `PYAUTO_SKIP_API_GATE=1`. The other four checks, and this one's manual form, are documented
+  in [`skills/ag_audit_skill_apis.md`](./skills/ag_audit_skill_apis.md).
 - **Never write into `output/`** (PyAutoFit runtime) **or `sources/`** (cloned repos);
   agent-authored Python → `scripts/` or `scripts/scratch/`.
 - **`wiki/core/` is read-only** (only `ag_update_wiki` rewrites it); append to `wiki/project/`.
@@ -79,9 +81,11 @@ Map every request onto one or more layers:
    task. Library-API skills are `ag_<task>.md` and produce/evolve a Python script;
    project-workflow skills (`start-new-project.md`, `contribute-upstream.md`) drive repo-level
    operations. Skills starting with `_` (`_style.md`, `_bootstrap_skill.md`) are meta-skills —
-   don't surface them when answering science questions. **Most `ag_*` skills are not written
-   yet**: `skills/README.md` lists the four that exist and catalogues the rest by phase with
-   the `autogalaxy_workspace` script that grounds each one. Never activate a skill name you
+   don't surface them when answering science questions. **No `ag_*` skill for doing galaxy
+   science is written yet**: the three that exist (`ag_audit_skill_apis`, `ag_update_wiki`,
+   `ag_refresh_api_docs`) are maintenance workflows for this repo's own content.
+   `skills/README.md` lists all seven live skills and catalogues the rest by phase with the
+   `autogalaxy_workspace` script that grounds each one. Never activate a skill name you
    have not confirmed is a file on disk.
 3. **Wiki** (`wiki/**/*.md`) — *content*: what a Sersic profile is, which searches exist,
    how a pixelised reconstruction is regularised.
@@ -94,8 +98,9 @@ reference, read-only — refreshed by `ag_update_wiki`) and **`wiki/project/`** 
 running journal + `profile.md`). **`wiki/literature/`** — the galaxy-structure science
 reference, with its own `[[wiki-link]]` schema — arrives in a later phase (`PENDING.md`); until
 it does, do not cite it and do not invent its contents. "The wiki" means `wiki/core/` unless
-`project/` is named. `wiki/core/` itself is still being built out: only `stack/` exists, and
-`wiki/core/index.md` states plainly what is missing.
+`project/` is named. `wiki/core/` now has `stack/`, `api/`, `concepts/`, `operations/` and
+`external/`; [`wiki/core/index.md`](./wiki/core/index.md) lists every page that exists and
+states plainly what is still missing (the dataset-layout and HPC operations pages).
 
 ---
 
@@ -169,8 +174,9 @@ clone the configured URL into gitignored `sources/<project>/`.
 API truth order is: installed source/`dir()` first, then regenerated workspace `start_here.py`
 and feature examples for construction idioms. Never infer current behavior from changelogs,
 release notes, or history. The mechanical currency checks live in
-`autoassistant/audit_skill_apis.py` (`--scope all`, `--lint-idioms`, `--check-citations`,
-`--check-version`); the `ag_audit_skill_apis` skill that will document them is pending.
+`autoassistant/audit_skill_apis.py` (`--scope all`, `--lint-idioms`, `--check-provenance`,
+`--check-citations`, `--check-version`) and are documented in
+[`skills/ag_audit_skill_apis.md`](./skills/ag_audit_skill_apis.md).
 
 ---
 
@@ -243,9 +249,24 @@ Load operational references on demand, not every session:
 
 - **Science projects.** `autogalaxy_assistant` is the copilot; a science project is a separate
   repo created and managed through [`start-new-project`](./skills/start-new-project.md).
-The `wiki/core/operations/` and `wiki/core/external/` pages that will hold these references
-are not written yet (`PENDING.md` lists them with their grounding scripts). Until they land,
-use the ground truth directly rather than citing a page that does not exist:
+- **Installation** (pip route + extras, editable clones, version floors, `activate.sh`,
+  verifying an install) →
+  [`wiki/core/operations/installation.md`](./wiki/core/operations/installation.md).
+- **Sandbox / cache env vars / test mode** →
+  [`wiki/core/operations/sandbox.md`](./wiki/core/operations/sandbox.md). The short version:
+  prefix a run with `NUMBA_CACHE_DIR=/tmp/numba_cache MPLCONFIGDIR=/tmp/matplotlib` when the
+  default cache locations are unwritable; `PYAUTO_TEST_MODE=1` cuts the sampler to its minimum
+  iterations, `=2` bypasses it and calls the likelihood once, `=3` skips the likelihood too.
+- **External resources** (HowToGalaxy, RTD, `autogalaxy_workspace`) + audience routing →
+  [`wiki/core/external/index.md`](./wiki/core/external/index.md), with one page per resource
+  and the per-skill citation map beside it. [`skills/_style.md`](./skills/_style.md) "Adaptive
+  depth" carries the same routing as a writing rule.
+- **The reference wiki itself** → [`wiki/core/index.md`](./wiki/core/index.md) lists every
+  page that exists, by section.
+
+Two operational references are still unwritten (`PENDING.md` lists both with their grounding
+scripts). Until they land, use the ground truth directly rather than citing a page that does
+not exist:
 
 - **Dataset layout + `info.json`** → the `dataset/imaging/<name>/` trees and per-dataset
   READMEs in `autogalaxy_workspace`, plus
@@ -255,14 +276,6 @@ use the ground truth directly rather than citing a page that does not exist:
   `autogalaxy_workspace:scripts/guides/using_jax.py`. The `hpc/` infrastructure folder is not
   shipped in this clone yet; `scripts/AGENTS.md` documents the interface contract a pipeline
   must preserve for when it is.
-- **Installation** → `https://pyautogalaxy.readthedocs.io/en/latest/installation/overview.html`.
-- **Sandbox / cache env vars** → prefix a run with
-  `NUMBA_CACHE_DIR=/tmp/numba_cache MPLCONFIGDIR=/tmp/matplotlib` when the default cache
-  locations are unwritable. `PYAUTO_TEST_MODE=1` reduces search iterations and `=2` skips
-  sampling entirely, turning a run into a fast structural check.
-- **External resources** (HowToGalaxy, RTD, `autogalaxy_workspace`) + audience routing →
-  [`skills/_style.md`](./skills/_style.md) "Adaptive depth", which carries the URL-expansion
-  rules and the HowToGalaxy chapter map.
 
 <!-- repos_sync:history:begin -->
 ## Never rewrite history

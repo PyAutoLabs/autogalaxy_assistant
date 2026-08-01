@@ -20,13 +20,23 @@ configured) via symlinks; the canonical files live here.
   e.g. `PyAutoFit:autofit/non_linear/search/nest/nautilus/`, resolved via
   [`../sources.yaml`](../sources.yaml).
 - Wiki references use workspace-relative paths, e.g. `wiki/core/stack/overview.md`.
+- Every skill that cites an external resource takes its `## Further reading` block from its
+  row in [`../wiki/core/external/skill_citation_map.md`](../wiki/core/external/skill_citation_map.md).
+  Add the row in the same change as the skill; a skill whose row is entirely `_` (every
+  maintenance and workflow skill today) omits the block.
 
 ## Index — what exists today
 
-Four skills are written. **Everything else in this file is a plan, not a file** — the
-"Pending" section below is a catalogue of what has not been authored yet, and deliberately
-does not link to anything. Every entry here that is a link resolves; if you find a link that
-doesn't, that is a bug worth fixing rather than a file worth waiting for.
+Seven skills are written: two meta, two project-workflow, three maintenance. **Everything
+else in this file is a plan, not a file** — the "Pending" section below is a catalogue of what
+has not been authored yet, and deliberately does not link to anything. Every entry here that
+is a link resolves; if you find a link that doesn't, that is a bug worth fixing rather than a
+file worth waiting for.
+
+No skill for *doing* galaxy science exists yet: the modelling loop arrives in Phase 4a and the
+feature skills in Phase 4b. Until then, answer a science request from the installed source and
+the grounding scripts named in the Pending tables, say that is what you did, and offer to
+author the skill via [`_bootstrap_skill.md`](./_bootstrap_skill.md).
 
 ### Meta
 
@@ -47,6 +57,28 @@ doesn't, that is a bug worth fixing rather than a file worth waiting for.
   push it either to your collaborator branch on `PyAutoLabs/autogalaxy_assistant`
   or to your fork, and open a draft PR into `PyAutoLabs/autogalaxy_assistant`.
 
+### Maintenance
+
+These three keep this repo's own content honest against the installed stack. They are
+maintainer workflows, not science workflows — don't surface them when answering a galaxy
+question, and don't fold them into an unrelated change, because their whole value is a
+reviewable diff.
+
+- [`ag_audit_skill_apis.md`](./ag_audit_skill_apis.md) — the five mechanical currency checks
+  in `autoassistant/audit_skill_apis.py`: symbol resolution across `skills/`,
+  `wiki/core/api+stack/` and `scripts/`; the API-surface version baseline
+  (`--check-version` / `--write-baseline`); the idiom deny-list that catches removed
+  constructions whose tokens still import; page provenance (`content_sha256` + pinned
+  commits); and `Project:path` citation resolution. Also documents running the code gate by
+  hand and its bypass.
+- [`ag_update_wiki.md`](./ag_update_wiki.md) — refresh `wiki/core/` pages whose pinned source
+  commits have moved: diff the pins, rewrite only the drifted sections, re-pin, re-stamp, and
+  surface newly exported APIs for the user to decide on. **The one workflow permitted to write
+  inside the otherwise read-only `wiki/core/`.**
+- [`ag_refresh_api_docs.md`](./ag_refresh_api_docs.md) — the umbrella sweep after a stack
+  upgrade, orchestrating the two above across all four drift surfaces (skills, wiki, source
+  pins, generated scripts), with `autoassistant/refresh_api_docs.py` as its preflight.
+
 ## Pending — the `ag_*` skill roadmap
 
 Not yet written. Grouped by the phase that will author them, each with the
@@ -58,14 +90,6 @@ and shrinks as each phase lands.
 **Until a skill exists, do not pretend it does.** Answer from the installed source and the
 named grounding scripts, say that is what you did, and offer to author the skill via
 [`_bootstrap_skill.md`](./_bootstrap_skill.md).
-
-### Phase 3 — tooling and maintenance
-
-| Skill | Purpose | Grounding |
-|-------|---------|-----------|
-| `ag_audit_skill_apis` | verify every PyAuto\* symbol cited in `skills/` and `wiki/core/api+stack/` resolves in the installed stack; report stale references with suggested replacements | `autoassistant/audit_skill_apis.py` |
-| `ag_update_wiki` | refresh `wiki/core/` pages whose pinned source commits have moved; surface new public APIs for review | `wiki/core/`, `sources.yaml` |
-| `ag_refresh_api_docs` | orchestrate a full maintenance sweep across skill recipes, wiki API pages, and pinned-source drift after a stack upgrade | `autoassistant/refresh_api_docs.py` |
 
 ### Phase 4a — the core modelling loop
 

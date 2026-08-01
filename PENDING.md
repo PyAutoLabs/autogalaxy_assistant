@@ -32,6 +32,11 @@ named.
       or cited — never invented. Gated on the user approving the cutout + archive identifiers.
 - [ ] `dataset/imaging/<galaxy>/mask_extra_galaxies.fits` — only if the cutout has real
       neighbours. Grounding: `imaging/data_preparation/gui/mask_extra_galaxies.py`.
+- [ ] `wiki/core/operations/dataset.md` — on-disk dataset layout and `info.json`. **Moved here
+      from Phase 3**: the page describes the bundled dataset's tree, so it cannot be written
+      honestly before that dataset exists. Grounding:
+      `imaging/data_preparation/start_here.py` and the workspace `dataset/` trees. Until it
+      lands, `wiki/core/index.md` names it as pending and routes to those two sources.
 - [ ] `docs/make_readme_figures.py` + the hero PNG it renders + a vendored-sources README.
       `docs/` is outside the audit scan set, so it is validated by execution from a fresh venv.
 - [ ] `README.md` v2 — science framing, three anchored example prompts, and an explicit "what
@@ -46,77 +51,50 @@ named.
 
 ## Phase 3 — `wiki/core` reference + tooling skills
 
-`wiki/core/stack/` (5 pages) and `index.md` are live. Everything below is not, and
-`wiki/core/index.md` says so.
+**Delivered.** `wiki/core/` now holds `stack/` (5), `api/` (9), `concepts/` (15),
+`operations/` (2) and `external/` (5), plus a rebuilt `index.md` that lists every one and
+names what is still missing; `skills/` gained the three maintenance skills
+(`ag_audit_skill_apis`, `ag_update_wiki`, `ag_refresh_api_docs`) with matching
+`.claude/skills/` symlinks. Two Phase-3 items were **moved rather than done** — see Phase 2
+(`operations/dataset.md`) and Phase 6 (the two HPC pages) — and one is still open, below.
 
-### `wiki/core/api/` — task-oriented catalogues
+Three planned page names shipped under different names, recorded here so nobody hunts for a
+file that was never written:
 
-- [ ] `searches.md` — every non-linear search and gradient optimizer, and when to pick each.
-      Grounding: `guides/modeling/searches.py`, `guides/modeling/customize.py`.
-- [ ] `light_profile_catalog.md` — every light profile, standard / linear / operated / snr
-      variants. Grounding: `guides/profiles/light.py`, `PyAutoGalaxy:autogalaxy/profiles/light/`.
-- [ ] `mass_profile_catalog.md` — **keep this page**: PyAutoGalaxy owns mass profiles, framed
-      for dynamical and stellar-mass work rather than lensing. Grounding:
-      `PyAutoGalaxy:autogalaxy/profiles/mass/`.
-- [ ] `basis.md` — linear light profiles, Multi-Gaussian Expansion, shapelets. Grounding:
-      `imaging/features/linear_light_profiles/`, `imaging/features/multi_gaussian_expansion/`,
-      `imaging/features/shapelets/`.
-- [ ] `datasets.md` — imaging, interferometer and their settings objects. Grounding:
-      `imaging/start_here.py`, `interferometer/start_here.py`.
-- [ ] `plotting.md` — the functional plot entry points (`dir()` of the plot module is the
-      authoritative list; there are no object-oriented plotters). Grounding:
-      `guides/plot/start_here.py`, `guides/plot/plotters.py`, `guides/plot/visuals.py`.
-- [ ] `analysis.md` — the analysis objects and the factor graph that combines them. Grounding:
-      `imaging/modeling.py`, `multi_dataset/start_here.py`.
-- [ ] `ellipse.md` — **new page, no sibling equivalent**: the ellipse/isophote fitting API.
-      Grounding: `ellipse/modeling.py`, `ellipse/multipoles.py`.
-- [ ] `aggregator.md` — loading and querying many completed fits. Grounding:
-      `guides/results/aggregator/`, `guides/results/database/start_here.py`.
+- planned `api/basis.md` → shipped as two concepts pages,
+  `concepts/linear_light_profiles_and_mge.md` and `concepts/shapelets.md`, with the profile
+  variants themselves tabulated in `api/light_profile_catalog.md`. A "basis" page would have
+  had to explain the physics and list the API in one breath; the split follows the
+  `api/` = *which one* vs `concepts/` = *what and why* boundary.
+- planned `api/analysis.md` → shipped as `api/analysis_objects.md`, which also covers model
+  composition and the factor graph.
+- planned `concepts/over_sampling.md` and `concepts/regularisation.md` → folded into
+  `concepts/grids_and_masks.md` and `concepts/inversions_and_pixelizations.md`, where neither
+  concept can be explained apart from its host anyway.
 
-### `wiki/core/concepts/` — the physics and inference
+`api/configuration.md` was added beyond the plan (the `config/` tree needed a map), and
+`concepts/jax_acceleration.md` was **not** written as a standalone page: JAX guidance lives
+where it is acted on — the run-time and GPU sections of `concepts/non_linear_search.md`,
+`api/searches.md`, `api/analysis_objects.md`, and the caches and `PYAUTO_DISABLE_JAX` in
+`operations/sandbox.md`. Revisit only if a user question shows the split leaves a real gap.
 
-- [ ] `light_profiles.md`, `galaxies.md` (replaces a lensing assistant's galaxy-and-plane
-      page), `grids_and_masks.md`, `over_sampling.md`, `basis_expansions_and_mge.md`,
-      `ellipse_fitting.md`, `inversions_and_pixelizations.md`, `regularisation.md`,
-      `non_linear_search.md`, `samples_and_posteriors.md`, `linear_light_profiles.md`,
-      `multi_wavelength.md`, `cosmology_and_units.md`, `jax_acceleration.md`.
-      Grounding: `guides/galaxies.py`, `guides/data_structures.py`,
-      `guides/advanced/over_sampling.py`, `guides/units/{cosmology,flux}.py`,
-      `guides/using_jax.py`, `imaging/likelihood_function.py`, `ellipse/`,
-      `imaging/features/pixelization/`. Scope the set to what PyAutoGalaxy actually models:
-      single-plane galaxy light and mass. Do not import concept pages from a sibling
-      assistant whose domain is different.
+### Still open
 
-### `wiki/core/operations/`
-
-- [ ] `installation.md` — grounding: the PyAutoGalaxy RTD installation pages.
-- [ ] `dataset.md` — dataset layout + `info.json`. Grounding:
-      `imaging/data_preparation/start_here.py` and the workspace `dataset/` trees.
-- [ ] `sandbox.md` — cache env vars, `PYAUTO_TEST_MODE`, restricted environments.
-- [ ] `hpc.md` — cores, JAX/GPU, SLURM concepts. Grounding:
-      `guides/hpc/example_cpu_and_gpu.py`, `guides/using_jax.py`.
-- [ ] `hpc_infrastructure.md` — the `hpc/` templates and `sync` CLI. Blocked until Phase 6
-      actually ships `hpc/`; `scripts/AGENTS.md` documents the interface contract meanwhile.
-
-### `wiki/core/external/`
-
-- [ ] `index.md`, `howtogalaxy.md`, `workspace.md`, `rtd.md`, `skill_citation_map.md` — the
-      per-skill audience routing table that `skills/_style.md` currently expands by hand.
-
-### Phase 3 skills
-
-- [ ] `skills/ag_audit_skill_apis.md` — grounding: `autoassistant/audit_skill_apis.py`.
-- [ ] `skills/ag_update_wiki.md` — grounding: `wiki/core/`, `sources.yaml`.
-- [ ] `skills/ag_refresh_api_docs.md` — grounding: `autoassistant/refresh_api_docs.py`.
-
-### Also in Phase 3
-
-- [ ] Re-pin `wiki/core/api_audit_baseline.json` after the new pages land.
+- [ ] Re-pin `wiki/core/api_audit_baseline.json`. **Do not re-pin from a local source
+      checkout.** The committed baseline is wheel-derived (generated against released
+      `2026.7.29.2`), which is what the `wiki-currency` job installs; a checkout of library
+      `main` carries a frozen version stamp and a newer public surface, so
+      `--check-version` reports drift locally that is not drift in CI. Re-pin only from an
+      environment on the *released* stack, and only after `--scope all` is clean there — the
+      procedure is in `skills/ag_audit_skill_apis.md` "The version baseline".
 
 ## Phase 4a — the core modelling loop (9 skills)
 
-- [ ] `skills/ag_setup_environment.md` — grounding: `guides/modeling/bug_fix.py` + the RTD
-      installation pages.
+- [ ] `skills/ag_setup_environment.md` — grounding: `guides/modeling/bug_fix.py`, plus
+      `wiki/core/operations/installation.md` and `wiki/core/operations/sandbox.md` (both live
+      since Phase 3) and the RTD installation pages they were written from. `AGENTS.md`'s
+      session-start step and `skills/ag_audit_skill_apis.md` route environment failures here;
+      until it exists they route to `--check-install` and those two pages.
 - [ ] `skills/ag_prepare_imaging_data.md` — grounding:
       `imaging/data_preparation/start_here.py`, `imaging/data_preparation/examples/`,
       `imaging/data_preparation/gui/`. **This skill owns the real-data inspection gate's
@@ -183,6 +161,13 @@ named.
       prose (sample-scale batches; `template.py` imports autogalaxy). `hpc/` is outside the
       audit scan set and CI-ungated, so it is validated by hand execution. The interface
       contract it must satisfy is already documented in `scripts/AGENTS.md`.
+- [ ] `wiki/core/operations/hpc.md` — cluster concepts: cores, JAX/GPU, SLURM. **Moved here
+      from Phase 3.** Grounding: `guides/hpc/example_cpu_and_gpu.py`, `guides/using_jax.py`.
+- [ ] `wiki/core/operations/hpc_infrastructure.md` — the `hpc/` templates and `sync` CLI.
+      **Moved here from Phase 3**, where it was already blocked: the page documents files that
+      only exist once the `hpc/` item above ships, so the two land together.
+      `wiki/core/index.md` names both as pending and routes to the two workspace guides
+      meanwhile.
 - [ ] `skills/ag_to_notebook.md` — grounding: `autoassistant/to_notebook.py`.
 - [ ] `skills/ag_inspect_results_mcp.md` — grounding: `autoassistant/mcp/galaxy_tools.py`.
 - [ ] Retire this file: replace with `ROADMAP.md` and close out the epic's deferral list.
