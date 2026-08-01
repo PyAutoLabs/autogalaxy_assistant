@@ -240,10 +240,14 @@ Expand a cell into a URL with:
 - **Workspace script:** `https://github.com/PyAutoLabs/autogalaxy_workspace/blob/main/scripts/<cell>`
 
 Default to `.ipynb` for student-leaning users and `.py` for returning PyAutoGalaxy users.
-A per-skill routing table under `wiki/core/external/` will replace this hand expansion in a
-later phase (see the repo-root `PENDING.md`); until it lands, resolve a path against the
-target repo's own generated catalogue (`llms.txt` / `llms-full.txt` at its root) rather than
-guessing, and never cite a tutorial you have not confirmed exists.
+The per-skill routing table is
+[`../wiki/core/external/skill_citation_map.md`](../wiki/core/external/skill_citation_map.md) —
+one row per skill, and the source of each skill's `## Further reading` block. The three
+resources have a page each under [`../wiki/core/external/`](../wiki/core/external/index.md);
+the RTD slugs there are verified against `PyAutoGalaxy:docs/`. For a HowToGalaxy or workspace
+path, still resolve it against that repo's own generated catalogue (`llms.txt` /
+`llms-full.txt` at its root) rather than guessing, and never cite a tutorial you have not
+confirmed exists.
 
 The HowToGalaxy lecture series runs in five parts, and the chapter you route to should
 match what the user is actually stuck on:
@@ -399,8 +403,9 @@ imported as `aplt` — every entry point takes `output_path` / `output_filename`
 There is deliberately no object-oriented plotter or figure-configuration object to
 construct: the whole plotting surface is the module-level functions, and `dir(aplt)` is the
 authoritative list of them. If a call you remember is not in that list, it is not part of
-the current API — check before you emit it. A `wiki/core/api/plotting.md` catalogue of these
-entry points arrives in a later phase (see `PENDING.md`).
+the current API — check before you emit it.
+[`../wiki/core/api/plotting.md`](../wiki/core/api/plotting.md) catalogues the entry points
+with a "when to use which" note on each.
 
 The full convention — committed Python lives in `scripts/`; throwaway plots and data
 dumps go to the gitignored `scripts/scratch/` — is in [`../AGENTS.md`](../AGENTS.md)
