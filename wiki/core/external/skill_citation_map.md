@@ -9,7 +9,7 @@ sources:
       - PENDING.md
     pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
 last_updated: 2026-08-01
-content_sha256: 1d29ca6a67048d5e548dd83006597944a348f31ade73b852b625800a64d1f40b
+content_sha256: 64f9a361cee2627eb4f7fc2be4f77eb06bc8a7e80fb4beb29a981b01ff08a701
 ---
 
 # Skill → external resource map
@@ -62,6 +62,14 @@ Default to `.ipynb` for student-leaning users and `.py` for returning PyAutoGala
 | `ag_plot_fit` | `chapter_1_introduction/tutorial_3_fitting` | `api/plot` | `guides/plot/start_here.py` |
 | `ag_load_results` | `chapter_2_modeling/tutorial_7_results` | `api/fitting` | `guides/results/start_here.py` |
 | `ag_debug_fit_failure` | `chapter_2_modeling/tutorial_4_dealing_with_failure` | `general/likelihood_function` | `guides/modeling/bug_fix.py` |
+| `ag_basis_profiles` | `chapter_2_modeling/tutorial_5_linear_profiles` | `api/light` | `imaging/features/multi_gaussian_expansion/modeling.py` |
+| `ag_pixelization` | `chapter_4_pixelizations/tutorial_4_bayesian_regularization` | `api/pixelization` | `imaging/features/pixelization/modeling.py` |
+| `ag_light_model_extras` | `chapter_3_search_chaining/tutorial_3_x2_galaxies` | `overview/overview_3_features` | `imaging/features/extra_galaxies/modeling.py` |
+| `ag_ellipse_fitting` | _ | `overview/overview_3_features` | `ellipse/modeling.py` |
+| `ag_multi_dataset` | `chapter_2_modeling/tutorial_5_linear_profiles` | `overview/overview_3_features` | `multi_dataset/start_here.py` |
+| `ag_build_interferometer_model` | `chapter_1_introduction/tutorial_3_fitting` | `overview/overview_3_features` | `interferometer/start_here.py` |
+| `ag_multi_galaxy_and_cluster` | `chapter_3_search_chaining/tutorial_3_x2_galaxies` | `overview/overview_2_new_user_guide` | `cluster/start_here.py` |
+| `ag_chain_searches` | `chapter_3_search_chaining/tutorial_1_search_chaining` | `general/configs` | `guides/modeling/chaining.py` |
 
 The first seven rows are entirely `_`, and that is the correct state rather than an omission:
 those skills are **internal to the workspace** — two meta-skills, two repo-workflow skills, and
@@ -77,9 +85,21 @@ before it was recorded. A skill may cite an *extra* tutorial inline within a bul
 masking lecture under `ag_prepare_imaging_data`, the optional searches chapter under
 `ag_configure_search` — but the row holds the one primary cell per audience.
 
-Rows for the Phase-4b feature skills arrive with those skills. Author the row and the skill in
-the same change, from the grounding script named in
-[`../../../PENDING.md`](../../../PENDING.md), never from memory.
+The eight feature rows after them follow the same rule, with two honest gaps worth reading
+before you "fix" a cell that looks wrong:
+
+- **`ag_ellipse_fitting`'s student cell is `_`.** The lecture series teaches light-profile
+  modelling and has no ellipse-fitting chapter, so the skill omits that bullet and routes a
+  newcomer to [`../concepts/ellipse_fitting_and_multipoles.md`](../concepts/ellipse_fitting_and_multipoles.md)
+  instead. A `_` here is the correct state, not a missing lookup.
+- **Three rows cite a tutorial that is not about their own subject.** There is no
+  multi-wavelength chapter and no interferometer chapter, so `ag_multi_dataset` and
+  `ag_build_interferometer_model` cite the tutorial that teaches the idea each fit leans on
+  hardest — linear profiles, and the likelihood — and `ag_light_model_extras` shares
+  `tutorial_3_x2_galaxies` with `ag_multi_galaxy_and_cluster` because a second galaxy in the
+  frame is where the lectures come closest to a contaminant. Each of those bullets says so in
+  the skill, rather than implying a chapter exists that does not. Sharing a cell across two
+  rows is allowed; inventing one is not.
 
 ## Template for the inserted skill block
 

@@ -30,7 +30,7 @@ sources:
       - config/general.yaml
     pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
 last_updated: 2026-08-01
-content_sha256: ce9e29263a3ee8643317388d2375ef4866a7fb561a0964b5f5a1211b07311dc9
+content_sha256: bfae75e9e59dfa77b2477ef56426828e889e8df2fa13111cc00bc9c4e015a9de
 ---
 
 # Non-linear search catalogue
@@ -322,9 +322,11 @@ unit-prior values). Source: `PyAutoFit:autofit/non_linear/grid/`.
 A different lever from choosing a better search: run a cheap search first, then use its posterior
 as the priors of a more complex one. This is how you fit a model too complex for a single search —
 fit a single Sersic, then pass the result forward to a bulge-plus-disk or pixelised fit.
-`autogalaxy_workspace:scripts/guides/modeling/chaining.py` is the walkthrough, and the
-`width_modifier` entries in the prior YAMLs are what control how wide the passed priors become
-(see [`configuration`](./configuration.md)).
+`autogalaxy_workspace:scripts/guides/modeling/chaining.py` is the walkthrough, the attribute that
+narrows is `result.model_centred` (**not** `result.model`, which returns the original priors
+unchanged), and the `width_modifier` entries in the prior YAMLs are what control how wide the
+passed priors become (see [`configuration`](./configuration.md) and
+[`../../../skills/ag_chain_searches.md`](../../../skills/ag_chain_searches.md)).
 
 ## Picking a search at a glance
 

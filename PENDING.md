@@ -110,25 +110,39 @@ workspace scripts directly.
 
 ## Phase 4b — features beyond a single smooth profile (8 skills)
 
-- [ ] `skills/ag_basis_profiles.md` — grounding: `imaging/features/linear_light_profiles/`,
-      `imaging/features/multi_gaussian_expansion/`, `imaging/features/shapelets/`.
-- [ ] `skills/ag_pixelization.md` — grounding: `imaging/features/pixelization/` (including
-      `galaxy_reconstruction.py` and `likelihood_function.py`).
-- [ ] `skills/ag_light_model_extras.md` — grounding: `imaging/features/extra_galaxies/`,
-      `imaging/features/sky_background/`, `imaging/features/operated_light_profile/`.
-- [ ] `skills/ag_ellipse_fitting.md` — grounding: `ellipse/modeling.py`,
-      `ellipse/multipoles.py`, `ellipse/database.py`. **Route to `modeling.py`: `ellipse/` has
-      no `start_here.py`.**
-- [ ] `skills/ag_multi_dataset.md` — grounding: `multi_dataset/start_here.py`,
-      `multi_dataset/features/`. The idiom deny-list genuinely bites here: datasets combine
-      via the factor graph, never by summing analyses.
-- [ ] `skills/ag_build_interferometer_model.md` — grounding: `interferometer/start_here.py`,
-      `interferometer/modeling.py`, `interferometer/features/`.
-- [ ] `skills/ag_multi_galaxy_and_cluster.md` — grounding: `multi_galaxy/start_here.py`,
-      `cluster/start_here.py`. The subject is member **light**, not lensing — the phase where
-      lensing language most wants to creep back in.
-- [ ] `skills/ag_chain_searches.md` — grounding: `guides/modeling/chaining.py`, HowToGalaxy
-      `chapter_3_search_chaining`.
+**Delivered.** All eight feature skills are on disk with `.claude/skills/` symlinks, rows in
+`wiki/core/external/skill_citation_map.md` and entries in the `skills/README.md` Index:
+`ag_basis_profiles`, `ag_pixelization`, `ag_light_model_extras`, `ag_ellipse_fitting`,
+`ag_multi_dataset`, `ag_build_interferometer_model`, `ag_multi_galaxy_and_cluster`,
+`ag_chain_searches`. Each was written from the grounding scripts named above rather than from
+memory, and every symbol resolves against released `2026.7.29.2`. That brings the repo to
+twenty-four live skills, seventeen of them galaxy-modelling.
+
+Three grounding notes, recorded so nobody re-derives them:
+
+- `ellipse/` really has no `start_here.py`, so `ag_ellipse_fitting` routes to `modeling.py` and
+  says so in its own `## Further reading` block.
+- The lecture series has no chapter on ellipse fitting, interferometry or multi-wavelength
+  fitting. Rather than invent a citation, `ag_ellipse_fitting` omits its student bullet and
+  points at `wiki/core/concepts/ellipse_fitting_and_multipoles.md` instead, while
+  `ag_multi_dataset` and `ag_build_interferometer_model` cite the HowToGalaxy tutorial that
+  teaches the idea each fit leans on hardest (linear profiles; the likelihood) and say plainly
+  that it is not a chapter on their own subject.
+- Grounding `ag_chain_searches` against the wheel exposed a **stale claim** that had spread from
+  the workspace script into two merged wiki pages: `result.model` returns the fitted model with
+  its **original priors unchanged** (`samples_summary.model.mapper_via_defaults_from`, which maps
+  every prior to itself), *not* narrowed `TruncatedGaussianPrior`s. The narrowing lives on
+  `result.model_centred` and its `model_centred_absolute(a=)` / `model_centred_relative(r=)` /
+  `model_centred_max_lh_bounded(b=)` variants. `wiki/core/concepts/non_linear_search.md` and
+  `wiki/core/api/configuration.md` were corrected in this phase and re-stamped.
+
+### Still open
+
+- [ ] Upstream fix for the same claim in
+      `autogalaxy_workspace:scripts/guides/modeling/chaining.py`, whose prose still describes
+      `result.model` as producing narrowed Gaussians. A `contribute-upstream` candidate; until it
+      lands, `skills/ag_chain_searches.md` warns the reader that the script's description is out
+      of date.
 
 ## Phase 5 — `wiki/literature` corpus
 

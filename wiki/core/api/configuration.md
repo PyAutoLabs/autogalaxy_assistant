@@ -41,7 +41,7 @@ sources:
       - config/visualize/plots_search.yaml
     pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
 last_updated: 2026-08-01
-content_sha256: bdc7d14e2ec2fc6d73b703baa17299f0bb00f69a4dcdb3410fe68f14c564a8d8
+content_sha256: 6d9292c60dac5970b1d0a7960888513daa5834b27ca9b08bb325966b671841b4
 ---
 
 # Configuration
@@ -177,10 +177,17 @@ Three keys per parameter:
   the galaxy at the origin, and `ell_comps` are `TruncatedGaussian` clipped to ±1 because that is
   their valid range.
 - **`width_modifier`** — how wide the passed prior becomes when one search's result seeds the next.
-  `Absolute` adds a fixed width, `Relative` a fraction of the inferred value. This is the knob that
-  governs search chaining (`autogalaxy_workspace:scripts/guides/modeling/chaining.py`).
-- **`limits`** — hard physical bounds the passed `GaussianPrior` may not cross. `sersic_index` is
-  capped at `[0.8, 5.0]`, so chaining can never propose an unphysical index.
+  `Absolute` sets `sigma` to the value directly, `Relative` to that fraction of the inferred value.
+  This is the knob that governs search chaining, and the attribute that reads it is
+  **`result.model_centred`** — which replaces every free parameter with a
+  `TruncatedGaussianPrior` centred on its previous median. `result.model` does **not** consult it:
+  on the released stack that attribute returns the model with its original priors unchanged, so a
+  component passed through it inherits nothing from the fit. See
+  [`../../../skills/ag_chain_searches.md`](../../../skills/ag_chain_searches.md) for the full
+  three-way split between `model`, `model_centred` and `instance`, and note that the prose in
+  `autogalaxy_workspace:scripts/guides/modeling/chaining.py` is out of date on this point.
+- **`limits`** — hard physical bounds the passed `TruncatedGaussianPrior` may not cross.
+  `sersic_index` is capped at `[0.8, 5.0]`, so chaining can never propose an unphysical index.
 
 `PyAutoFit:autofit/config/priors/` holds the meta-templates the per-class files are shaped from.
 

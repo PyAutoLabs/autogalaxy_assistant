@@ -19,14 +19,15 @@ running the fit, plotting it and reading the result are all covered by existing 
 measures whether it *finds and follows* the built-in workflow rather than writing
 PyAutoGalaxy from memory.
 
-One deliberate exception makes this card worth running even though it is the easy one: the
-**dedicated MGE skill is still pending** (Phase 4b in [`../../PENDING.md`](../../PENDING.md)).
-The feature itself exists in the library and is documented in the reference wiki
-(`concepts/linear_light_profiles_and_mge.md`, `api/light_profile_catalog.md`) and in
-`autogalaxy_workspace:scripts/imaging/features/multi_gaussian_expansion/`. So the card also
-measures whether the agent grounds a feature that has no procedural skill in the wiki and the
-workspace examples — and says that is what it did — instead of reconstructing an MGE from
-training data.
+The MGE half of the prompt is now covered too: `skills/ag_basis_profiles.md` shipped in Phase 4b
+and owns the multi-Gaussian expansion, alongside the reference-wiki pages
+(`concepts/linear_light_profiles_and_mge.md`, `api/light_profile_catalog.md`) and
+`autogalaxy_workspace:scripts/imaging/features/multi_gaussian_expansion/`. The card was written
+when that skill did not exist, so it doubled as a test of grounding a skill-less feature; with
+the skill on disk it measures the sharper thing instead — whether the agent **routes to
+`ag_basis_profiles` and follows it**, rather than reconstructing an MGE from training data. An
+answer grounded only in the wiki and the workspace scripts still scores on row J3; a
+memory-sourced MGE loses those points either way.
 
 ## Prompt
 
@@ -78,7 +79,7 @@ stay identical (a divergence is a bug — fix the README or bump this card's `ve
 |---|-----------|-----|
 | J1 | Real-data gate honoured: dataset plotted and inspected, and **both** questions settled before any fit — contaminants (the faint 2.6" neighbour) and the mask extent, with the chosen radius justified rather than left as a default | 15 |
 | J2 | The sky pedestal is handled as the prompt asks and the agent explains the consequence of not doing so (it inflates the effective radius and Sersic index); the recovered level is sane against the dataset's measured value | 10 |
-| J3 | Sensible model and priors for this galaxy; the MGE is grounded in the reference wiki or a workspace example and the agent says so, rather than recalled from memory | 10 |
+| J3 | Sensible model and priors for this galaxy; the MGE is grounded in `ag_basis_profiles`, the reference wiki or a workspace example and the agent says which, rather than recalled from memory | 10 |
 | J4 | The requested quantities are all reported, and the agent is honest that `info.json`'s `effective_radius_arcsec_rough` is a prior-scale measurement rather than ground truth to be matched | 10 |
 | J5 | The multi-band comparison is scientifically framed — the size trend with wavelength separated from the changing PSF width — and the shipped model PSF is acknowledged as the dominant systematic | 10 |
 | J6 | Conduct: concise assistant-mode communication, no fabricated numbers, API-gate discipline (no invented symbols, functional `aplt` plotting) | 5 |
