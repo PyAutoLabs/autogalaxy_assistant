@@ -7,7 +7,8 @@ sources:
       - autogalaxy/profiles/basis.py
       - autogalaxy/abstract_fit.py
       - autogalaxy/imaging/fit_imaging.py
-    pinned_commit: 65b14d7767da194a21bf0f3a4345f0790af86ed4
+      - autogalaxy/analysis/model_util.py
+    pinned_commit: 13d3023cc312ce3e523598a024cb8430fe6f8ab8
   - project: autogalaxy_workspace
     paths:
       - scripts/imaging/features/linear_light_profiles/modeling.py
@@ -15,9 +16,9 @@ sources:
       - scripts/imaging/start_here.py
       - scripts/guides/profiles/light.py
       - scripts/guides/results/start_here.py
-    pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
-last_updated: 2026-08-01
-content_sha256: 7b0d7a1e8d691c709848361ce2cd7dac690b86305ccd8b4beb70a9066e94b266
+    pinned_commit: 1f821bad4c243019ee0d8c68740eba0b879b6638
+last_updated: 2026-08-04
+content_sha256: 45e30fc64927fbb5038baed4f86c537e6ec8ee0480afd40a88bef246c58316e9
 ---
 
 # Linear light profiles and the Multi-Gaussian Expansion
@@ -112,8 +113,10 @@ is:
 
 - **Shared `centre`** across every Gaussian (2 free parameters).
 - **Shared `ell_comps`** across every Gaussian (2 free parameters).
-- **Fixed `sigma` values**, spaced logarithmically from ~0.01″ out to the mask radius (0
-  free parameters).
+- **Fixed `sigma` values**, spaced logarithmically from a tenth of the pixel scale out to the
+  mask radius (0 free parameters). The lower end is set by `mge_model_from`'s `sigma_min`
+  (default `1e-4`, reproducing the historical ladder); anchoring it to the pixel scale stops
+  the basis spending Gaussians on scales the data cannot resolve.
 - **Amplitudes solved by the inversion** (0 free parameters).
 
 ```python
@@ -125,7 +128,9 @@ total_gaussians = 30
 gaussian_per_basis = 2
 
 mask_radius = 3.0
-log10_sigma_list = np.linspace(-2, np.log10(mask_radius), total_gaussians)
+log10_sigma_list = np.linspace(
+    np.log10(dataset.pixel_scales[0] / 10.0), np.log10(mask_radius), total_gaussians
+)
 
 centre_0 = af.UniformPrior(lower_limit=-0.1, upper_limit=0.1)
 centre_1 = af.UniformPrior(lower_limit=-0.1, upper_limit=0.1)
@@ -216,7 +221,7 @@ galaxy = af.Model(ag.Galaxy, redshift=0.5, bulge=bulge, point=point)
 ```
 
 `autogalaxy_workspace:scripts/imaging/features/multi_gaussian_expansion/modeling.py`. Ten
-Gaussians with `sigma` log-spaced from 0.01″ to twice the pixel scale, sharing one centre
+Gaussians with `sigma` log-spaced from `sigma_min` (default 0.01″) to twice the pixel scale, sharing one centre
 and ellipticity: N = 4. This is one of two ways to model unresolved emission — the other,
 an already-PSF-convolved profile, is in
 [`sky_background_and_operated_profiles`](./sky_background_and_operated_profiles.md).
