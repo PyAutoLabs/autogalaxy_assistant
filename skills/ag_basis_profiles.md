@@ -310,16 +310,22 @@ priors. From `autogalaxy_workspace:scripts/imaging/features/multi_gaussian_expan
 __Model__
 
 Two groups of 30 Gaussians. Within a group every Gaussian shares the centre and ellipticity of
-the first, and every `sigma` is *fixed* to a value on a log10 ladder spanning 0.01" to the mask
-radius. `ag.lp_basis.Basis` then groups the whole list into one model component the galaxy can
-hold (`PyAutoGalaxy:autogalaxy/profiles/basis.py`).
+the first, and every `sigma` is *fixed* to a value on a log10 ladder spanning a tenth of the
+pixel scale to the mask radius. `ag.lp_basis.Basis` then groups the whole list into one model
+component the galaxy can hold (`PyAutoGalaxy:autogalaxy/profiles/basis.py`).
+
+The lower end matters: anchoring it to the pixel scale stops the basis spending Gaussians on
+scales the data cannot resolve. `mge_model_from` exposes this as `sigma_min` (default `1e-4`,
+which reproduces the historical ladder exactly).
 """
 import numpy as np
 
 total_gaussians = 30
 gaussian_per_basis = 2
 
-log10_sigma_list = np.linspace(-2, np.log10(MASK_RADIUS), total_gaussians)
+log10_sigma_list = np.linspace(
+    np.log10(dataset.pixel_scales[0] / 10.0), np.log10(MASK_RADIUS), total_gaussians
+)
 
 centre_0 = af.UniformPrior(lower_limit=-0.1, upper_limit=0.1)
 centre_1 = af.UniformPrior(lower_limit=-0.1, upper_limit=0.1)
@@ -373,8 +379,8 @@ __Model__
 
 The galaxy's light becomes the sum of a diffuse stellar `bulge` MGE and a compact `point` MGE.
 The point basis is 10 linear Gaussians sharing one centre and ellipticity with `sigma` values
-log-spaced from 0.01" to twice the pixel scale — compact relative to the resolution of the
-data, which is what makes it read as a point source rather than a small galaxy
+log-spaced from `sigma_min` (default 0.01") to twice the pixel scale — compact relative to the
+resolution of the data, which is what makes it read as a point source rather than a small galaxy
 (`PyAutoGalaxy:autogalaxy/analysis/model_util.py`).
 """
 point = ag.model_util.mge_point_model_from(
