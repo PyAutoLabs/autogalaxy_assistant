@@ -12,7 +12,7 @@ sources:
       - autogalaxy/galaxy/plot/galaxy_plots.py
       - autogalaxy/galaxy/plot/adapt_plots.py
       - autogalaxy/profiles/plot/basis_plots.py
-    pinned_commit: 65b14d7767da194a21bf0f3a4345f0790af86ed4
+    pinned_commit: 13d3023cc312ce3e523598a024cb8430fe6f8ab8
   - project: PyAutoArray
     paths:
       - autoarray/dataset/plot/imaging_plots.py
@@ -35,8 +35,8 @@ sources:
       - scripts/interferometer/plot.py
       - scripts/ellipse/plot.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
-last_updated: 2026-08-01
-content_sha256: 8448417f14908a000e38bb5285fdc5b1629745e291d7c9ce50274324ded63ba6
+last_updated: 2026-08-04
+content_sha256: c1ab38012f55f52d0f254184bc3bf1b11ef45b31b860b102ba95921c445c01ec
 ---
 
 # Plotting
@@ -97,17 +97,20 @@ output_format=None, lines=None, ax=None)`.
 
 ## Subplot functions
 
-Every one takes `output_path` and `output_format` directly, plus `colormap`, `use_log10` and
-`title_prefix`. **They do not share a naming kwarg**, and passing the wrong one raises
-`TypeError`:
+Every one takes `output_path`, `output_format` and `title_prefix` directly. Most also take
+`colormap` and `use_log10` — but the `_list` variants (`subplot_fit_imaging_list`,
+`subplot_imaging_dataset_list`) do **not**, taking only
+`(<the list>, output_path, output_filename, output_format, title_prefix)`. **They do not share
+a naming kwarg** either, and passing the wrong one raises `TypeError`:
 
 | How the file is named | Functions |
 |---|---|
-| `output_filename` | `subplot_imaging_dataset`, `subplot_imaging_dataset_list`, `subplot_interferometer_dataset`, `subplot_interferometer_dirty_images` (plus `plot_array` and `plot_grid` above) |
+| `output_filename` | `subplot_imaging_dataset`, `subplot_imaging_dataset_list`, `subplot_fit_imaging_list`, `subplot_interferometer_dataset`, `subplot_interferometer_dirty_images` (plus `plot_array` and `plot_grid` above) |
 | `auto_filename` (default `"galaxies"`) | `subplot_galaxies` |
 | **fixed stem**, no naming kwarg | everything else |
 
-The fixed stems, read off `_save_subplot(...)` in each function:
+The fixed stems, read off `_save_subplot(...)` in each function (`subplot_fit_imaging_list` is
+the exception among the fit subplots — it names its own file):
 `subplot_fit_imaging` and `subplot_fit_interferometer` → `fit`;
 `subplot_fit_imaging_of_galaxy` → `of_galaxy_<galaxy_index>`;
 `subplot_galaxy_images` → `galaxy_images`; `subplot_galaxy_light_profiles` → `image`;
@@ -153,6 +156,7 @@ Sources: `PyAutoGalaxy:autogalaxy/galaxy/plot/galaxies_plots.py`,
 | Function | Plots |
 |---|---|
 | `aplt.subplot_fit_imaging` | data, model image, residuals, normalised residuals, chi-squared map |
+| `aplt.subplot_fit_imaging_list` | an n×5 grid over several fits — one row per `FitImaging`, columns data / S-N / model image / normalised residuals / chi-squared. Takes `fit_list=`, not `fit=`, and is the one fit subplot that names its own file (`output_filename`, default `fit_combined`) |
 | `aplt.subplot_fit_imaging_of_galaxy` | the fit restricted to one galaxy, chosen by `galaxy_index` |
 | `aplt.subplot_fit_interferometer` | visibility-plane fit summary |
 | `aplt.subplot_fit_dirty_images` | the fit's dirty data, model, residuals and chi-squared map |
