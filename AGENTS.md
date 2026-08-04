@@ -250,7 +250,8 @@ When **not** in maintainer mode, commit at natural checkpoints (a script + its
   `aplt.subplot_fit_imaging(fit=fit, output_path="scripts/scratch/ngc1300/", output_format="png")`.
   **`output_filename` is not universal** — passing it to a call that does not take it raises
   `TypeError`. Only `plot_array`, `plot_grid`, `subplot_imaging_dataset`,
-  `subplot_imaging_dataset_list`, `subplot_interferometer_dataset` and
+  `subplot_imaging_dataset_list`, `subplot_fit_imaging_list`,
+  `subplot_interferometer_dataset` and
   `subplot_interferometer_dirty_images` accept it;
   `subplot_galaxies` names its file with `auto_filename`; and the remaining fit and galaxy
   subplots write a **fixed stem** into `output_path` (`subplot_fit_imaging` → `fit.png`), so the

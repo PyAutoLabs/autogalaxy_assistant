@@ -165,15 +165,35 @@ aplt.subplot_fit_imaging(
 
 Adapted from `autogalaxy_workspace:scripts/imaging/plot.py` `__Fit Subplot__`.
 
-**The fit subplots do not take `output_filename`.** They write a fixed stem into
+**Most fit subplots do not take `output_filename`.** They write a fixed stem into
 `output_path`: `subplot_fit_imaging` writes `fit.png`, and
 `subplot_fit_imaging_of_galaxy` writes `of_galaxy_<index>.png`
 (`PyAutoGalaxy:autogalaxy/imaging/plot/fit_imaging_plots.py`). So the *directory* is what
 distinguishes one context from another — give each fit, or each variant of a figure, its own
-folder under `scripts/scratch/`. `plot_array`, `plot_grid` and `subplot_imaging_dataset` do
+folder under `scripts/scratch/`. The one exception is `subplot_fit_imaging_list` below, which
+does take `output_filename`. `plot_array`, `plot_grid` and `subplot_imaging_dataset` do
 take `output_filename`; `subplot_galaxies` takes `auto_filename`
 (`PyAutoGalaxy:autogalaxy/galaxy/plot/galaxies_plots.py`). Check the signature rather than
 assuming a uniform interface.
+
+To compare several fits side by side — the same galaxy under competing models, or one model
+across a set of datasets — `subplot_fit_imaging_list` draws one row per fit rather than making
+you place several `fit.png` files next to each other:
+
+```python
+aplt.subplot_fit_imaging_list(
+    fit_list=[fit_sersic, fit_bulge_disk, fit_mge],
+    output_path=PLOT_DIR,
+    output_filename="model_comparison",
+    output_format="png",
+)
+```
+
+Note it takes `fit_list=`, not `fit=`. Its rows are data | signal-to-noise | model image |
+normalised residuals | chi-squared — five columns, not the six of the single-fit subplot, and
+it drops `colormap` / `use_log10` (`PyAutoGalaxy:autogalaxy/imaging/plot/fit_imaging_plots.py`).
+Read the normalised-residual column across rows: the model that flattens it is the one to keep,
+and the discipline below applies unchanged.
 
 Individual quantities are attributes, so they go through `plot_array` — which is also how you
 get per-panel control the subplot does not offer:
