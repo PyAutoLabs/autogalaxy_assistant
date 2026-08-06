@@ -9,8 +9,8 @@ sources:
       - start_here.py
       - scripts/chapter_1_introduction/
       - scripts/chapter_2_modeling/
-      - scripts/chapter_3_search_chaining/
-      - scripts/chapter_4_pixelizations/
+      - scripts/chapter_3_pixelizations/
+      - scripts/chapter_4_scaling_up_galaxies/
       - scripts/chapter_optional/
       - scripts/simulators/
     pinned_commit: b1815e9df8ea2c247f4596fa45614e38e0bf86ff
@@ -48,17 +48,17 @@ tutorial rather than trusting a hand-written list.
 
 ## The five chapters
 
-At the pinned commit the series is **23 tutorial scripts across five chapters**, plus
-**three simulator scripts** under `scripts/simulators/` that generate the teaching datasets
-(26 `.py` files in total, each with a matching notebook). Route by what the learner is
-stuck on:
+The series is **26 tutorial scripts across five chapters**, plus
+**six simulator scripts** under `scripts/simulators/` that generate the teaching datasets
+(32 `.py` files in total, each tutorial with a matching notebook). Route by what the learner
+is stuck on:
 
 | Chapter | Scripts | Teaches | Route here when the user… |
 |---|---|---|---|
 | `chapter_1_introduction` | 6 (`tutorial_0_visualization` … `tutorial_5_summary`) | Grids and galaxies, light profiles, simulated data, fitting, methods | …has never fitted a light profile, or asks what a Sersic index / chi-squared / PSF convolution *is* |
-| `chapter_2_modeling` | 8 (`tutorial_1_non_linear_search` … `tutorial_8_need_for_speed`) | The non-linear search, practicalities, realism vs. complexity, dealing with failure, linear profiles, masking, results, speed | …can fit but the search fails, stalls, or returns something unphysical |
-| `chapter_3_search_chaining` | 3 (`tutorial_1_search_chaining`, `tutorial_2_prior_passing`, `tutorial_3_x2_galaxies`) | Chaining searches, passing priors, two-galaxy fits | …has a model too complex for one search, or blended neighbours |
-| `chapter_4_pixelizations` | 5 (`tutorial_1_pixelizations` … `tutorial_5_model_fit`) | Pixelisations, mappers, inversions, Bayesian regularisation | …has an irregular or clumpy galaxy no smooth profile fits |
+| `chapter_2_modeling` | 10 (`tutorial_1_non_linear_search` … `tutorial_10_prior_passing`) | The non-linear search, practicalities, realism vs. complexity, dealing with failure, linear profiles, masking, results, speed, search chaining, prior passing | …can fit but the search fails, stalls, or returns something unphysical — or has a model too complex for one search |
+| `chapter_3_pixelizations` | 6 (`tutorial_1_pixelizations` … `tutorial_6_model_fit`) | Pixelisations, mappers, inversions, Bayesian regularisation | …has an irregular or clumpy galaxy no smooth profile fits |
+| `chapter_4_scaling_up_galaxies` | 3 (`tutorial_1_extra_galaxies`, `tutorial_2_multi_galaxy`, `tutorial_3_cluster`) | Extra galaxies, multi-galaxy blends, cluster fields | …has blended neighbours or a crowded field |
 | `chapter_optional` | 1 (`tutorial_searches`) | The non-linear search zoo | …is choosing between samplers |
 
 Two caveats about chapter 1, both checked at the pinned commit:

@@ -497,7 +497,7 @@ modelling assumptions the result depends on, and none of them are visible in the
 
 ## Further reading
 
-- **Student / new to galaxy morphology** — [HowToGalaxy: Two galaxies](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_3_search_chaining/tutorial_3_x2_galaxies.ipynb):
+- **Student / new to galaxy morphology** — [HowToGalaxy: Multi-galaxy fits](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_4_scaling_up_galaxies/tutorial_2_multi_galaxy.ipynb):
   what happens to a fit when a second galaxy's light is in the frame, and how the model grows to
   account for it.
 - **General reference** — [RTD: Features overview](https://pyautogalaxy.readthedocs.io/en/latest/overview/overview_3_features.html):

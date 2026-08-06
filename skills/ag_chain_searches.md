@@ -34,7 +34,7 @@ situations:
 This skill has **one** grounding script: `autogalaxy_workspace:scripts/guides/modeling/chaining.py`.
 It is deliberately an API overview rather than a library of pipelines, and this skill is scoped to
 match it — the mechanics of prior passing, done honestly, rather than a catalogue of recipes that
-do not exist upstream. Chapter 3 of the HowToGalaxy lecture series is where the pedagogy lives.
+do not exist upstream. The end of chapter 2 of the HowToGalaxy lecture series (tutorials 9-10) is where the pedagogy lives.
 Read [`../wiki/core/concepts/non_linear_search.md`](../wiki/core/concepts/non_linear_search.md) for
 how run time scales with the model, which is the quantity chaining exists to manage.
 
@@ -387,10 +387,10 @@ reader will want, and they are invisible in the final `model.results`.
 
 ## Further reading
 
-- **Student / new to galaxy morphology** — [HowToGalaxy: Search chaining](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_3_search_chaining/tutorial_1_search_chaining.ipynb):
-  the first tutorial of the chaining chapter, which builds the idea from a fit that fails without
-  it; `tutorial_2_prior_passing` then walks the prior mechanics and `tutorial_3_x2_galaxies`
-  applies the chain to two galaxies.
+- **Student / new to galaxy morphology** — [HowToGalaxy: Search chaining](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_9_search_chaining.ipynb):
+  the first chaining tutorial at the end of chapter 2, which builds the idea from a fit that fails
+  without it; `tutorial_10_prior_passing` then walks the prior mechanics, and
+  `chapter_4_scaling_up_galaxies/tutorial_2_multi_galaxy` applies the ideas to blended galaxies.
 - **General reference** — [RTD: Configs](https://pyautogalaxy.readthedocs.io/en/latest/general/configs.html):
   how the config files are laid out and looked up — the `priors` tree is where each parameter's
   `width_modifier` lives, and hence where a passed prior's `sigma` comes from.

@@ -255,9 +255,9 @@ match what the user is actually stuck on:
 | Chapter | Teaches | Route here when the user… |
 |---------|---------|---------------------------|
 | `chapter_1_introduction` | grids, galaxies, light profiles, imaging data, fitting, the likelihood | …has never fitted a light profile, or asks what a Sersic/chi-squared/PSF convolution *is* |
-| `chapter_2_modeling` | non-linear search, realism and complexity, dealing with failure, linear profiles, masking, results | …can fit but the search fails, stalls, or returns something unphysical |
-| `chapter_3_search_chaining` | chaining searches, prior passing, two-galaxy fits | …has a model too complex for one search, or blended neighbours |
-| `chapter_4_pixelizations` | pixelisations, mappers, inversions, Bayesian regularisation | …has an irregular/clumpy galaxy no smooth profile fits |
+| `chapter_2_modeling` | non-linear search, realism and complexity, dealing with failure, linear profiles, masking, results, search chaining, prior passing | …can fit but the search fails, stalls, or returns something unphysical — or has a model too complex for one search |
+| `chapter_3_pixelizations` | pixelisations, mappers, inversions, Bayesian regularisation | …has an irregular/clumpy galaxy no smooth profile fits |
+| `chapter_4_scaling_up_galaxies` | extra galaxies, multi-galaxy blends, cluster fields | …has blended neighbours or a crowded field |
 | `chapter_optional` | the non-linear search zoo | …is choosing between samplers |
 
 ### Newcomer mode

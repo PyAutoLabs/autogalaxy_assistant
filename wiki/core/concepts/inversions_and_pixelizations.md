@@ -275,7 +275,7 @@ Do **not** reach for one when:
 - It is your first fit of this dataset. Start parametric, then chain into the pixelised
   model with the parametric result as its starting priors — the initialisation is what makes
   pixelised fits robust and fast. See [`non_linear_search`](./non_linear_search.md), and
-  chapter 4 of the HowToGalaxy lectures for the underlying linear algebra and Bayesian
+  chapter 3 of the HowToGalaxy lectures for the underlying linear algebra and Bayesian
   statistics.
 
 ## See also

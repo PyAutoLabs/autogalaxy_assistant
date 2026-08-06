@@ -520,7 +520,7 @@ scientific content of the fit.
 
 ## Further reading
 
-- **Student / new to galaxy morphology** — [HowToGalaxy: Two-galaxy fits](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_3_search_chaining/tutorial_3_x2_galaxies.ipynb):
+- **Student / new to galaxy morphology** — [HowToGalaxy: Multi-galaxy fits](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_4_scaling_up_galaxies/tutorial_2_multi_galaxy.ipynb):
   fitting two galaxies in one image from first principles, including why chaining searches is
   often easier than fitting both at once.
 - **General reference** — [RTD: New user guide](https://pyautogalaxy.readthedocs.io/en/latest/overview/overview_2_new_user_guide.html):
