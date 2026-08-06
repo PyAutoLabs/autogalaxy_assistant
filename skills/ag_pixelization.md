@@ -35,7 +35,7 @@ solves the mesh amplitudes exactly and returns a **Bayesian evidence** rather th
 likelihood. That evidence includes terms that penalise an unnecessarily complex reconstruction,
 which is what lets a model with 400 free flux values not simply win by over-fitting. The theory
 is [`../wiki/core/concepts/inversions_and_pixelizations.md`](../wiki/core/concepts/inversions_and_pixelizations.md);
-chapter 4 of HowToGalaxy derives it from scratch.
+chapter 3 of HowToGalaxy derives it from scratch.
 
 The canonical scripts are
 `autogalaxy_workspace:scripts/imaging/features/pixelization/modeling.py` (via a search),
@@ -402,7 +402,7 @@ print(f"log det curvature + reg    = {inversion.log_det_curvature_reg_matrix_ter
 The `regularization_term` measures how non-smooth the solution is; the two log-determinant
 terms are the complexity penalty that stops a 400-pixel model winning by over-fitting. The
 matrices themselves (`curvature_matrix`, `regularization_matrix`, `curvature_reg_matrix`) are
-there too. The derivation is in HowToGalaxy chapter 4 and the papers it cites
+there too. The derivation is in HowToGalaxy chapter 3 and the papers it cites
 (arXiv:1708.07377, arXiv:astro-ph/0601493).
 
 ### Diagnostic plots
@@ -571,9 +571,9 @@ recoverable from the output folder alone.
 
 ## Further reading
 
-- **Student / new to galaxy morphology** — [HowToGalaxy: Bayesian regularization](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_4_pixelizations/tutorial_4_bayesian_regularization.ipynb):
+- **Student / new to galaxy morphology** — [HowToGalaxy: Bayesian regularization](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_3_pixelizations/tutorial_4_bayesian_regularization.ipynb):
   why a model with hundreds of free flux values does not simply over-fit, derived from scratch;
-  `tutorial_5_model_fit` then runs the full fit.
+  `tutorial_6_model_fit` then runs the full fit.
 - **General reference** — [RTD: Pixelization API](https://pyautogalaxy.readthedocs.io/en/latest/api/pixelization.html):
   every mesh, regularization scheme and the objects that combine them.
 - **Experienced PyAutoGalaxy user** — [workspace: imaging/features/pixelization/modeling.py](https://github.com/PyAutoLabs/autogalaxy_workspace/blob/main/scripts/imaging/features/pixelization/modeling.py):

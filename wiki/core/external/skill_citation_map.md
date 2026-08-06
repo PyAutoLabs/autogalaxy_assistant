@@ -64,13 +64,13 @@ Default to `.ipynb` for student-leaning users and `.py` for returning PyAutoGala
 | `ag_load_results` | `chapter_2_modeling/tutorial_7_results` | `api/fitting` | `guides/results/start_here.py` |
 | `ag_debug_fit_failure` | `chapter_2_modeling/tutorial_4_dealing_with_failure` | `general/likelihood_function` | `guides/modeling/bug_fix.py` |
 | `ag_basis_profiles` | `chapter_2_modeling/tutorial_5_linear_profiles` | `api/light` | `imaging/features/multi_gaussian_expansion/modeling.py` |
-| `ag_pixelization` | `chapter_4_pixelizations/tutorial_4_bayesian_regularization` | `api/pixelization` | `imaging/features/pixelization/modeling.py` |
-| `ag_light_model_extras` | `chapter_3_search_chaining/tutorial_3_x2_galaxies` | `overview/overview_3_features` | `imaging/features/extra_galaxies/modeling.py` |
+| `ag_pixelization` | `chapter_3_pixelizations/tutorial_4_bayesian_regularization` | `api/pixelization` | `imaging/features/pixelization/modeling.py` |
+| `ag_light_model_extras` | `chapter_4_scaling_up_galaxies/tutorial_2_multi_galaxy` | `overview/overview_3_features` | `imaging/features/extra_galaxies/modeling.py` |
 | `ag_ellipse_fitting` | _ | `overview/overview_3_features` | `ellipse/modeling.py` |
 | `ag_multi_dataset` | `chapter_2_modeling/tutorial_5_linear_profiles` | `overview/overview_3_features` | `multi_dataset/start_here.py` |
 | `ag_build_interferometer_model` | `chapter_1_introduction/tutorial_3_fitting` | `overview/overview_3_features` | `interferometer/start_here.py` |
-| `ag_multi_galaxy_and_cluster` | `chapter_3_search_chaining/tutorial_3_x2_galaxies` | `overview/overview_2_new_user_guide` | `cluster/start_here.py` |
-| `ag_chain_searches` | `chapter_3_search_chaining/tutorial_1_search_chaining` | `general/configs` | `guides/modeling/chaining.py` |
+| `ag_multi_galaxy_and_cluster` | `chapter_4_scaling_up_galaxies/tutorial_2_multi_galaxy` | `overview/overview_2_new_user_guide` | `cluster/start_here.py` |
+| `ag_chain_searches` | `chapter_2_modeling/tutorial_9_search_chaining` | `general/configs` | `guides/modeling/chaining.py` |
 | `ag_ingest_paper` | _ | _ | _ |
 | `ag_to_notebook` | _ | _ | _ |
 | `ag_inspect_results_mcp` | _ | _ | _ |
@@ -103,7 +103,7 @@ before you "fix" a cell that looks wrong:
   multi-wavelength chapter and no interferometer chapter, so `ag_multi_dataset` and
   `ag_build_interferometer_model` cite the tutorial that teaches the idea each fit leans on
   hardest — linear profiles, and the likelihood — and `ag_light_model_extras` shares
-  `tutorial_3_x2_galaxies` with `ag_multi_galaxy_and_cluster` because a second galaxy in the
+  `tutorial_2_multi_galaxy` with `ag_multi_galaxy_and_cluster` because a second galaxy in the
   frame is where the lectures come closest to a contaminant. Each of those bullets says so in
   the skill, rather than implying a chapter exists that does not. Sharing a cell across two
   rows is allowed; inventing one is not.

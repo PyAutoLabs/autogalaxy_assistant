@@ -225,7 +225,8 @@ later.
 
 Chaining is what makes hard fits tractable: start with a simple parametric model, then chain
 into a pixelisation or a many-component basis with the simple fit's posterior as the starting
-priors. It is chapter 3 of the HowToGalaxy lectures, and the recommended route into a
+priors. It is taught at the end of chapter 2 of the HowToGalaxy lectures (tutorials 9-10),
+and it is the recommended route into a
 pixelised fit ([`inversions_and_pixelizations`](./inversions_and_pixelizations.md)). Always
 check `model.info` of the chained search to confirm the priors arrived as intended.
 

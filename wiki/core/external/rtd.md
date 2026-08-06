@@ -97,7 +97,7 @@ facts.
 ## HowToGalaxy on RTD
 
 `howtogalaxy/howtogalaxy` is the chapter index, with one page per chapter
-(`howtogalaxy/chapter_1_introduction` … `chapter_4_pixelizations`, plus
+(`howtogalaxy/chapter_1_introduction` … `chapter_4_scaling_up_galaxies`, plus
 `howtogalaxy/chapter_optional`). These are the *rendered* chapter descriptions; the
 runnable tutorials live in the HowToGalaxy repository —
 see [`howtogalaxy.md`](./howtogalaxy.md) for routing into them.
