@@ -21,8 +21,8 @@ sources:
       - scripts/imaging/features/pixelization/galaxy_reconstruction.py
       - scripts/guides/advanced/over_sampling.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
-last_updated: 2026-08-01
-content_sha256: 3719a1a0066489fbce46fd3333e62fbacec0b7b016445b870b999bd6aba7d706
+last_updated: 2026-08-07
+content_sha256: 488dca78b0570e321a64e9edeb0308b6753ce9ed297ad5be22608f6789e70986
 ---
 
 # Inversions and pixelisations — reconstructing clumpy galaxies

@@ -13,9 +13,9 @@ sources:
       - scripts/chapter_4_scaling_up_galaxies/
       - scripts/chapter_optional/
       - scripts/simulators/
-    pinned_commit: b1815e9df8ea2c247f4596fa45614e38e0bf86ff
-last_updated: 2026-08-01
-content_sha256: f6443e77f49a27d946247838df516a95b77bbffdd8191684be634ad8649d1394
+    pinned_commit: ee283c9d18d40b9365c9194292f427bcaed797f3
+last_updated: 2026-08-07
+content_sha256: 9e34da30c7e7c22ed747398b4f51d4939dcc86e17780bc0a690118f33c79ae11
 ---
 
 # HowToGalaxy
@@ -70,6 +70,14 @@ Two caveats about chapter 1, both checked at the pinned commit:
   written yet and is not needed to use the library. Don't route anyone there; if the user
   wants the methodology, the RTD `general/likelihood_function` page and
   `autogalaxy_workspace:scripts/imaging/likelihood_function.py` are the real material.
+
+Two chapters also carry an **extensionless prose file** — `chapter_2_modeling/tutorial_11_summary`
+and `chapter_3_pixelizations/introduction`. These are chapter narrative (what you just learnt /
+what is coming), not runnable tutorials: no `.py`, no notebook, and deliberately excluded from
+the counts above. Listing the directory makes `tutorial_11_summary` look like an eleventh
+tutorial; it is not, and the URL-building rules below do not apply to it — appending `.py`
+yields a 404. Chapter 1's summary is different: `tutorial_5_summary.py` *is* a real script and
+*is* counted in that chapter's 6.
 
 ## When to cite HowToGalaxy
 

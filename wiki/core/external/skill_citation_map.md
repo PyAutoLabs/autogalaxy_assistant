@@ -7,9 +7,9 @@ sources:
       - skills/_style.md
       - skills/README.md
       - ROADMAP.md
-    pinned_commit: a083753c217e6d9c07f3c9cc40cb7133b478a439
-last_updated: 2026-08-01
-content_sha256: 85756d5daf2dce5003c8c192005da407f4b7f7119eee2983e2feaba897becd21
+    pinned_commit: 239a61cf144c7dbed1a1a7c6b7e98d8835182d7c
+last_updated: 2026-08-07
+content_sha256: b8455d3ccf68f80d719ec1c2bf367e6a65cae7260ca20d0d495814507d4bcfec
 ---
 
 # Skill → external resource map
