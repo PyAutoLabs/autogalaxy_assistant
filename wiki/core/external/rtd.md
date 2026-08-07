@@ -12,8 +12,8 @@ sources:
       - docs/howtogalaxy/
       - docs/api/
     pinned_commit: 65b14d7767da194a21bf0f3a4345f0790af86ed4
-last_updated: 2026-08-01
-content_sha256: 4a680d62d8a2c77c61276f27b8e19543094274536a38284f565a31a503f0a3ec
+last_updated: 2026-08-07
+content_sha256: 9663f05ab039528817103da1ec782f7bff425b82c1674f3e5267a19b37d2f126
 ---
 
 # PyAutoGalaxy RTD

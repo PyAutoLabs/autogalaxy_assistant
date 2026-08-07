@@ -17,8 +17,8 @@ sources:
       - scripts/ellipse/modeling.py
       - scripts/guides/results/start_here.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
-last_updated: 2026-08-01
-content_sha256: 05120accc325720145ce1d7fbf2decebb9f93bb5df5ff617fe842ebb7a1c5010
+last_updated: 2026-08-07
+content_sha256: ba0c3184a95974fbc10e01db065da181d87421ea985694a5da56e384f13a7240
 ---
 
 # The non-linear search
