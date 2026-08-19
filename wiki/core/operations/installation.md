@@ -36,7 +36,7 @@ sources:
       - autoassistant/audit_skill_apis.py
     pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
 last_updated: 2026-08-01
-content_sha256: f28ec528c30b1059aad594de3d1f3be69411e7719359e9aa02425c84387a511c
+content_sha256: a758c9de0a2e8e2a9e880fed2f3562a8918feec447616c6eb2c94c667a6c81ae
 ---
 
 # Installation
