@@ -67,11 +67,16 @@ is the procedure that drives install and repair in code, and it cites this page.
 
 Two things worth knowing before you debug a failing install:
 
-- **3.11 and below cannot install it at all.** Support was dropped in release
-  `2026.4.5.3` and every pre-`2026.4.5.3` wheel on PyPI has been *yanked*, so
-  `pip install autogalaxy` on 3.11 fails with "no matching distribution" rather than
-  silently resolving to an ancient version. A yanked release can still be installed by an
-  explicit pin (`pip install autogalaxy==2025.10.6.1`) if an old project needs it.
+- **3.11 and below cannot install it.** Support was dropped in release
+  `2026.7.29.2` — the first one published declaring `Requires-Python >=3.12`. The
+  back catalogue was *not* yanked and could not be (396 of 421 `autolens` releases
+  are live), so until 2026-08-19 `pip install autogalaxy` on 3.9/3.10/3.11 did
+  exactly what you would not want: it walked back to `2026.7.29.1` and silently
+  installed a months-old, JAX-less stack. The fix is release
+  `2026.7.29.1.post1` — no code, `Requires-Python <3.12`, raises on build — so
+  those Pythons now get an explanation instead. An explicit pin
+  (`pip install autogalaxy==2025.10.6.1`) still resolves if an old project needs
+  it, and `--only-binary=:all:` still steps past the tombstone to the old wheel.
 - **The RTD installation overview still says "Python 3.12 - 3.13"**
   (`PyAutoGalaxy:docs/installation/overview.md`). `pyproject.toml` is the authority and it
   is the looser of the two; treat 3.14 as supported and 3.12 as the safe default.
