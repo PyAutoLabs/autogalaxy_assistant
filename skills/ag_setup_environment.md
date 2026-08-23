@@ -104,7 +104,7 @@ question in disguise:
   command names it explicitly. It accelerates the compiled geometry kernels in
   PyAutoArray; if it will not build on your platform, the stack runs without it.
 
-`pynufft` only matters if you fit visibilities — skip it otherwise; the library prints
+`nufftax` only matters if you fit visibilities — skip it otherwise; the library prints
 exactly what to install if you reach interferometer code without it. The full extras
 table, the conda route and the editable-clone route (for reading or modifying library
 source) are in
