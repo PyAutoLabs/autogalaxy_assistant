@@ -20,7 +20,7 @@ sources:
       - scripts/interferometer/features/linear_light_profiles/modeling.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
 last_updated: 2026-08-01
-content_sha256: 8b874623d54019876858f6ca351df0359ae461d3fc6f43d3b132fd2e2284825c
+content_sha256: 1fa1de69f41b378b2a1a99b1d0d77bc0f935e30f0ecf19b67a5bcfa437759593
 ---
 
 # Interferometer fitting — visibilities, the uv-plane and dirty images
@@ -120,10 +120,6 @@ Three transformers are available (`PyAutoArray:autoarray/operators/transformer.p
 - **`ag.TransformerDFT`** — the exact discrete Fourier transform. Slower than the NUFFT once
   `n_vis` is large, but valuable as a reference for verifying a NUFFT result, and used by the
   pixelised reconstruction's sparse-operator path.
-- **`ag.TransformerNUFFTPyNUFFT`** — a legacy `pynufft`-backed transformer, kept as a
-  non-JAX fallback. It is not JAX-traceable, so it forfeits GPU acceleration and the
-  gradient-based searches.
-
 Because `nufftax` is JAX-native, light-profile interferometer fitting now runs at full GPU
 speed for datasets with **arbitrarily many visibilities** — up to the tens or hundreds of
 millions typical of high-resolution ALMA observations.

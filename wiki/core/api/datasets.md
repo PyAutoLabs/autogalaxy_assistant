@@ -24,7 +24,7 @@ sources:
       - scripts/interferometer/start_here.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
 last_updated: 2026-08-01
-content_sha256: 588526e9facb90fe46fc488fbece00c62fc2a5640fa9cf01ff0ebf92243fafd8
+content_sha256: 9af41974373a9870baadb95596c1a6ebba5daf770c26c16f7293459a9afd91cb
 ---
 
 # Datasets
@@ -181,8 +181,8 @@ Adapted from `autogalaxy_workspace:scripts/interferometer/start_here.py`. Source
 
 **Transformers.** `ag.TransformerNUFFT` is the JAX-native non-uniform FFT and the recommended
 default at any visibility count. `ag.TransformerDFT` is an exact discrete transform — slower
-for large `n_vis`, but useful as a verification reference. `ag.TransformerNUFFTPyNUFFT` is the
-legacy backend, available when explicitly requested.
+for large `n_vis`, but useful as a verification reference, and the transformer to use where
+JAX is unavailable (notably Intel macOS, for which JAX ships no wheels).
 
 Attributes:
 

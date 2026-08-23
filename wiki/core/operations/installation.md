@@ -36,7 +36,7 @@ sources:
       - autoassistant/audit_skill_apis.py
     pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
 last_updated: 2026-08-01
-content_sha256: a758c9de0a2e8e2a9e880fed2f3562a8918feec447616c6eb2c94c667a6c81ae
+content_sha256: 8999fa2a4700ae1fe2db2782fe66bdb222eadf78d35db474b6043da47155167c
 ---
 
 # Installation
@@ -100,7 +100,7 @@ below need a modern resolver.
 | Extra | Pulls in | Install it when |
 |---|---|---|
 | `jax` | `autofit[jax]` (→ `autonerves[jax]`: `jax`/`jaxlib` `>=0.7.0,<0.11.0`, `jaxnnls`; plus `optax`) and `jax_zero_contour` | Almost always — JAX is the accelerated evaluation path, on CPU and GPU |
-| `optional` | `autogalaxy[jax]`, `numba`, `pynufft`, `zeus-mcmc`, `getdist` | You want the full set in one command |
+| `optional` | `autogalaxy[jax]`, `numba`, `zeus-mcmc`, `getdist` | You want the full set in one command |
 | `test` | `pytest`, `colossus` | You are running PyAutoGalaxy's own test suite |
 | `docs` | Sphinx + theme packages | You are building the RTD site |
 
@@ -115,9 +115,10 @@ the CPU wheel over it.
 JIT-compiled geometry kernels in PyAutoArray. If it will not build on your platform,
 PyAutoGalaxy runs without it — see `PyAutoGalaxy:docs/installation/numba.md`.
 
-**`pynufft` is only for interferometer work.** Skip it unless you fit visibilities; if
-you do run interferometer code without it, the library prints a message telling you
-exactly what to install.
+**`nufftax` is only for interferometer work.** It is not in PyAutoGalaxy's `optional`
+extra — install it explicitly with `pip install nufftax`. Skip it unless you fit
+visibilities; if you do run interferometer code without it, the library prints a message
+telling you exactly what to install.
 
 ### Conda
 

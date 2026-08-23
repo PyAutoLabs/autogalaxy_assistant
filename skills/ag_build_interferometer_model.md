@@ -275,10 +275,6 @@ not cosmetic.
   10⁹, so a disagreement bigger than that means something about the NUFFT setup is wrong rather
   than the transform being approximate. It is also what the pixelised reconstruction's
   sparse-operator path uses.
-- **`ag.TransformerNUFFTPyNUFFT`** — a legacy `pynufft`-backed transformer, kept as a non-JAX
-  fallback. It is not JAX-traceable, so it forfeits GPU acceleration *and* the gradient-based
-  searches, which need the likelihood's derivatives.
-
 **There is a guard, and it is there for a reason.** `ag.Interferometer` (and `from_fits`) raises
 `raise_error_dft_visibilities_limit=True` by default, and it will refuse to build a dataset with
 more than **10,000 visibilities** while `transformer_class=ag.TransformerDFT`. The DFT at that

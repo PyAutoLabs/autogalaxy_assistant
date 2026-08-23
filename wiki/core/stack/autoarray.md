@@ -13,7 +13,7 @@ sources:
       - README.md
     pinned_commit: 59b0f198fc7bdf9c91e5a8f734dad796fcc55656
 last_updated: 2026-08-01
-content_sha256: 8f4425d067e527e01d00fa5a512a91dcf96de18071acb8cb5adfe1b43fe4e9a0
+content_sha256: f4a8f8720dde3b84912f3220ae2deeeeeb2cb5c912d5cc5177e88f9663244793
 ---
 
 # PyAutoArray — arrays, grids, masks, datasets
@@ -90,7 +90,7 @@ The plot-label notation and output settings a user is more likely to edit live i
 
 `autonerves`, `astropy`, `decorator`, `dill`, `matplotlib`, `scipy`, `scikit-image`,
 `scikit-learn`, `tqdm`. Optional extras add `numba` for JIT-acceleration of geometry
-kernels, and `nufftax` / `pynufft` for visibility transforms.
+kernels, and `nufftax` for visibility transforms.
 
 ## See also
 

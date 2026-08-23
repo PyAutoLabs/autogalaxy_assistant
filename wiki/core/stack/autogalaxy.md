@@ -17,7 +17,7 @@ sources:
       - README.md
     pinned_commit: 65b14d7767da194a21bf0f3a4345f0790af86ed4
 last_updated: 2026-08-01
-content_sha256: edcdfaee1873806090b90e1a7537646c94fd2c78e699ffaf3ab447ef3f3bb84d
+content_sha256: c9cb7e2d004800e67686a35927da1463da9cab032379360200c0269381566983
 ---
 
 # PyAutoGalaxy — galaxy structure and galaxy modelling
@@ -177,7 +177,7 @@ write `af.Model(ag.lp.Sersic)`, the default prior for each parameter comes from
 ## Dependencies
 
 `autofit`, `autoarray`, `astropy`, `nautilus-sampler`. Optional extras add `numba`,
-`pynufft`, `zeus-mcmc`, `getdist`, and — via `autogalaxy[jax]` — `autofit[jax]`
+`zeus-mcmc`, `getdist`, and — via `autogalaxy[jax]` — `autofit[jax]`
 (JAX, jaxlib, jaxnnls, optax) plus `jax_zero_contour`.
 
 ## See also
