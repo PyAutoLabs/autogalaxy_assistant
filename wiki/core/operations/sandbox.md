@@ -21,7 +21,7 @@ sources:
     pinned_commit: 67c4090f05fa19f10b028fe2dee2e9d8adfbcbf0
   - project: PyAutoGalaxy
     paths:
-      - autogalaxy/plot/plot_utils.py
+      - autogalaxy/util/plot_utils.py
       - autogalaxy/analysis/model_util.py
     pinned_commit: 65b14d7767da194a21bf0f3a4345f0790af86ed4
   - project: autogalaxy_assistant
@@ -31,8 +31,8 @@ sources:
       - autoassistant/audit_skill_apis.py
       - .claude/hooks/validate_pyauto_code.py
     pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
-last_updated: 2026-08-01
-content_sha256: f31b1ecc8b237bfe50ccaa550be6e93cab490cadf7448f2c9a72cc937e0b426a
+last_updated: 2026-08-28
+content_sha256: 3553e7402d294a3d1ad5d92d0254979915c9fb474a8bba95ad00b6d38a768de6
 ---
 
 # Sandbox / restricted-environment configuration
@@ -160,7 +160,7 @@ Each is independent of `PYAUTO_TEST_MODE` and each is `=1` to enable:
 - **`PYAUTO_FAST_PLOTS`** — skip `plt.tight_layout()` in the subplot helpers
   (`PyAutoArray:autoarray/plot/utils.py`) and short-circuit the expensive contour
   overlays PyAutoGalaxy can compute for a mass model
-  (`PyAutoGalaxy:autogalaxy/plot/plot_utils.py`). Figures are still created and rendered;
+  (`PyAutoGalaxy:autogalaxy/util/plot_utils.py`). Figures are still created and rendered;
   only the layout pass and those overlays are dropped.
 - **`PYAUTO_DISABLE_JAX`** — force `use_jax=False` on every analysis regardless of what
   the script asked for (`PyAutoFit:autofit/non_linear/analysis/analysis.py`). The lever for

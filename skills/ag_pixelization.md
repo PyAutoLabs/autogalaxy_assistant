@@ -179,7 +179,7 @@ intensity would create.
 """
 pixelization = af.Model(
     ag.Pixelization,
-    mesh=ag.mesh.RectangularAdaptDensity(shape=mesh_shape),
+    mesh=ag.mesh.RectangularBilinearAdaptDensity(shape=mesh_shape),
     regularization=ag.reg.GaussianKernel,
 )
 
@@ -243,12 +243,15 @@ parameters, all take `shape=(y, x)`:
 | Mesh | Where the pixels go | Use when |
 |---|---|---|
 | `RectangularUniform` | a uniform grid over the masked region | you want the simplest, most predictable behaviour |
-| `RectangularAdaptDensity` | a rectangular grid whose spacing follows the density of image pixels mapping to it | **the default** — concentrates resolution where the data is |
-| `RectangularAdaptImage` | adapts to the image's own brightness distribution | the irregular light is strongly concentrated |
+| `RectangularBilinearAdaptDensity` | a rectangular grid whose spacing follows the density of image pixels mapping to it, via a rank CDF | **the default** — concentrates resolution where the data is, and the fast CPU path |
+| `RectangularBilinearAdaptImage` | adapts to the image's own brightness distribution | the irregular light is strongly concentrated |
+| `RectangularRTUAdaptDensity` / `RectangularRTUAdaptImage` | the same two adaptations through a kernel CDF | GPU, JAX gradient samplers and the interferometer sparse path — the only rectangular adaptive meshes with usable gradients |
 
 `Delaunay`, `KNearestNeighbor` and `KNNBarycentric` also exist for irregular tessellations. Start
-with `RectangularAdaptDensity`; it is what every workspace example uses, and the rectangular
-meshes are what the fixed-`mesh_shape` JAX path is built around.
+with `RectangularBilinearAdaptDensity`; it is what every workspace example uses, and the
+rectangular meshes are what the fixed-`mesh_shape` JAX path is built around. (The unqualified
+`RectangularAdaptDensity` / `RectangularAdaptImage` names were split into the `Bilinear` and
+`RTU` families in PyAutoArray 2026.8.23.1 and no longer resolve.)
 
 **Regularization** (`ag.reg`, from `PyAutoArray:autoarray/inversion/regularization/`) is where
 the free parameters are, and where the physics of "how smooth should this be?" lives:
@@ -588,7 +591,7 @@ recoverable from the output folder alone.
    the mesh reconstruct the bulge.
 4. Fix `mesh_shape` before composing the model; it cannot be a free parameter.
 5. Pass over-sampling as `over_sample_size_pixelization`, not `over_sample_size_lp`.
-6. Start with `RectangularAdaptDensity` + `ag.reg.Constant`; move to `GaussianKernel` only when
+6. Start with `RectangularBilinearAdaptDensity` + `ag.reg.Constant`; move to `GaussianKernel` only when
    one smoothing strength demonstrably cannot serve both the bright and faint structure.
 7. Scale contaminant noise (`apply_noise_scaling`, `invert=True`) — never hard-mask pixels inside
    a pixelization fit — and check the signal-to-noise panel afterwards.

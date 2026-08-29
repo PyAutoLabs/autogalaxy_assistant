@@ -455,7 +455,7 @@ signal-to-noise ratio and the amount of real small-scale structure differ from b
 ```python
 pixelization = af.Model(
     ag.Pixelization,
-    mesh=af.Model(ag.mesh.RectangularAdaptDensity, shape=(30, 30)),
+    mesh=af.Model(ag.mesh.RectangularBilinearAdaptDensity, shape=(30, 30)),
     regularization=ag.reg.Constant,
 )
 
