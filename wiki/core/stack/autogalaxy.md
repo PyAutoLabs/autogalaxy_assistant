@@ -16,8 +16,8 @@ sources:
       - pyproject.toml
       - README.md
     pinned_commit: 65b14d7767da194a21bf0f3a4345f0790af86ed4
-last_updated: 2026-08-01
-content_sha256: c9cb7e2d004800e67686a35927da1463da9cab032379360200c0269381566983
+last_updated: 2026-08-28
+content_sha256: 6f07900150480985f3d4aa4f19849ad9f5c39ee70401bf5c3ecbf088916a8881
 ---
 
 # PyAutoGalaxy — galaxy structure and galaxy modelling
@@ -134,7 +134,7 @@ pixelisation reconstructs it on an adaptive mesh with a regularisation prior:
 
 ```python
 pixelization = ag.Pixelization(
-    mesh=ag.mesh.RectangularAdaptDensity(shape=(30, 30)),
+    mesh=ag.mesh.RectangularBilinearAdaptDensity(shape=(30, 30)),
     regularization=ag.reg.Constant(coefficient=1.0),
 )
 ```
