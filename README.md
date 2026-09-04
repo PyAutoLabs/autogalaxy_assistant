@@ -47,7 +47,9 @@ There are two kinds of AI tool you could use the assistant with:
 * **Conversational AI assistant:** Use a browser-based tool such as **ChatGPT** or **Claude** to ask questions, plan analyses, and generate scripts that you transfer to your computer and run manually.
 * **CLI coding agent:** Use a terminal-based agent such as **Claude Code** or **Codex**. It can work directly on your computer to inspect `.fits` data, write and execute scripts, diagnose errors, run galaxy models, and inspect their results.
 
-**Only CLI coding agents are currently supported**, and the assistant is built for the two paid-subscription coding agents **Claude Code** and **Codex** — these are the simple choices we support and recommend. The free coding agent **OpenCode** shows encouraging early results but does not yet have first-class support (see [Free AI tools](#free-ai-tools) at the bottom of this README). Support for conversational assistants such as ChatGPT is in progress (see [Conversation Assistants](#conversation-assistants)).
+**Both kinds are supported, and both currently require a paid plan.** The recommended route is a CLI coding agent: the paid-subscription agents **Claude Code** and **Codex**, which install **PyAutoGalaxy**, run fits and inspect their results directly on your computer (see [Supported Coding Agents](#supported-coding-agents)). Conversation assistants work too: **ChatGPT** on a paid plan (Plus/Pro/Team) reads this repository through its GitHub connector, and **Claude** chat on a paid plan (Pro/Max/Team) reads it live through its GitHub connector (see [Conversation Assistants](#conversation-assistants)).
+
+**Free options are being tested** but do not yet have first-class support: the free coding agent **OpenCode** is the most promising (see [Free AI tools](#free-ai-tools) at the bottom of this README).
 
 ### AI Coding Agent (CLI)
 
@@ -188,17 +190,42 @@ tested with — the others work in practice but are not first-class supported.
 
 ## Conversation Assistants
 
-Conversation assistants such as **ChatGPT** and **Claude** used in the browser are not currently supported. We are
-working on getting them to work with `autogalaxy_assistant` and will reinstate their setup instructions once they do.
-An experimental custom GPT prototype exists for the sibling
+Conversation assistants such as **ChatGPT** and **Claude** used in a browser **are supported**, on a paid plan. A chat
+assistant cannot run code or inspect the `.fits` files on your machine, so it plans the analysis, explains the physics
+and drafts the scripts — and it will ask *you* to plot and confirm the data before it composes a fit. Running the fit
+is where a coding agent takes over.
+
+| Option | Cost | How to set it up |
+|---|---|---|
+| **ChatGPT** | Paid (Plus/Pro/Team) | Enable its **GitHub connector**, give it this repository's URL, and point it explicitly at [`llms.txt`](llms.txt) |
+| **Claude chat** | Paid (Pro/Max/Team) | Enable its **GitHub connector**, give it this repository's URL, and point it explicitly at [`llms.txt`](llms.txt) |
+
+Connectors do not reliably fetch `llms.txt` on their own, and results are markedly better when it is named, so prefix
+either starter prompt above with:
+
+```
+Use the autogalaxy_assistant (www.github.com/PyAutoLabs/autogalaxy_assistant) with the
+GitHub connector, first reading its llms.txt file for initial start up.
+```
+
+> **GitHub connectors.** On paid plans the connector is the route for both assistants — it reads the repository live,
+> so it always sees current content. On Claude's free plan the connector is missing features which hurt performance, so
+> there create a **Project** and upload this repository into its knowledge (download the ZIP from the green **Code**
+> button) instead.
+
+Free plans work for short questions and planning sessions but go through their token allowance quickly. There is no
+PyAutoGalaxy custom GPT yet; an experimental prototype exists for the sibling
 **[PyAutoLens AI Assistant](https://chatgpt.com/g/g-6a74c33c58c48191b8cd353e7b46f18b-pyautolens-ai-assistant)**, but be
-warned that its performance is currently not great; no PyAutoGalaxy equivalent is published yet.
+warned that its performance is currently not great. Step-by-step recipes for each of these routes are written up in the
+sibling assistant's [setup guides](https://github.com/PyAutoLabs/autolens_assistant/tree/main/docs/setup); the same
+steps apply here with this repository's URL.
 
 ## Free AI tools
 
 We are actively testing free AI tools, but cannot yet provide first-class support for any of them. The free coding
 agent **OpenCode** is the most promising option so far, with preliminary testing showing encouraging results — if you
-do not have a paid Claude Code or Codex subscription it is the one to try.
+do not have a paid Claude Code or Codex subscription it is the one to try. The free chat routes are covered in
+[Conversation Assistants](#conversation-assistants) above.
 
 ## Science Project
 
