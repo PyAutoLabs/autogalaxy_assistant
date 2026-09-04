@@ -47,7 +47,9 @@ There are two kinds of AI tool you could use the assistant with:
 * **Conversational AI assistant:** Use a browser-based tool such as **ChatGPT** or **Claude** to ask questions, plan analyses, and generate scripts that you transfer to your computer and run manually.
 * **CLI coding agent:** Use a terminal-based agent such as **Claude Code** or **Codex**. It can work directly on your computer to inspect `.fits` data, write and execute scripts, diagnose errors, run galaxy models, and inspect their results.
 
-**Both kinds are supported, and both currently require a paid plan.** The recommended route is a CLI coding agent: the paid-subscription agents **Claude Code** and **Codex**, which install **PyAutoGalaxy**, run fits and inspect their results directly on your computer (see [Supported Coding Agents](#supported-coding-agents)). Conversation assistants work too: **ChatGPT** on a paid plan (Plus/Pro/Team) reads this repository through its GitHub connector, and **Claude** chat on a paid plan (Pro/Max/Team) reads it as Project knowledge — the paid plan is about usage limits, not a paid GitHub integration (see [Conversation Assistants](#conversation-assistants)). Free options are being tested but do not yet have first-class support: the free coding agent **OpenCode** is the most promising (see [Free AI tools](#free-ai-tools) at the bottom of this README).
+**Both kinds are supported, and both currently require a paid plan.** The recommended route is a CLI coding agent: the paid-subscription agents **Claude Code** and **Codex**, which install **PyAutoGalaxy**, run fits and inspect their results directly on your computer (see [Supported Coding Agents](#supported-coding-agents)). Conversation assistants work too: **ChatGPT** on a paid plan (Plus/Pro/Team) reads this repository through its GitHub connector, and **Claude** chat on a paid plan (Pro/Max/Team) reads it live through its GitHub connector (see [Conversation Assistants](#conversation-assistants)).
+
+**Free options are being tested** but do not yet have first-class support: the free coding agent **OpenCode** is the most promising (see [Free AI tools](#free-ai-tools) at the bottom of this README).
 
 ### AI Coding Agent (CLI)
 
@@ -196,7 +198,7 @@ is where a coding agent takes over.
 | Option | Cost | How to set it up |
 |---|---|---|
 | **ChatGPT** | Paid (Plus/Pro/Team) | Enable its **GitHub connector**, give it this repository's URL, and point it explicitly at [`llms.txt`](llms.txt) |
-| **Claude chat** | Paid (Pro/Max/Team) | Create a **Project** and upload this repository into its knowledge (download the ZIP from the green **Code** button), naming [`llms.txt`](llms.txt) in your opening prompt |
+| **Claude chat** | Paid (Pro/Max/Team) | Enable its **GitHub connector**, give it this repository's URL, and point it explicitly at [`llms.txt`](llms.txt) |
 
 Connectors do not reliably fetch `llms.txt` on their own, and results are markedly better when it is named, so prefix
 either starter prompt above with:
@@ -206,9 +208,10 @@ Use the autogalaxy_assistant (www.github.com/PyAutoLabs/autogalaxy_assistant) wi
 GitHub connector, first reading its llms.txt file for initial start up.
 ```
 
-> **Claude's GitHub connector.** Reading the repository live through it would be neater, but an open bug currently
-> leaves the connector attaching repositories without making their content readable — Project knowledge is the route
-> until it recovers. The paid plan is about usage limits, not a paid GitHub integration.
+> **GitHub connectors.** On paid plans the connector is the route for both assistants — it reads the repository live,
+> so it always sees current content. On Claude's free plan the connector is missing features which hurt performance, so
+> there create a **Project** and upload this repository into its knowledge (download the ZIP from the green **Code**
+> button) instead.
 
 Free plans work for short questions and planning sessions but go through their token allowance quickly. There is no
 PyAutoGalaxy custom GPT yet; an experimental prototype exists for the sibling
