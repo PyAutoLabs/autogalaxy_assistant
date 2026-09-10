@@ -95,18 +95,21 @@ Things this repo knows are wrong *elsewhere*, found while grounding against them
 Add to this list rather than fixing silently: the value is that the next person grounding
 against the same script is warned before they trust it.
 
-## 5. Newborn-validation leg 4 — the chat-surface smoke record
+## 5. Newborn-validation leg 4 — the harness smoke record
 
 Three of the four newborn-validation legs are mechanical and run in this repo: the symbol audit
 with its version baseline, the full markdown-link crawl, and the `wiki-currency` workflow on a
-PR. **Leg 4 is not mechanical**: a formal smoke test of the assistant over a chat surface —
-a GitHub-connector session against the live public repository, driven per
-[`modes/maintainer.md`](./modes/maintainer.md), where there is no code execution and no API
-gate, so the discipline that holds is the one written into the prose.
+PR. **Leg 4 is not mechanical**: a recorded run of the harness smoke card (the sibling
+assistant's `benchmarks/prompts/harness_smoke.md` pattern — grounded answering, a small fit
+whose figure the agent actually inspects, recovery from a planted stale-API error) on each
+recommended coding agent, Claude Code and Codex, against the live public repository. It was
+originally specified as a chat-surface smoke over a GitHub-connector session; that surface was
+retired on 2026-09-10 under the agentic-only support policy, so the leg is now the coding-agent
+run, driven per [`modes/maintainer.md`](./modes/maintainer.md).
 
-It has to run against the published URL rather than a local checkout, and its result belongs in
-a dated `wiki/project/` entry. Until that record exists, the chat surface is untested by the
-gate even though the prose is written for it.
+Its result belongs in `benchmarks/runs/` (and a dated `wiki/project/` entry). Until that record
+exists, no agent has a recorded pass here and the README's support statements rest on daily use,
+not evidence.
 
 ## 6. Deferred by decision — recorded so nobody files them as gaps
 

@@ -1,5 +1,9 @@
-<!-- Archived 2026-09-03 from README.md (section "### AI Chat Assistant") for reinstatement when
-     conversation-assistant support returns — see autolens_assistant#120 -->
+<!-- Archived 2026-09-03 from README.md (section "### AI Chat Assistant") — see autolens_assistant#120. Marked
+     UNSUPPORTED on 2026-09-10: conversational chat routes were retired under the agentic-only support policy and
+     are not coming back as supported onboarding. Kept for reference only. -->
+
+> **Archived and unsupported (2026-09-10).** Historical text; see the [README](../../README.md) for the supported
+> agentic setup.
 
 ### AI Chat Assistant
 
@@ -11,7 +15,7 @@ This requires two things:
 - Make sure your assistant has a **GitHub connector** enabled so it can read this
   repository, and give it this repository's URL
   (https://github.com/PyAutoLabs/autogalaxy_assistant) in your opening prompt.
-- Point the assistant explicitly at [`llms.txt`](llms.txt), which gives it the start-up
+- Point the assistant explicitly at [`llms.txt`](../../llms.txt), which gives it the start-up
   instructions for how `autogalaxy_assistant` works. Connectors do not reliably fetch that
   file on their own, and results are markedly better when it is named.
 

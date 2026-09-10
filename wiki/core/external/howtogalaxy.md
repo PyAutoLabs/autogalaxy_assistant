@@ -37,7 +37,7 @@ ships a catalogue at its **root**, regenerated to stay in sync with the tutorial
 
 - **`llms.txt`** — the compact routing layer: "Start here", the learning path by chapter,
   "I want to understand…", and the same answer shape the workspace navigator uses. Small
-  enough to paste whole into a chat that cannot browse GitHub.
+  enough to read whole.
 - **`llms-full.txt`** — the full per-tutorial catalogue with titles and one-line summaries.
 - **`workspace_index.json`** — the same listing, machine-readable.
 

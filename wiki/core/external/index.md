@@ -66,9 +66,9 @@ per-script URLs, deliberately. Each repo ships its own **generated catalogue** a
 hand-written list does. Resolve the repo per
 [`../../../sources.yaml`](../../../sources.yaml) and read the catalogue.
 
-One operational caveat: in a connector chat, route from `llms.txt` only. `llms-full.txt`
-runs to tens of thousands of tokens and would weigh down every subsequent turn; grep it on
-a local harness instead.
+One operational caveat: route from `llms.txt` and grep `llms-full.txt` for the one script
+you need — never read `llms-full.txt` whole into context; it runs to tens of thousands of
+tokens and would weigh down every subsequent turn.
 
 Both catalogues define the same answer shape — **Start here → Then see → Related guide →
 Why this is the right example → What to modify → What needs local execution** — so an
