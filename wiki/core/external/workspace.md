@@ -17,7 +17,7 @@ sources:
       - scripts/guides/
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
 last_updated: 2026-08-01
-content_sha256: 91aa2b6462ef73af9a04308a11601467a2eab67c07ffe20e79bc0f6127cc9158
+content_sha256: d4c107f2d472ac67b2ac0a8ee8ba2a701763fe74420d25131d980b6ce8c9b41b
 ---
 
 # autogalaxy_workspace
