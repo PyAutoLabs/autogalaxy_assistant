@@ -45,10 +45,11 @@ deliberate refactor). Two are NEVER overridden: the real-data gate and never-rew
   to where it meets the sky, without dragging in noise or contaminants. A mask that truncates the
   outer isophotes biases the effective radius and Sersic index directly, so this is a
   science-critical choice; never leave the mask radius as a silent default on
-  real data. **If you can't plot it yourself — no code execution, e.g. a GitHub-connector chat
-  — the gate is not waived: ask the user to plot and inspect the data, and to confirm both (a)
-  contaminants and (b) the mask extent, before you compose the fit.** These are the questions
-  every real-data run must ask, on every harness. The procedure itself is owned by
+  real data. **If you cannot execute code in the current session (a planning-only or read-only
+  session, a harness whose tools are restricted) the gate is not waived: ask the user to plot
+  and inspect the data, and to confirm both (a) contaminants and (b) the mask extent, before you
+  compose the fit.** These are the questions every real-data run must ask, on every harness. The
+  procedure itself is owned by
   [`skills/ag_prepare_imaging_data.md`](./skills/ag_prepare_imaging_data.md) — read it before
   the first real-data fit; it is grounded in
   `autogalaxy_workspace:scripts/imaging/data_preparation/start_here.py` and the
@@ -56,7 +57,7 @@ deliberate refactor). Two are NEVER overridden: the real-data gate and never-rew
 - **Code gate.** A PreToolUse hook validates PyAuto* symbols against the installed library
   and blocks ones written from memory. If blocked, don't guess — grep `skills/` or introspect
   `dir()`, then re-run. The hook fires only on harnesses with hook support (Claude Code);
-  **on any other harness (Codex, Gemini, OpenCode, Copilot, chat) self-enforce it**: run
+  **on any other harness (Codex, OpenCode, Gemini CLI, an IDE agent) self-enforce it**: run
   `python autoassistant/audit_skill_apis.py --code "<snippet>"` (or `--file <script.py>`) on
   generated PyAuto* code before executing it. Bypass a genuine edge case with
   `PYAUTO_SKIP_API_GATE=1`. The other four checks, and this one's manual form, are documented
@@ -166,10 +167,9 @@ When a skill covers the task:
    [`skills/_style.md`](./skills/_style.md)).
 3. Produce Python in the workspace style (below). Read any wiki page the skill points at
    before writing code. Before writing a script from scratch, check the `autogalaxy_workspace`
-   catalogue for an existing example to adapt: on a local harness, grep `llms-full.txt`; in a
-   connector chat, do NOT fetch `llms-full.txt` (it is ~30k+ tokens and would weigh down every
-   subsequent turn) — route from the workspace's compact `llms.txt` and read only the specific
-   script you need.
+   catalogue for an existing example to adapt: grep `llms-full.txt` for the script you need and
+   read only that script — never load `llms-full.txt` whole into context (it is ~30k+ tokens and
+   would weigh down every subsequent turn); the workspace's compact `llms.txt` is the router.
 
 To answer *"what can you do?"*, read `skills/README.md` — it separates the skills that exist
 from the roadmap, so answer from its "Index" section and describe the rest as planned. Grep the
@@ -230,10 +230,10 @@ When **not** in maintainer mode, commit at natural checkpoints (a script + its
   examples they show are the source of truth for how to call any PyAuto* symbol. Before
   writing model, fit, or plotting code, mirror the matching skill's calls rather than recalling
   the API from training data — older PyAutoGalaxy releases used a different API and are heavily
-  represented in model priors. On the Claude Code harness a code gate blocks stale symbols, but
-  a connector chat has no such gate, so this discipline is the only safeguard there: if you
-  can't point at a `skills/` (or `dir()`) example for a call, treat it as unverified and say so
-  rather than emitting it.
+  represented in model priors. On the Claude Code harness a code gate blocks stale symbols; on
+  a harness without the hook this discipline plus the manual audit command is the only
+  safeguard: if you can't point at a `skills/` (or `dir()`) example for a call, treat it as
+  unverified and say so rather than emitting it.
 - **Generated script style.** Every `.py` you save uses the PyAutoGalaxy **workspace** style,
   not banner comments: an opening docstring (title underlined with `=`, short orientation,
   `__Contents__`), then each section introduced by a `"""__Section__"""` docstring carrying
@@ -248,8 +248,8 @@ When **not** in maintainer mode, commit at natural checkpoints (a script + its
   **The object-oriented plotters (`aplt.FitImagingPlotter`, `ImagingPlotter`, `GalaxyPlotter`,
   `GalaxiesPlotter`, `InversionPlotter`, …) and the `aplt.MatPlot2D` / `aplt.Include2D` /
   `aplt.Output` objects have been removed — do not use them.
-  They are the #1 stale-from-memory API error, especially on a harness with no code gate (a
-  connector chat).** Wrong:
+  They are the #1 stale-from-memory API error, especially on a harness without the code-gate
+  hook.** Wrong:
   `aplt.FitImagingPlotter(fit=fit, mat_plot_2d=aplt.MatPlot2D(...)).subplot_fit_imaging()`.
   Right:
   `aplt.subplot_fit_imaging(fit=fit, output_path="scripts/scratch/ngc1300/", output_format="png")`.

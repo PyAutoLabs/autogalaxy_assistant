@@ -34,8 +34,8 @@ radius as a silent default on real data.** A mask that cuts inside the outer iso
 biases `effective_radius` and `sersic_index`, so this is a science-critical choice, not a
 tidy-up.
 
-**If you cannot plot it yourself** — no code execution, for example a GitHub-connector chat
-— **the gate is not waived**: ask the user to plot and inspect the data, and to confirm both
+**If you cannot execute code in the current session** — a planning-only or read-only session,
+a harness whose tools are restricted — **the gate is not waived**: ask the user to plot and inspect the data, and to confirm both
 (a) contaminants and (b) the mask extent, before you compose the fit. These are the
 questions every real-data run must ask, on every harness.
 

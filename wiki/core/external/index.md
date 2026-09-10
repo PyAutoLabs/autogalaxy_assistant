@@ -20,7 +20,7 @@ sources:
       - docs/index.md
     pinned_commit: 65b14d7767da194a21bf0f3a4345f0790af86ed4
 last_updated: 2026-08-01
-content_sha256: 9447557d11fccb86afbba5157709c9e9e5c111f262a069d8206916440b3e0e87
+content_sha256: fb5df8953fdf58897e051173a8dd0b8a79c3e42a8be2196733e0cd76017b6083
 ---
 
 # External resources
@@ -66,9 +66,9 @@ per-script URLs, deliberately. Each repo ships its own **generated catalogue** a
 hand-written list does. Resolve the repo per
 [`../../../sources.yaml`](../../../sources.yaml) and read the catalogue.
 
-One operational caveat: in a connector chat, route from `llms.txt` only. `llms-full.txt`
-runs to tens of thousands of tokens and would weigh down every subsequent turn; grep it on
-a local harness instead.
+One operational caveat: route from `llms.txt` and grep `llms-full.txt` for the one script
+you need — never read `llms-full.txt` whole into context; it runs to tens of thousands of
+tokens and would weigh down every subsequent turn.
 
 Both catalogues define the same answer shape — **Start here → Then see → Related guide →
 Why this is the right example → What to modify → What needs local execution** — so an

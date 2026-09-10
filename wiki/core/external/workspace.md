@@ -17,7 +17,7 @@ sources:
       - scripts/guides/
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
 last_updated: 2026-08-01
-content_sha256: 91aa2b6462ef73af9a04308a11601467a2eab67c07ffe20e79bc0f6127cc9158
+content_sha256: d4c107f2d472ac67b2ac0a8ee8ba2a701763fe74420d25131d980b6ce8c9b41b
 ---
 
 # autogalaxy_workspace
@@ -38,12 +38,11 @@ galaxy plus a catalogue-driven member population) — the subject is still those
 Do **not** recite per-script paths from this page or from memory — they drift. The repo
 ships a catalogue at its **root**, regenerated to stay in sync with the actual files:
 
-- **`llms.txt`** — the compact routing layer: "Start here", "I want to…", the answer
-  shape, and a capability boundary for chat-only harnesses. Small enough to paste whole
-  into a chat that cannot browse GitHub.
-- **`llms-full.txt`** — the full per-script catalogue, one entry per example. **Do not
-  fetch this in a connector chat**: it is tens of thousands of tokens and weighs down every
-  later turn. Grep it on a local harness; route from `llms.txt` in chat.
+- **`llms.txt`** — the compact routing layer: "Start here", "I want to…", and the answer
+  shape. Small enough to read whole.
+- **`llms-full.txt`** — the full per-script catalogue, one entry per example. **Never read
+  it whole into context**: it is tens of thousands of tokens and weighs down every later
+  turn. Grep it for the script you need; route from `llms.txt`.
 - **`workspace_index.json`** — the same listing, machine-readable.
 
 Resolve `autogalaxy_workspace` the normal way (installed copy → sibling clone →

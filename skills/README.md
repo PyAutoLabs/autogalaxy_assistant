@@ -140,7 +140,7 @@ adds science, and neither is a substitute for the skills above.
   between becomes a code cell, so the physics and inference narrative survives the conversion.
   Stdlib-only, and the `.py` stays the source of truth.
 - [`ag_inspect_results_mcp.md`](./ag_inspect_results_mcp.md) — run and configure the read-only
-  results-inspector MCP server, so a chat harness with no code execution can list completed
+  results-inspector MCP server, so an MCP client (e.g. Claude Desktop) can list completed
   fits, read model and posterior summaries, render result images inline, and combine subplot
   panels or extract FITS HDUs across a whole sample at once.
 

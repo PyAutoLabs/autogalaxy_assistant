@@ -15,7 +15,7 @@ sources:
       - scripts/simulators/
     pinned_commit: ee283c9d18d40b9365c9194292f427bcaed797f3
 last_updated: 2026-08-07
-content_sha256: 9e34da30c7e7c22ed747398b4f51d4939dcc86e17780bc0a690118f33c79ae11
+content_sha256: b07ee66495e59438bb32b3771c53032264ceb52a2a2a0a292d0d228814e4ee33
 ---
 
 # HowToGalaxy
@@ -37,7 +37,7 @@ ships a catalogue at its **root**, regenerated to stay in sync with the tutorial
 
 - **`llms.txt`** — the compact routing layer: "Start here", the learning path by chapter,
   "I want to understand…", and the same answer shape the workspace navigator uses. Small
-  enough to paste whole into a chat that cannot browse GitHub.
+  enough to read whole.
 - **`llms-full.txt`** — the full per-tutorial catalogue with titles and one-line summaries.
 - **`workspace_index.json`** — the same listing, machine-readable.
 
