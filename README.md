@@ -80,7 +80,9 @@ Plot the data, then get the lie of the land before committing to a model. This i
 to use if you have not fitted a surface-brightness profile before; the assistant will lead
 with the physics and point you at the tutorial series.
 
-```
+<sub><b>Example Natural Language Prompt for Claude Code, Codex or other AI coding agent</b></sub>
+
+```text
 Find the bundled JWST imaging of the galaxy COSJ100020+015344 in
 dataset/imaging/cosj100020+015344, give me a short script that plots all four wavebands,
 and then — since I'm new to PyAutoGalaxy — give me an overview of the different ways we
@@ -93,7 +95,9 @@ A real multi-band structural measurement, including the sky pedestal this data a
 has. Expect the assistant to ask you about the mask extent and the faint neighbour before
 it starts fitting — that gate is deliberate and is not waived on any harness.
 
-```
+<sub><b>Example Natural Language Prompt for Claude Code, Codex or other AI coding agent</b></sub>
+
+```text
 Assistant mode.
 
 Fit the JWST F277W imaging in dataset/imaging/cosj100020+015344 with a multi-Gaussian
@@ -209,7 +213,9 @@ companion.
 The assistant itself stays the copilot; the project is its own repo. To start one, just say
 so:
 
-```
+<sub><b>Example Natural Language Prompt for Claude Code, Codex or other AI coding agent</b></sub>
+
+```text
 Start a science project for my COSJ100020+015344 structural analysis.
 ```
 
