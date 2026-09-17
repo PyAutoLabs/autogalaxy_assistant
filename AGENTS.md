@@ -56,10 +56,14 @@ deliberate refactor). Two are NEVER overridden: the real-data gate and never-rew
   `imaging/start_here.py` masking section. Simulated data is exempt.
 - **Code gate.** A PreToolUse hook validates PyAuto* symbols against the installed library
   and blocks ones written from memory. If blocked, don't guess — grep `skills/` or introspect
-  `dir()`, then re-run. The hook fires only on harnesses with hook support (Claude Code);
-  **on any other harness (Codex, OpenCode, Gemini CLI, an IDE agent) self-enforce it**: run
+  `dir()`, then re-run. Claude Code and Codex both register this hook from their
+  project config. In Codex, review and trust the current project-hook hash with `/hooks`;
+  changed or untrusted hooks are skipped. **On any other harness (OpenCode, Gemini CLI,
+  an IDE agent) self-enforce it**: run
   `python autoassistant/audit_skill_apis.py --code "<snippet>"` (or `--file <script.py>`) on
-  generated PyAuto* code before executing it. Bypass a genuine edge case with
+  generated PyAuto* code before executing it. Codex registers the PreToolUse safety gates,
+  not the separate Claude remote-session Python bootstrap; use `source activate.sh` normally.
+  Bypass a genuine edge case with
   `PYAUTO_SKIP_API_GATE=1`. The other four checks, and this one's manual form, are documented
   in [`skills/ag_audit_skill_apis.md`](./skills/ag_audit_skill_apis.md).
 - **Never write into `output/`** (PyAutoFit runtime) **or `sources/`** (cloned repos);
