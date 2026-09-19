@@ -1,0 +1,1 @@
+../../skills/ag_configure_search.md

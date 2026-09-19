@@ -87,7 +87,7 @@ deliberate refactor). Two are NEVER overridden: the real-data gate and never-rew
 Map every request onto one or more layers:
 
 1. **Instructions** (this file, `README.md`) — meta.
-2. **Skills** (`skills/*.md`, symlinked into `.claude/skills/`) — *procedural*: how to do a
+2. **Skills** (`skills/*.md`, exposed through generated Claude and Codex adapters) — *procedural*: how to do a
    task. Library-API skills are `ag_<task>.md` and produce/evolve a Python script;
    project-workflow skills (`start-new-project.md`, `contribute-upstream.md`) drive repo-level
    operations. Skills starting with `_` (`_style.md`, `_bootstrap_skill.md`) are meta-skills —
@@ -182,7 +182,7 @@ frontmatter `description:` of `skills/*.md` for a topical question.
 When no skill fits, follow [`skills/_bootstrap_skill.md`](./skills/_bootstrap_skill.md):
 confirm scope, read `_style.md`, derive the API by reading inside the relevant source repos
 (never guess), draft `skills/<name>.md`, add a wiki page if needed, register it in
-`skills/README.md`, and add a `.claude/skills/<name>.md` symlink.
+`skills/README.md`, and regenerate both discovery surfaces as described there.
 
 ---
 
