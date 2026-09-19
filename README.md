@@ -47,14 +47,14 @@ computer and inspects the results. That is what lets it install **PyAutoGalaxy**
 models and look at the figures they produce. You do not have to run anything to use it: asking questions, planning an
 analysis, discussing a paper or learning in Teacher Mode all happen inside the same agent.
 
-1. **Choose Claude Code or Codex.** These are the two recommended agents and the ones the assistant is developed and
-   tested against. Their setup pages live in the sibling assistant and apply here with this repository's URL:
+1. **Choose Claude Code or Codex.** These are the two recommended agents. Codex discovery and safety adapters have
+   focused validation; full science fits depend on the local environment. Their setup pages live in the sibling assistant and apply here with this repository's URL:
    [Claude Code](https://github.com/PyAutoLabs/autolens_assistant/blob/main/docs/setup/claude_code.md) ·
    [Codex](https://github.com/PyAutoLabs/autolens_assistant/blob/main/docs/setup/codex_cli.md). For sustained
    scientific work expect to pay for one of them, but how depends on your situation: a personal subscription, access
    through your institution or team, or usage-based API billing. Check the provider's current plans rather than
-   assuming a subscription is the only route. Desktop and IDE versions of either agent are fine, provided they can
-   read this repository and execute code.
+   assuming a subscription is the only route. The setup below uses the CLI; the linked smoke record describes
+   its tested coverage.
 2. **Open the assistant workspace.** Clone this repository and start the agent inside it — the instructions load
    automatically, and the assistant installs PyAutoGalaxy for you if it is missing:
 
