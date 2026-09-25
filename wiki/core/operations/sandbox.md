@@ -32,7 +32,7 @@ sources:
       - .claude/hooks/validate_pyauto_code.py
     pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
 last_updated: 2026-08-28
-content_sha256: 3553e7402d294a3d1ad5d92d0254979915c9fb474a8bba95ad00b6d38a768de6
+content_sha256: a4e87d90bf0a24db2e0491c5752dd3c075645ff3e05ec678a3467a4987180bbb
 ---
 
 # Sandbox / restricted-environment configuration
@@ -73,7 +73,10 @@ installed, `PyAutoNerves:autonerves/jax_wrapper.py` enables the persistent compi
 cache at `$XDG_CACHE_HOME/pyauto_jax` (or `~/.cache/pyauto_jax`) so that the minutes spent
 compiling a model/data shape are paid once per machine rather than once per process. Point
 `JAX_COMPILATION_CACHE_DIR` somewhere writable in a sandbox, or set it to the **empty
-string** to disable the cache entirely. The same module sets `XLA_FLAGS` and
+string** to disable the cache entirely. On a shared/HPC checkout (`PYAUTO_HPC_BASE` set),
+`activate.sh` points it — and the pip, matplotlib, numba, CUDA/Triton and astropy caches — at
+`$PYAUTO_HPC_CACHE` (default: a `.cache/` next to `PYAUTO_HPC_BASE`), filling only unset
+variables, so they stay off a small `/home` disk. The same module sets `XLA_FLAGS` and
 `JAX_ENABLE_X64=True` before JAX is imported, which is why every workspace script that
 uses JAX begins with `from autogalaxy import jax_wrapper` *before* its other imports —
 setting them after JAX has loaded has no effect.

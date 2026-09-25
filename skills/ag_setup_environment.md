@@ -152,7 +152,10 @@ a deliberate choice of yours is never overridden.
 `$XDG_CACHE_HOME/pyauto_jax` (or `~/.cache/pyauto_jax`) so the minutes spent compiling a
 given model/data shape are paid once per machine rather than once per process. In a
 sandbox, point `JAX_COMPILATION_CACHE_DIR` somewhere writable, or set it to the **empty
-string** to disable the cache outright. The same module sets `XLA_FLAGS` and
+string** to disable the cache outright. On a shared/HPC checkout (`PYAUTO_HPC_BASE` set),
+`activate.sh` points it — and the pip, matplotlib, numba, CUDA/Triton and astropy caches — at
+`$PYAUTO_HPC_CACHE` (default: a `.cache/` next to `PYAUTO_HPC_BASE`) so they stay off a
+small `/home` disk. The same module sets `XLA_FLAGS` and
 `JAX_ENABLE_X64=True` *before* JAX is imported — which is why workspace scripts that use
 JAX open with `from autogalaxy import jax_wrapper` ahead of their other imports. Setting
 those after JAX has loaded has no effect, so an import you reorder "for tidiness" can

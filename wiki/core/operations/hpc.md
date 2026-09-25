@@ -15,7 +15,7 @@ sources:
       - skills/ag_run_search.md
     pinned_commit: a083753c217e6d9c07f3c9cc40cb7133b478a439
 last_updated: 2026-08-01
-content_sha256: 63f54059086daa7fb771ae0e3de4ae8a3355eb980a0694141226c8a1dc671a82
+content_sha256: a376137aa3a9b127f96b9cad31a36d6d028a951ba08f54968afa0d4eb9ebe4f3
 ---
 
 # HPC and cluster runs
@@ -127,20 +127,28 @@ Rough shapes to start from: a linear bulge-plus-disk or MGE fit on a masked cuto
 a GPU and tens of minutes on four CPU cores; a pixelised reconstruction is hours, and is the
 case that wants both the memory and the wall-clock headroom.
 
-## Cache directories, one per job
+## Cache directories, off `$HOME` and `/tmp`
 
-Numba and matplotlib both write caches, and two jobs sharing a cache directory corrupt each
-other. Point them at per-job scratch:
+On many clusters `/home` (and `/tmp`, often `$TMPDIR` too) sits on each node's small root disk,
+and tools that default to `~/.cache` — numba, matplotlib, pip, CUDA/Triton kernels, astropy and
+the PyAutoNerves JAX compilation cache — fill it and break the node. On a shared/HPC checkout
+(`PYAUTO_HPC_BASE` set), `activate.sh` therefore points every one of them at
+`$PYAUTO_HPC_CACHE`, which defaults to a `.cache/` next to `PYAUTO_HPC_BASE` on the shared
+project filesystem. It fills only *unset* variables, so a submit script's own choice wins.
+Never send these caches to `~/.cache` or `/tmp` on such a node.
+
+Numba and matplotlib caches can collide when many jobs write the same directory at once. If
+that bites, give each job its own subdirectory of the cache root — still off the root disk:
 
 ```bash
-export NUMBA_CACHE_DIR=$TMPDIR/numba_cache
-export MPLCONFIGDIR=$TMPDIR/matplotlib
+export NUMBA_CACHE_DIR=$PYAUTO_HPC_CACHE/numba/$SLURM_JOB_ID
+export MPLCONFIGDIR=$PYAUTO_HPC_CACHE/matplotlib/$SLURM_JOB_ID
 ```
 
-JAX has a third cache — the persistent compilation cache at `~/.cache/pyauto_jax` — which is
-usually a *benefit* on a cluster, since every array task fitting the same model and data shape
-pays the compile once between them. Redirect it with `JAX_COMPILATION_CACHE_DIR` if the home
-filesystem is unwritable or quota-limited, and see
+The JAX compilation cache (`$PYAUTO_HPC_CACHE/pyauto_jax` under `activate.sh`, otherwise
+`~/.cache/pyauto_jax`) is usually a *benefit* on a cluster, since every array task fitting the
+same model and data shape pays the compile once between them. A submit that exports its own
+`JAX_COMPILATION_CACHE_DIR` still wins, and an empty value disables the cache; see
 [`operations/sandbox`](./sandbox.md) for the full set.
 
 ## Filesystems, output and resuming
