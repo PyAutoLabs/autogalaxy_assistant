@@ -39,6 +39,13 @@ Brain checkout and registered workspace body map.
   row in [`../wiki/core/external/skill_citation_map.md`](../wiki/core/external/skill_citation_map.md).
   Add the row in the same change as the skill; a skill whose row is entirely `_` (every
   maintenance and workflow skill today) omits the block.
+## Feedback
+
+- [`feedback.md`](./feedback.md) — draft user-reviewed experience feedback with
+  `/feedback`, `/feedback retrospective <selected sources>` or `/feedback invite`.
+  No automatic posting or telemetry; the user submits to the Discussions hub.
+  This standalone copy is generated from Brain’s canonical feedback workflow.
+
 
 ## Index — what exists today
 
