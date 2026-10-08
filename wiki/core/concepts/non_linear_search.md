@@ -18,7 +18,7 @@ sources:
       - scripts/guides/results/start_here.py
     pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
 last_updated: 2026-08-07
-content_sha256: ba0c3184a95974fbc10e01db065da181d87421ea985694a5da56e384f13a7240
+content_sha256: 2bc7dd5c9f5c7dcd223ae17c6cdbdf3314b0a34c906b758cf33235ddf6a4e260
 ---
 
 # The non-linear search
@@ -116,15 +116,18 @@ them when you know why.
 **Nested sampling** — `af.DynestyStatic`, `af.DynestyDynamic`. Dynesty with random-walk
 sampling (`sample="rwalk"`) was the default before Nautilus and remains a good independent
 cross-check. It is also the **recommended search for ellipse fitting**, where testing found
-it the most accurate and efficient.
+it the most accurate and efficient. `af.NSS` (nested slice sampling via BlackJAX) runs the
+whole sampler inside `jax.jit` and needs a JAX-traceable analysis (`use_jax=True`).
 
 **MCMC** — `af.Emcee` (affine-invariant ensemble) and `af.Zeus` (ensemble slice sampler).
 Zeus is the better of the two for this problem class in the workspace's testing, though
 neither matches Nautilus. Both characterise a posterior well *around a mode you have already
 found* and are poor at finding modes from scratch. Both support convergence checking via
-`af.AutoCorrelationsSettings`.
+`af.AutoCorrelationsSettings`. The JAX gradient samplers `af.BlackJAXNUTS` and `af.SMC`
+(adaptive tempered sequential Monte Carlo, which also returns the evidence) need
+`use_jax=True`.
 
-**Optimisation** — `af.LBFGS`, a single-start quasi-Newton method. Fast in principle;
+**Optimisation** — `af.LBFGS` and `af.BFGS`, single-start quasi-Newton methods. Fast in principle;
 in practice galaxy parameter spaces are too complex for it without careful initialisation,
 which is exactly the weakness `MultiStartProdigy` was built to fix.
 

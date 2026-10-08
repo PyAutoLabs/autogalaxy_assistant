@@ -171,6 +171,8 @@ Reach for these only when you know why. All are tabulated with full argument lis
 |---|---|
 | `af.Zeus` | Ensemble MCMC **slice** sampler; the best-performing MCMC in the workspace's tests, though still behind Nautilus. Good for characterising a posterior around a mode you already found. |
 | `af.Emcee` | The familiar affine-invariant ensemble sampler. Same role as Zeus, generally a little worse on these parameter spaces. |
+| `af.NSS` | Nested slice sampling via BlackJAX, run entirely inside `jax.jit`. Needs a JAX-traceable analysis (`use_jax=True`); returns the evidence like the other nested samplers. |
+| `af.BlackJAXNUTS` / `af.SMC` | JAX gradient MCMC: the No-U-Turn sampler, and BlackJAX adaptive tempered sequential Monte Carlo (which also returns the evidence). Both need `use_jax=True`. |
 | `af.LBFGS` / `af.BFGS` | Single-start quasi-Newton descent via SciPy. Fast in principle, but galaxy-model parameter spaces are usually too complex to use it without careful initialisation — `MultiStartProdigy` exists to fix exactly that. |
 | `af.Drawer` | Not a search: draws models from the prior and evaluates them. A diagnostic for "are my priors sane and does my likelihood run at all?", and the workspace's one-draw container for collecting many completed fits into a single output folder (`total_draws=1`). |
 
