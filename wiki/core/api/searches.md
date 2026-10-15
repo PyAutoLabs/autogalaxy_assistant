@@ -14,7 +14,7 @@ sources:
       - autofit/non_linear/initializer.py
       - autofit/non_linear/grid/
       - autofit/config/non_linear/
-    pinned_commit: 67c4090f05fa19f10b028fe2dee2e9d8adfbcbf0
+    pinned_commit: 3f4699b959e387b2eddca4508585c7812dc557be
   - project: autogalaxy_workspace
     paths:
       - scripts/guides/modeling/searches.py
@@ -29,8 +29,8 @@ sources:
       - config/non_linear/GridSearch.yaml
       - config/general.yaml
     pinned_commit: ed72fabb33e14a9a701a4d280e8775dd3a20e98c
-last_updated: 2026-08-01
-content_sha256: bfae75e9e59dfa77b2477ef56426828e889e8df2fa13111cc00bc9c4e015a9de
+last_updated: 2026-10-15
+content_sha256: 4cca378ac23d92ecbd5467a083365f23ffb557c7e9845c56b62feab5b5b99140
 ---
 
 # Non-linear search catalogue
@@ -56,6 +56,36 @@ when you need a number you can quote. Everything else below is a cross-check or 
 The runnable tour of the whole menu is
 `autogalaxy_workspace:scripts/guides/modeling/searches.py`; conceptual background is
 [`../concepts/non_linear_search`](../concepts/non_linear_search.md).
+
+## The installed roster
+
+Generated from the installed release's search manifest
+(`python -m autofit search-manifest --json`) — regenerate with PyAutoHands
+`autohands regenerate_search_roster --root .`, never by hand. `JAX: required` searches need
+`use_jax=True`; `experimental` ones may still change defaults. The full capability matrix:
+https://pyautofit.readthedocs.io/en/latest/searches/index.html. The pick table at the end of
+this page is hand-written.
+
+<!-- search-roster:begin style=table -->
+<!-- search-manifest@1 autofit 2026.10.12.1 -->
+| Search | Family | Status | JAX | Gradient | Evidence | Posterior | Example |
+|---|---|---|---|---|---|---|---|
+| `af.Emcee` | mcmc | stable | none | none | no | chain | `autofit_workspace:scripts/searches/mcmc.py` |
+| `af.Zeus` | mcmc | stable | none | none | no | chain | `autofit_workspace:scripts/searches/mcmc.py` |
+| `af.BlackJAXNUTS` | mcmc | stable | required | uses | no | chain | `autofit_workspace:scripts/searches/mcmc.py` |
+| `af.SMC` | mcmc | experimental | required | uses | yes | weighted | — |
+| `af.DynestyStatic` | nest | stable | optional | none | yes | weighted | `autofit_workspace:scripts/searches/nest.py` |
+| `af.DynestyDynamic` | nest | stable | optional | none | yes | weighted | `autofit_workspace:scripts/searches/nest.py` |
+| `af.Nautilus` | nest | stable | optional | none | yes | weighted | `autofit_workspace:scripts/searches/nest.py` |
+| `af.NSS` | nest | experimental | required | none | yes | weighted | — |
+| `af.Drawer` | mle | stable | none | none | no | point | `autofit_workspace:scripts/searches/mle.py` |
+| `af.BFGS` | mle | stable | optional | none | no | point | — |
+| `af.LBFGS` | mle | stable | optional | none | no | point | `autofit_workspace:scripts/searches/mle.py` |
+| `af.MultiStartAdam` | mle | stable | required | uses | no | point | `autofit_workspace:scripts/searches/mle.py` |
+| `af.MultiStartADABelief` | mle | experimental | required | uses | no | point | — |
+| `af.MultiStartLion` | mle | experimental | required | uses | no | point | — |
+| `af.MultiStartProdigy` | mle | stable | required | uses | no | point | — |
+<!-- search-roster:end -->
 
 ## Nested sampling
 

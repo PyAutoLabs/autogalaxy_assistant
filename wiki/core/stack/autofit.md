@@ -10,9 +10,9 @@ sources:
       - autofit/config/
       - pyproject.toml
       - README.md
-    pinned_commit: 67c4090f05fa19f10b028fe2dee2e9d8adfbcbf0
-last_updated: 2026-08-01
-content_sha256: 61e26d39226e27ffbd64d814f18476c0fc5595d960e53539b7f82cb1d1998e58
+    pinned_commit: 3f4699b959e387b2eddca4508585c7812dc557be
+last_updated: 2026-10-15
+content_sha256: 5a82ea2f34e0a4bffe4d9ee2855a957c100ceb75df219b514afc2ca447691e48
 ---
 
 # PyAutoFit — model composition + non-linear search
@@ -67,6 +67,17 @@ PyAutoFit ships a catalogue of samplers and optimisers, all callable via the sam
 - **`af.LBFGS`** / **`af.BFGS`** / **`af.Drawer`** — gradient descent / random draws
   (initialisation and debugging).
 - **`af.BlackJAXNUTS`** — Hamiltonian Monte Carlo via blackjax (optional dependency).
+
+The full roster, generated from the installed release's search manifest
+(`python -m autofit search-manifest --json`; regenerate with PyAutoHands
+`autohands regenerate_search_roster --root .`, never by hand):
+
+<!-- search-roster:begin style=list -->
+<!-- search-manifest@1 autofit 2026.10.12.1 -->
+- **Markov chain Monte Carlo** (`mcmc`): `af.Emcee`, `af.Zeus`, `af.BlackJAXNUTS`, `af.SMC` (experimental) — example: `autofit_workspace:scripts/searches/mcmc.py`
+- **Nested sampling** (`nest`): `af.DynestyStatic`, `af.DynestyDynamic`, `af.Nautilus`, `af.NSS` (experimental) — example: `autofit_workspace:scripts/searches/nest.py`
+- **Maximum likelihood / maximum a posteriori** (`mle`): `af.Drawer`, `af.BFGS`, `af.LBFGS`, `af.MultiStartAdam`, `af.MultiStartADABelief` (experimental), `af.MultiStartLion` (experimental), `af.MultiStartProdigy` — example: `autofit_workspace:scripts/searches/mle.py`
+<!-- search-roster:end -->
 
 Sources: `PyAutoFit:autofit/non_linear/search/`.
 
