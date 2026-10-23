@@ -118,24 +118,26 @@ domain), and the maintainer smoke tests below.
 `benchmarks/RESULTS.md`. A newborn starts with empty runs and regenerates `RESULTS.md` via
 `python autoassistant/benchmark.py report`.
 
-## Chat-surface compatibility smoke test
+## Agent and chat compatibility smoke test
 
-Run these checks after documentation changes are available on the public GitHub repository. Do
-not claim a surface is tested merely because its documentation says repository access is
-supported.
+The user-facing routes are listed on the shared
+[PyAutoLabs AI options page](https://github.com/PyAutoLabs/PyAutoScientist/blob/main/AI_OPTIONS.md):
+Claude Code and Codex recommended, GitHub Copilot CLI and OpenCode as free routes (documented,
+not benchmarked), and chat with a GitHub connector for discussion only. Change that page, not
+this repository, when the routes change. Do not claim a route is tested merely because its
+documentation says repository access is supported.
 
-- **ChatGPT with GitHub access:** provide the repository URL and the bootstrap prompt from
-  [`llms.txt`](../llms.txt); ask it to name the exact instruction, skill-index, and wiki files
-  it read before answering one installation question and one modelling question.
-- **ChatGPT without GitHub access:** attach `llms.txt`, `AGENTS.md`, and one selected skill;
-  confirm it states the capability boundary and requests missing local evidence rather than
-  pretending to inspect files.
+- **Copilot CLI or OpenCode with a named model:** run one benchmark prompt from the repository
+  root. Confirm it reads `AGENTS.md`, runs `autoassistant/audit_skill_apis.py` on generated
+  code, and can describe a plotted figure (vision).
+- **Chat with a GitHub connector (Claude.ai, ChatGPT):** attach the repository and use the
+  opening prompt from the AI options page; ask it to name the instruction, skill-index and wiki
+  files it read before answering one installation question and one modelling question. Confirm
+  it produces commands for the user to run instead of claiming execution.
 - **Codex web:** connect the repository, ask it to summarize the active `AGENTS.md`
   constraints, then request a read-only plan for a small modelling task. Confirm it grounds the
   plan in the relevant skill and does not make an unrequested edit or pull request.
-- **Non-agentic CLI/chat:** provide the same bootstrap and either browsing access or attached
-  files; confirm it produces commands for the user to run instead of claiming execution.
 
-Record the surface, date, plan/account context, files successfully loaded, and any limitations.
-Plan availability changes, so test results should describe observed behavior rather than promise
-that a feature is free for every user.
+Record the route, model, date, plan/account context, files successfully loaded, and any
+limitations. Plan availability changes, so test results should describe observed behavior rather
+than promise that a feature is free for every user.

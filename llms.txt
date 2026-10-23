@@ -4,15 +4,15 @@
 
 ## How to use it
 
-The assistant is supported **only inside an AI coding agent** that can read this repository and execute Python: **Claude Code** or **Codex** (recommended and tested), or **OpenCode** as an experimental alternative. Clone the repository and open the agent inside it — `AGENTS.md` (via `CLAUDE.md` for Claude Code) loads automatically and nothing else is needed:
+The assistant is supported **only inside an AI coding agent** that can read this repository and execute Python: **Claude Code** or **Codex** (recommended and tested). Free options (GitHub Copilot CLI, OpenCode) are on the [PyAutoLabs AI options page](https://github.com/PyAutoLabs/PyAutoScientist/blob/main/AI_OPTIONS.md). Clone the repository and open the agent inside it; `AGENTS.md` loads automatically and nothing else is needed:
 
 ```bash
 git clone https://github.com/PyAutoLabs/autogalaxy_assistant.git
 cd autogalaxy_assistant
-claude        # or: codex / opencode
+claude        # or: codex
 ```
 
-Then paste one of the two starter prompts in the [README](./README.md). Desktop and IDE versions of these agents are fine when they provide the same repository and execution access. Browser chats with a GitHub connector are **no longer supported** (retired 2026-09-10; see [`docs/archive/`](./docs/archive/)).
+Then paste one of the two starter prompts in the [README](./README.md). Desktop and IDE versions of these agents are fine when they provide the same repository and execution access. Browser chats with a GitHub connector can read the repository for discussion but cannot run code; see the AI options page.
 
 Agentic does not mean autonomous: you can ask questions, plan an analysis or learn in **Teacher Mode** without running anything — say so in your prompt.
 

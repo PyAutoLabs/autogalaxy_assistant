@@ -118,7 +118,6 @@ reproducible-science subset; generate the thin assistant layer; refer back for e
   README.md                 # front door: reproduce + continue-this-work (template below)
   AGENTS.md                 # thin: project context + refer-back + locate rule (below)
   CLAUDE.md                 # one-line `@AGENTS.md` stub
-  .gemini/settings.json     # context.fileName -> AGENTS.md
   .claude/settings.json     # PyAuto* API code-gate via refer-back (below)
   project.yaml              # minimal manifest incl. assistant_ref (below)
   config/  activate.sh  scripts/        # copied above
@@ -174,7 +173,7 @@ This project ships the assistant's PyAuto* **API code-gate** (`.claude/settings.
 Bash runs generated PyAuto* code, a hook resolves the assistant (same order as above) and
 validates the symbols against the installed stack, denying code written from memory. It fails
 open if no assistant clone is found. Only Claude Code runs `.claude/` hooks — on any other
-harness (Codex, OpenCode, Gemini CLI), self-enforce it: run
+harness (Codex, GitHub Copilot CLI, OpenCode), self-enforce it: run
 `python <resolved-assistant>/autoassistant/audit_skill_apis.py --code "<snippet>"` (or
 `--file <script.py>`) on generated PyAuto* code before executing it; never guess symbols.
 
