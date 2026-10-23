@@ -42,32 +42,24 @@ empirical one, and it is the dominant systematic in any fit to this data.
 
 ### Setting up the assistant
 
-The assistant runs inside an **AI coding agent** — a tool that reads this repository, executes Python on your
-computer and inspects the results. That is what lets it install **PyAutoGalaxy**, plot your `.fits` data, run galaxy
-models and look at the figures they produce. You do not have to run anything to use it: asking questions, planning an
-analysis, discussing a paper or learning in Teacher Mode all happen inside the same agent.
+The assistant runs inside an **AI coding agent**: a tool that reads this repository, runs Python on your computer and
+inspects the results. That is what lets it install **PyAutoGalaxy**, plot your `.fits` data, run galaxy models and
+look at the figures they produce. You do not have to run anything to use it: asking questions, planning an analysis,
+discussing a paper or learning in Teacher Mode all happen inside the same agent.
 
-1. **Choose Claude Code or Codex.** These are the two recommended agents. Codex discovery and safety adapters have
-   focused validation; full science fits depend on the local environment. Their setup pages live in the sibling assistant and apply here with this repository's URL:
-   [Claude Code](https://github.com/PyAutoLabs/autolens_assistant/blob/main/docs/setup/claude_code.md) ·
-   [Codex](https://github.com/PyAutoLabs/autolens_assistant/blob/main/docs/setup/codex_cli.md). For sustained
-   scientific work expect to pay for one of them, but how depends on your situation: a personal subscription, access
-   through your institution or team, or usage-based API billing. Check the provider's current plans rather than
-   assuming a subscription is the only route. The setup below uses the CLI; the linked smoke record describes
-   its tested coverage.
-2. **Open the assistant workspace.** Clone this repository and start the agent inside it — the instructions load
-   automatically, and the assistant installs PyAutoGalaxy for you if it is missing:
+Claude Code and Codex are recommended. Free options and chat use are on the
+[PyAutoLabs AI options page](https://github.com/PyAutoLabs/PyAutoScientist/blob/main/AI_OPTIONS.md).
 
-   ```bash
-   git clone https://github.com/PyAutoLabs/autogalaxy_assistant.git
-   cd autogalaxy_assistant
-   claude        # or: codex
-   ```
+Clone this repository and start the agent inside it. The instructions load automatically, and the assistant installs
+PyAutoGalaxy for you if it is missing:
 
-3. **Submit one of the starter prompts** below.
+```bash
+git clone https://github.com/PyAutoLabs/autogalaxy_assistant.git
+cd autogalaxy_assistant
+claude        # or: codex
+```
 
-If you cannot use either agent, OpenCode is an **experimental alternative** — see
-[Experimental alternatives](#experimental-alternatives) for what that does and does not mean.
+Then submit one of the starter prompts below.
 
 ## Two Starter Prompts
 
@@ -176,28 +168,6 @@ disbelieve yet. That, and everything else this assistant does not do, is in
 
 The phased build is tracked at
 [PyAutoBrain#188](https://github.com/PyAutoLabs/PyAutoBrain/issues/188).
-
-## Experimental alternatives
-
-**Conversational chat routes are no longer supported.** Ordinary ChatGPT or Claude chat with a GitHub connector, the
-sibling PyAutoLens custom GPT and uploaded knowledge packs were previously offered as ways to use the assistant. They
-cannot execute code or inspect data, so the safeguards the assistant relies on (current-API verification, looking at
-the data before fitting, checking results) could not be enforced. The old README text is kept with an unsupported
-notice under [`docs/archive/`](docs/archive/), and is not maintained.
-
-**OpenCode** is an open-source coding agent whose *client* is free. Model access is separate: you connect it to a
-provider, and the cost, capability and availability of the model are the provider's, not OpenCode's. Some providers
-offer free models, often as limited-time offerings, and not every model can drive the assistant — it must handle
-multi-step tool use and be able to look at figures, which free models frequently cannot. **No free provider/model
-configuration has yet been validated against this assistant's benchmarks**, so treat OpenCode as compatible rather
-than tested. Setup and caveats are on the sibling assistant's
-[OpenCode page](https://github.com/PyAutoLabs/autolens_assistant/blob/main/docs/setup/opencode_cli.md); use this
-repository's URL. Please report what worked (and what did not) in an
-[issue](https://github.com/PyAutoLabs/autogalaxy_assistant/issues).
-
-Maintainer-facing notes on evaluating further agents (including Gemini CLI, which this repository's
-`.gemini/settings.json` still points at `AGENTS.md`) are in the sibling assistant's
-[`docs/evaluation/agent_evaluation.md`](https://github.com/PyAutoLabs/autolens_assistant/blob/main/docs/evaluation/agent_evaluation.md).
 
 ## Science Project
 
