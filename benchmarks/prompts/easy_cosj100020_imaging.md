@@ -44,7 +44,7 @@ fit so I get a Sersic index to compare against, and then tell me how the recover
 structure changes across the other three wavebands.
 ```
 
-This is Starter Prompt 2 of the top-level [`README.md`](../../README.md); the two texts must
+This is the "Already know PyAutoGalaxy?" prompt of the top-level [`README.md`](../../README.md); the two texts must
 stay identical (a divergence is a bug — fix the README or bump this card's `version`).
 `autoassistant/tests/test_benchmark.py::test_repo_readme_prompts_match_cards` enforces it.
 

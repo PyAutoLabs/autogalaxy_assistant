@@ -12,7 +12,7 @@ cd autogalaxy_assistant
 claude        # or: codex
 ```
 
-Then paste one of the two starter prompts in the [README](./README.md). Desktop and IDE versions of these agents are fine when they provide the same repository and execution access. Browser chats with a GitHub connector can read the repository for discussion but cannot run code; see the AI options page.
+Then paste one of the two prompts in the [README](./README.md) ("Starting prompt" or "Already know PyAutoGalaxy?"). Desktop and IDE versions of these agents are fine when they provide the same repository and execution access. Browser chats with a GitHub connector can read the repository for discussion but cannot run code; see the AI options page.
 
 Agentic does not mean autonomous: you can ask questions, plan an analysis or learn in **Teacher Mode** without running anything — say so in your prompt.
 
