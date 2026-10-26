@@ -33,6 +33,7 @@ Use the existing skills, not new docs:
 - API gate / version baseline → `autoassistant/audit_skill_apis.py` directly (`--scope all`,
   `--lint-idioms`, `--check-citations`, `--check-version`, `--write-baseline`), documented by
   [`skills/ag_audit_skill_apis.md`](../skills/ag_audit_skill_apis.md).
+- Colab Gemini skill map (`colab/contexts.yaml`) → [`skills/ag_refresh_colab_contexts.md`](../skills/ag_refresh_colab_contexts.md).
 
 ## Release-time wiki-currency check (two triggers, one check)
 

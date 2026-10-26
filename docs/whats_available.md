@@ -16,8 +16,8 @@ what comes next and what is deliberately left out. No file in this repository li
   cluster fields, and search chaining.
 - **Two ways to use your results.** Converting a generated script into a Jupyter notebook, and a read-only results
   browser (an MCP server) for looking through and comparing your finished fits from an app that can't run code.
-  Alongside these sit two meta-skills, two project-workflow skills, one literature skill and three
-  repository-maintenance skills: twenty-seven in total, listed in [`skills/README.md`](../skills/README.md).
+  Alongside these sit two meta-skills, two project-workflow skills, one literature skill and four
+  repository-maintenance skills: twenty-eight in total, listed in [`skills/README.md`](../skills/README.md).
 - **The reference wiki**, [`wiki/core/`](../wiki/core/index.md): 39 pages across `stack/`, `api/`, `concepts/`,
   `operations/` and `external/`. Every page records the source commits it was checked against.
 - **The literature wiki**, [`wiki/literature/`](../wiki/literature/index.md): a galaxy-structure science reference

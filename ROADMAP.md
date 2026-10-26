@@ -17,7 +17,7 @@ file too:
 > script, never from memory, because older PyAutoGalaxy releases are heavily represented in
 > model training data.
 
-What *is* written is indexed in [`skills/README.md`](./skills/README.md) (twenty-seven skills),
+What *is* written is indexed in [`skills/README.md`](./skills/README.md) (twenty-eight skills),
 [`wiki/core/index.md`](./wiki/core/index.md) (the reference wiki, complete) and
 [`wiki/literature/index.md`](./wiki/literature/index.md) (the science reference).
 
