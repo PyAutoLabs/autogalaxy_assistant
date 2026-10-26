@@ -1,0 +1,196 @@
+# Colab Gemini instructions — which assistant skills travel with which notebook.
+#
+# Colab's Gemini sidebar cannot read this repository, but it honours per-notebook
+# instructions stored in the notebook's metadata (`metadata.colab.aiContexts` +
+# `selectedAiContext`). At release time PyAutoHands (`autohands/build_util.py`,
+# `inject_gemini_instructions`) writes one such instruction into every generated
+# autogalaxy_workspace and HowToGalaxy notebook, assembled from this file:
+#
+#     preface  +  rules (with {notebook} and {repo} filled in)  +  each mapped skill's text
+#
+# The skills stay here (single source); notebooks carry a release-time snapshot only.
+#
+# Matching
+#   Each notebook is named "<repo>/<path relative to the repo root>", e.g.
+#   "autogalaxy_workspace/notebooks/imaging/modeling.ipynb" or
+#   "HowToGalaxy/notebooks/chapter_2_modeling/tutorial_1_non_linear_search.ipynb".
+#   `match` is an fnmatch glob over that name (`*` also crosses `/`).
+#   The FIRST entry in `contexts` whose glob matches wins, so entries are written
+#   most specific first. A notebook no entry matches gets `default`.
+#
+# Limits
+#   Every assembled context must stay within `cap` (below) characters. Generation fails,
+#   naming the entry, rather than truncating; `python -m autoassistant.colab_contexts
+#   check` (CI: .github/workflows/colab-contexts.yml) checks every entry here first.
+#   Skills listed under `never_map` (maintainer and agent-infrastructure skills that
+#   only make sense with the repository checked out) may not be mapped.
+#
+# Upkeep: when a skill is added or renamed, or the workspace gains a folder, update
+# the entries here and rerun the check; `autohands gemini_context report` lists the
+# notebooks that only reach `default`.
+
+name: PyAutoGalaxy assistant
+
+# Per-assistant cap (default 20,000; ceiling 50,000). Human 2026-10-26: ag skills are
+# 21-32k each; one skill per notebook; lower once the ag skills are trimmed — see Mind
+# follow-up.
+cap: 36000
+
+# The project key this assistant's own notebooks would be stamped with. It sets the
+# instruction's id, so it matches the id PyAutoHands gives autogalaxy_workspace.
+project: autogalaxy
+
+preface: |
+  These instructions were prepared by the PyAutoGalaxy assistant
+  (https://github.com/PyAutoLabs/autogalaxy_assistant). The reference material at the
+  end was written for a coding agent working inside a checkout of that repository.
+  Here in Google Colab there is no checkout: ignore any step about repository files,
+  hooks, `scripts/` or `wiki/` paths, saving scripts, or terminal tools, and use the
+  PyAutoGalaxy knowledge in that material to help with this notebook.
+
+rules: |
+  You are helping someone work through a PyAutoGalaxy notebook ({notebook} in {repo}).
+  Explain what it does and help them adapt it to their own questions.
+
+  Core rules:
+  1. Stay with this notebook's API. Only use PyAutoGalaxy calls that appear in the
+     notebook or in the reference material below. Never invent class names, functions
+     or arguments. If you are unsure whether something exists, say so and suggest
+     checking with `dir()` or the PyAutoGalaxy docs (https://pyautogalaxy.readthedocs.io).
+  2. Real data needs a check first. Before helping fit real observational data, ask the
+     user to plot it and confirm (a) extra galaxies, foreground stars or artefacts that
+     need masking or noise-scaling, and (b) a mask extent that captures the galaxy's
+     emission out to where it meets the sky. A mask that truncates the outer isophotes
+     biases the effective radius and Sersic index, so never leave the mask radius at its
+     default on real data. Simulated data from the workspace is exempt.
+  3. Never claim a fit or a cell ran, or what it returned. Only the user's own outputs
+     tell you that; ask them to share what they see.
+  4. When the answer depends on something you do not know (their data, their goal, what
+     a cell printed), ask one focused question rather than guessing.
+  5. For multi-step projects (a new galaxy, a sample of galaxies, a paper's analysis),
+     point them to the PyAutoGalaxy assistant
+     https://github.com/PyAutoLabs/autogalaxy_assistant, which runs in Claude Code or
+     Codex with its full skills and safety checks.
+
+never_map:
+  - _bootstrap_skill
+  - _style
+  - ag_audit_skill_apis
+  - ag_ingest_paper
+  - ag_inspect_results_mcp
+  - ag_refresh_api_docs
+  - ag_setup_environment
+  - ag_to_notebook
+  - ag_update_wiki
+  - contribute-upstream
+  - feedback
+  - start-new-project
+
+default:
+  skills: [ag_build_imaging_model]
+
+contexts:
+
+  # --- autogalaxy_workspace: root ------------------------------------------------
+  - match: autogalaxy_workspace/start_here.ipynb
+    skills: [ag_build_imaging_model]
+
+  # --- autogalaxy_workspace: features ---------------------------------------------
+  - match: autogalaxy_workspace/notebooks/*/features/pixelization/*
+    skills: [ag_pixelization]
+  - match: autogalaxy_workspace/notebooks/*/features/linear_light_profiles/*
+    skills: [ag_basis_profiles]
+  - match: autogalaxy_workspace/notebooks/*/features/multi_gaussian_expansion/*
+    skills: [ag_basis_profiles]
+  - match: autogalaxy_workspace/notebooks/*/features/shapelets/*
+    skills: [ag_basis_profiles]
+  - match: autogalaxy_workspace/notebooks/*/features/extra_galaxies/*
+    skills: [ag_light_model_extras]
+  - match: autogalaxy_workspace/notebooks/*/features/sky_background/*
+    skills: [ag_light_model_extras]
+  - match: autogalaxy_workspace/notebooks/*/features/operated_light_profile/*
+    skills: [ag_light_model_extras]
+  - match: autogalaxy_workspace/notebooks/*/features/point_source/*
+    skills: [ag_light_model_extras]
+  - match: autogalaxy_workspace/notebooks/multi_dataset/*
+    skills: [ag_multi_dataset]
+
+  # --- autogalaxy_workspace: data preparation ---------------------------------------
+  - match: autogalaxy_workspace/notebooks/imaging/data_preparation*
+    skills: [ag_prepare_imaging_data]
+  - match: autogalaxy_workspace/notebooks/interferometer/data_preparation*
+    skills: [ag_build_interferometer_model]
+  - match: autogalaxy_workspace/notebooks/interferometer/casa_reduction*
+    skills: [ag_build_interferometer_model]
+
+  # --- autogalaxy_workspace: dataset folders ----------------------------------------
+  - match: autogalaxy_workspace/notebooks/ellipse/*
+    skills: [ag_ellipse_fitting]
+  - match: autogalaxy_workspace/notebooks/cluster/*
+    skills: [ag_multi_galaxy_and_cluster]
+  - match: autogalaxy_workspace/notebooks/multi_galaxy/*
+    skills: [ag_multi_galaxy_and_cluster]
+  # Before the generic simulator entry: `*` crosses `/`, so that entry would
+  # otherwise give this plotting guide the simulation skill.
+  - match: autogalaxy_workspace/notebooks/guides/plot/simulator*
+    skills: [ag_plot_fit]
+  - match: autogalaxy_workspace/notebooks/*/simulator*
+    skills: [ag_simulate_dataset]
+  - match: autogalaxy_workspace/notebooks/*/plot.ipynb
+    skills: [ag_plot_fit]
+  - match: autogalaxy_workspace/notebooks/*/fit.ipynb
+    skills: [ag_plot_fit]
+  - match: autogalaxy_workspace/notebooks/interferometer/*
+    skills: [ag_build_interferometer_model]
+  - match: autogalaxy_workspace/notebooks/imaging/*
+    skills: [ag_build_imaging_model]
+
+  # --- autogalaxy_workspace: guides ------------------------------------------------
+  - match: autogalaxy_workspace/notebooks/guides/results/*
+    skills: [ag_load_results]
+  - match: autogalaxy_workspace/notebooks/guides/modeling/searches*
+    skills: [ag_configure_search]
+  - match: autogalaxy_workspace/notebooks/guides/modeling/chaining*
+    skills: [ag_chain_searches]
+  - match: autogalaxy_workspace/notebooks/guides/modeling/bug_fix*
+    skills: [ag_debug_fit_failure]
+  - match: autogalaxy_workspace/notebooks/guides/modeling/*
+    skills: [ag_build_imaging_model]
+  - match: autogalaxy_workspace/notebooks/guides/plot/searches*
+    skills: [ag_load_results]
+  - match: autogalaxy_workspace/notebooks/guides/plot/*
+    skills: [ag_plot_fit]
+  - match: autogalaxy_workspace/notebooks/guides/hpc/*
+    skills: [ag_run_search]
+  - match: autogalaxy_workspace/notebooks/guides/*
+    skills: [ag_build_imaging_model]
+
+  # --- HowToGalaxy -----------------------------------------------------------------
+  - match: HowToGalaxy/start_here.ipynb
+    skills: [ag_build_imaging_model]
+  - match: HowToGalaxy/notebooks/chapter_1_introduction/*
+    skills: [ag_plot_fit]
+  - match: HowToGalaxy/notebooks/chapter_2_modeling/tutorial_4_*
+    skills: [ag_debug_fit_failure]
+  - match: HowToGalaxy/notebooks/chapter_2_modeling/tutorial_5_*
+    skills: [ag_basis_profiles]
+  - match: HowToGalaxy/notebooks/chapter_2_modeling/tutorial_6_*
+    skills: [ag_prepare_imaging_data]
+  - match: HowToGalaxy/notebooks/chapter_2_modeling/tutorial_7_*
+    skills: [ag_load_results]
+  - match: HowToGalaxy/notebooks/chapter_2_modeling/tutorial_9_*
+    skills: [ag_chain_searches]
+  - match: HowToGalaxy/notebooks/chapter_2_modeling/tutorial_10_*
+    skills: [ag_chain_searches]
+  - match: HowToGalaxy/notebooks/chapter_2_modeling/*
+    skills: [ag_run_search]
+  - match: HowToGalaxy/notebooks/chapter_3_pixelizations/*
+    skills: [ag_pixelization]
+  - match: HowToGalaxy/notebooks/chapter_4_scaling_up_galaxies/tutorial_1_*
+    skills: [ag_light_model_extras]
+  - match: HowToGalaxy/notebooks/chapter_4_scaling_up_galaxies/*
+    skills: [ag_multi_galaxy_and_cluster]
+  - match: HowToGalaxy/notebooks/chapter_optional/*
+    skills: [ag_configure_search]
+  - match: HowToGalaxy/notebooks/simulators/*
+    skills: [ag_simulate_dataset]
