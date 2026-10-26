@@ -111,7 +111,9 @@ one is ever warranted; neither is inherited from here.
 **Mixed** (structure generic, values domain-specific): `llms.txt` read-order,
 `config/` (the tree derives from `autogalaxy_workspace/config`, but the assistant convention
 READMEs inside it are generic), `benchmarks/README.md` (protocol generic, benchmark table
-domain), and the maintainer smoke tests below.
+domain), `colab/contexts.yaml` (preface and rules shape generic, skill mapping and
+galaxy rules domain; a newborn remaps it to its own skills and workspace), and the
+maintainer smoke tests below.
 
 **Per-clone data** (never copied to a newborn — each clone accumulates its own):
 `wiki/project/` journal entries and `profile.md`, `benchmarks/runs/` and the regenerated
