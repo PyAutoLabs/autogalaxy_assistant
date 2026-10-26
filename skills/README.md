@@ -49,9 +49,9 @@ Brain checkout and registered workspace body map.
 
 ## Index — what exists today
 
-Twenty-seven skills are written: nine for the core modelling loop, eight for the features
+Twenty-eight skills are written: nine for the core modelling loop, eight for the features
 beyond a single smooth profile, two output surfaces, two meta, two project-workflow, one
-literature, three maintenance. **Everything else in this file is a plan, not a file** — the
+literature, four maintenance. **Everything else in this file is a plan, not a file** — the
 "Backlog" section below is a catalogue of what has not been authored, and deliberately does not
 link to anything. Every entry here that is a link resolves; if you find a link that doesn't,
 that is a bug worth fixing rather than a file worth waiting for.
@@ -196,8 +196,8 @@ adds science, and neither is a substitute for the skills above.
 
 ### Maintenance
 
-These three keep this repo's own content honest against the installed stack. They are
-maintainer workflows, not science workflows — don't surface them when answering a galaxy
+These four keep this repo's own content honest against the installed stack and the
+Colab notebooks. They are maintainer workflows, not science workflows — don't surface them when answering a galaxy
 question, and don't fold them into an unrelated change, because their whole value is a
 reviewable diff.
 
@@ -215,6 +215,9 @@ reviewable diff.
 - [`ag_refresh_api_docs.md`](./ag_refresh_api_docs.md) — the umbrella sweep after a stack
   upgrade, orchestrating the two above across all four drift surfaces (skills, wiki, source
   pins, generated scripts), with `autoassistant/refresh_api_docs.py` as its preflight.
+- [`ag_refresh_colab_contexts.md`](./ag_refresh_colab_contexts.md) — refresh
+  `colab/contexts.yaml`, the map of which skill travels with which `autogalaxy_workspace` /
+  HowToGalaxy Colab notebook: run the coverage report, scan its gaps, open a PR.
 
 ## Backlog — may never ship
 

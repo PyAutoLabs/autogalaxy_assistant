@@ -101,9 +101,10 @@ Map every request onto one or more layers:
    one assumes the core loop's conventions and changes one thing about them, so route to the core
    loop first and reach for a feature skill when a single Sersic on one CCD image is no longer the
    right model. Two **output-surface** skills (`ag_to_notebook`, `ag_inspect_results_mcp`) turn a
-   finished script or a finished fit into something shareable. Three further `ag_*` skills
-   (`ag_audit_skill_apis`, `ag_update_wiki`, `ag_refresh_api_docs`) are maintenance workflows for
-   this repo's own content, not science workflows. `skills/README.md` lists all twenty-seven live
+   finished script or a finished fit into something shareable. Four further `ag_*` skills
+   (`ag_audit_skill_apis`, `ag_update_wiki`, `ag_refresh_api_docs`, `ag_refresh_colab_contexts`)
+   are maintenance workflows for this repo's own content, not science workflows.
+   `skills/README.md` lists all twenty-eight live
    skills, with the `autogalaxy_workspace` script or module that grounds each one. Never activate
    a skill name you have not confirmed is a file on disk.
 3. **Wiki** (`wiki/**/*.md`) — *content*: what a Sersic profile is, which searches exist,
