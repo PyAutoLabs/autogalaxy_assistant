@@ -189,34 +189,25 @@ clone's version to the installed library and warns on a mismatch —
 
 ## Branch — Google Colab
 
-Don't hand-write install cells. `PyAutoNerves:autonerves/setup_colab.py` exposes a
-per-project entry point, `for_autogalaxy(raise_error_if_not_gpu=...)`, which installs the
-stack, clones the workspace and checks whether JAX actually found a GPU. The guard that
-makes it work both in and out of Colab is the one every workspace `start_here` uses
-(`autogalaxy_workspace:start_here.py`):
+Direct users to the [introductory notebook](https://github.com/PyAutoLabs/autogalaxy_workspace/blob/main/start_here.ipynb)
+and its **Set up Google Colab** cell. Keep the installation machinery hidden behind
+that compact cell; do not lead with a long install block.
+
+When authoring canonical notebook source, mirror `autogalaxy_workspace:start_here.py`:
 
 ```python
-try:
-    import google.colab
-except ImportError:
-    from autogalaxy import setup_colab as _setup_colab
-else:
-    import importlib
-    import subprocess
-    import sys
-
-    subprocess.check_call(
-        [sys.executable, "-m", "pip", "install", "autonerves", "--no-deps"]
-    )
-    _setup_colab = importlib.import_module("autonerves.setup_colab")
-
-_setup_colab.for_autogalaxy(
-    raise_error_if_not_gpu=False  # True to hard-fail when no GPU was found
-)
+from autogalaxy import setup_colab
+setup_colab.for_autogalaxy(raise_error_if_not_gpu=False)
 ```
 
-Outside Colab the same block is a no-op verification pass, so it is safe to leave at the
-top of a script you also run locally. Set `raise_error_if_not_gpu=True` when a GPU is the
+PyAutoHands expands this source call into a self-contained bootstrap during notebook
+generation (`autohands/build_util.py:inject_colab_setup`). Generate the notebook before
+handing it to a Colab user: the two source lines alone cannot install missing packages
+in a fresh runtime. The shared generator also supplies the brief introductory copy
+(including “locally or in HTML”) and the shorter linked reminder in advanced examples.
+
+Outside Colab the setup call is a no-op, so it is safe to leave at the top of a script
+you also run locally. Set `raise_error_if_not_gpu=True` when a GPU is the
 whole point of the run and you would rather fail loudly than discover 40 minutes later
 that you were on a CPU.
 
