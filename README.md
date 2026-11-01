@@ -96,6 +96,26 @@ The `autogalaxy_assistant` adapts its behaviour to suit your prompt:
 
 - Want it to complete a task end-to-end without consulting you? Tell it to **one-shot** the task.
 
+### Start Here Guide
+
+The [PyAutoGalaxy Start Here page](https://pyautogalaxy.readthedocs.io/en/latest/overview/overview_1_start_here.html)
+introduces grids, light profiles, bulge-plus-disk galaxies, simulating a galaxy image and fitting it. The assistant
+can walk you through the same steps as a guided conversation, one step at a time, with you typing each request in
+plain English, before helping you find the right starting point for your own galaxies:
+
+<sub><b>Example Natural Language Prompt for Claude Code, Codex or other AI coding agent</b></sub>
+
+```text
+I want to study galaxy structure and morphology with PyAutoGalaxy (https://github.com/PyAutoLabs/PyAutoGalaxy)
+and the autogalaxy_assistant (https://github.com/PyAutoLabs/autogalaxy_assistant). First clone that
+repository, cd into it and follow its AGENTS.md.
+
+Begin the "start here" guide for a new user.
+```
+
+Every step saves the PyAutoGalaxy Python it ran under `scripts/start_here/`, so you can read, run and change the
+code yourself. See [`modes/start_here.md`](modes/start_here.md).
+
 ### Teacher Mode
 
 If you are new to galaxy structure and morphology, particularly an undergraduate or early-stage PhD student, start
