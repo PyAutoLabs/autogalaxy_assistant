@@ -459,8 +459,8 @@ write the paper.
 - **Student / new to galaxy morphology** — [HowToGalaxy: Data](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_1_introduction/tutorial_2_data.ipynb):
   what a CCD image, a noise-map and a PSF actually are, and why the PSF is convolved onto
   the model rather than divided out of the data. Its companion,
-  [chapter 2 tutorial 6](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_6_masking.ipynb),
-  is the masking lecture.
+  [Data and likelihoods](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_5_data_and_likelihoods.ipynb),
+  explains masking, contamination and how data choices change the likelihood.
 - **General reference** — [RTD: New user guide](https://pyautogalaxy.readthedocs.io/en/latest/overview/overview_2_new_user_guide.html):
   routes by system scale and dataset type, and is the page to hand someone deciding how
   their data should be organised before they load it.

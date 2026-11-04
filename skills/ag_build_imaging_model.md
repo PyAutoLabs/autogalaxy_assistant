@@ -448,7 +448,7 @@ will ask about.
 
 ## Further reading
 
-- **Student / new to galaxy morphology** — [HowToGalaxy: Realism and complexity](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_3_realism_and_complexity.ipynb):
+- **Student / new to galaxy morphology** — [HowToGalaxy: Why modeling is hard](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_3_why_modeling_is_hard.ipynb):
   the trade-off at the heart of this skill — what happens when a model is too simple for the
   data, and what happens when it is too complex for the search.
 - **General reference** — [RTD: Model cookbook](https://pyautogalaxy.readthedocs.io/en/latest/general/model_cookbook.html):

@@ -387,9 +387,9 @@ reader will want, and they are invisible in the final `model.results`.
 
 ## Further reading
 
-- **Student / new to galaxy morphology** — [HowToGalaxy: Search chaining](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_9_search_chaining.ipynb):
-  the first chaining tutorial at the end of chapter 2, which builds the idea from a fit that fails
-  without it; `tutorial_10_prior_passing` then walks the prior mechanics, and
+- **Student / new to galaxy morphology** — [HowToGalaxy: Search chaining](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_6_search_chaining.ipynb):
+  fit a neighbouring galaxy first, then fix its geometry while refining the target.
+  `chapter_optional/tutorial_prior_passing` explains historical prior narrowing, not a recommended next step;
   `chapter_4_scaling_up_galaxies/tutorial_2_multi_galaxy` applies the ideas to blended galaxies.
 - **General reference** — [RTD: Configs](https://pyautogalaxy.readthedocs.io/en/latest/general/configs.html):
   how the config files are laid out and looked up — the `priors` tree is where each parameter's

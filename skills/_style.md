@@ -249,16 +249,16 @@ path, still resolve it against that repo's own generated catalogue (`llms.txt` /
 `llms-full.txt` at its root) rather than guessing, and never cite a tutorial you have not
 confirmed exists.
 
-The HowToGalaxy lecture series runs in five parts, and the chapter you route to should
+The HowToGalaxy lecture series has four core chapters and optional tutorials; the chapter you route to should
 match what the user is actually stuck on:
 
 | Chapter | Teaches | Route here when the user… |
 |---------|---------|---------------------------|
 | `chapter_1_introduction` | grids, galaxies, light profiles, imaging data, fitting, the likelihood | …has never fitted a light profile, or asks what a Sersic/chi-squared/PSF convolution *is* |
-| `chapter_2_modeling` | non-linear search, realism and complexity, dealing with failure, linear profiles, masking, results, search chaining, prior passing | …can fit but the search fails, stalls, or returns something unphysical — or has a model too complex for one search |
-| `chapter_3_pixelizations` | pixelisations, mappers, inversions, Bayesian regularisation | …has an irregular/clumpy galaxy no smooth profile fits |
+| `chapter_2_modeling` | non-linear search, practicalities and results, why modeling is hard, linear profiles, data and likelihoods, component-based search chaining | …can fit but the search fails, stalls, or returns something unphysical — or has a model too complex for one search |
+| `chapter_3_pixelizations` | mappings, inversions, log evidence and smoothing, fit problems, adaptive reconstruction, combined MGE/pixelization fits | …has an irregular/clumpy galaxy no smooth profile fits, or residuals smoothing alone cannot resolve |
 | `chapter_4_scaling_up_galaxies` | extra galaxies, multi-galaxy blends, cluster fields | …has blended neighbours or a crowded field |
-| `chapter_optional` | the non-linear search zoo | …is choosing between samplers |
+| `chapter_optional` | runtime, historical prior passing, alternative searches | …needs speed guidance, is reading older prior-passing recipes, or is choosing between searches |
 
 ### Newcomer mode
 

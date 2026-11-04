@@ -587,7 +587,7 @@ month.
 
 ## Further reading
 
-- **Student / new to galaxy morphology** — [HowToGalaxy: Linear light profiles](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_5_linear_profiles.ipynb):
+- **Student / new to galaxy morphology** — [HowToGalaxy: Linear light profiles](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_4_linear_profiles.ipynb):
   why solving amplitudes by linear inversion rather than sampling them is what makes per-band
   colours free of charge. There is no multi-wavelength chapter in the lecture series — this is
   the tutorial that teaches the idea the joint fit leans on hardest.

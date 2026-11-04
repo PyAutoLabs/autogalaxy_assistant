@@ -14,13 +14,13 @@ sources:
   - project: HowToGalaxy
     paths:
       - llms.txt
-    pinned_commit: b1815e9df8ea2c247f4596fa45614e38e0bf86ff
+    pinned_commit: 2d873b8af0a97f3ac5ddd26f8d09c51ba2153468
   - project: PyAutoGalaxy
     paths:
       - docs/index.md
     pinned_commit: 65b14d7767da194a21bf0f3a4345f0790af86ed4
-last_updated: 2026-08-01
-content_sha256: fb5df8953fdf58897e051173a8dd0b8a79c3e42a8be2196733e0cd76017b6083
+last_updated: 2026-11-04
+content_sha256: 94c55b3cf87a75b2c79f0b118bccdcfb58690f85dc7ea354aba92e21e5ab65be
 ---
 
 # External resources
@@ -31,7 +31,7 @@ almost all of the background material and worked examples, and they are aimed at
 
 | Resource | Audience | Best for | Page |
 |---|---|---|---|
-| **HowToGalaxy** | New to galaxy structure or to Bayesian fitting | "What *is* a Sersic index? What does fitting even mean?" — five chapters from first principles, as notebooks and scripts | [`howtogalaxy.md`](./howtogalaxy.md) |
+| **HowToGalaxy** | New to galaxy structure or to Bayesian fitting | "What *is* a Sersic index? What does fitting even mean?" — four core chapters and optional tutorials from first principles, as notebooks and scripts | [`howtogalaxy.md`](./howtogalaxy.md) |
 | **PyAutoGalaxy RTD** | All | The canonical overview series, the model cookbook, installation, the generated API reference | [`rtd.md`](./rtd.md) |
 | **`autogalaxy_workspace`** | Morphology-fluent scientists, returning users | Production-style scripts per science case: imaging, interferometer, multi-dataset, multi-galaxy, cluster, ellipse, guides | [`workspace.md`](./workspace.md) |
 

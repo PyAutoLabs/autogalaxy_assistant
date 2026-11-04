@@ -45,4 +45,4 @@ Read order: [AGENTS.md](./AGENTS.md) → [skills/README.md](./skills/README.md) 
 ## Runnable examples & tutorials (elsewhere)
 
 - [autogalaxy_workspace navigator](https://github.com/PyAutoLabs/autogalaxy_workspace/blob/main/llms.txt): task router for end-to-end example scripts and notebooks. This is the grounding truth for the API — prefer it over memory every time.
-- [HowToGalaxy](https://github.com/PyAutoLabs/HowToGalaxy): from-first-principles galaxy-morphology lecture series, in five chapters from grids and light profiles through modelling, search chaining and pixelisations.
+- [HowToGalaxy](https://github.com/PyAutoLabs/HowToGalaxy): from-first-principles galaxy-morphology lecture series, with four core chapters and optional tutorials, from grids and light profiles through modelling, search chaining, pixelisations and adaptive reconstruction.
