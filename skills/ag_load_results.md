@@ -412,9 +412,9 @@ what was inferred and how, and the script produced (per [`_style.md`](./_style.m
 
 ## Further reading
 
-- **Student / new to galaxy morphology** — [HowToGalaxy: Results](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_7_results.ipynb):
-  the `Result` object from first principles — best-fit model, galaxies, posterior samples, and
-  pulling parameter values with uncertainties out of them.
+- **Student / new to galaxy morphology** — [HowToGalaxy: Practicalities — Results and Parameter Plots](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_2_practicalities.ipynb):
+  find saved output, inspect the fitted model and parameter samples, and read uncertainty
+  and parameter-correlation plots.
 - **General reference** — [RTD: Fitting API reference](https://pyautogalaxy.readthedocs.io/en/latest/api/fitting.html):
   the generated reference for the fit objects a loaded result rebuilds.
 - **Experienced PyAutoGalaxy user** — [workspace: guides/results/start_here.py](https://github.com/PyAutoLabs/autogalaxy_workspace/blob/main/scripts/guides/results/start_here.py):

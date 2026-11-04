@@ -577,7 +577,7 @@ the first thing a referee will ask for.
 
 ## Further reading
 
-- **Student / new to galaxy morphology** — [HowToGalaxy: Linear profiles](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_5_linear_profiles.ipynb):
+- **Student / new to galaxy morphology** — [HowToGalaxy: Linear profiles](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_4_linear_profiles.ipynb):
   builds up from a standard profile to a linear one to a basis, showing what the inversion
   actually solves at each step.
 - **General reference** — [RTD: Light profiles API](https://pyautogalaxy.readthedocs.io/en/latest/api/light.html):

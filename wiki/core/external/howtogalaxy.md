@@ -13,16 +13,16 @@ sources:
       - scripts/chapter_4_scaling_up_galaxies/
       - scripts/chapter_optional/
       - scripts/simulators/
-    pinned_commit: ee283c9d18d40b9365c9194292f427bcaed797f3
-last_updated: 2026-08-07
-content_sha256: b07ee66495e59438bb32b3771c53032264ceb52a2a2a0a292d0d228814e4ee33
+    pinned_commit: 2d873b8af0a97f3ac5ddd26f8d09c51ba2153468
+last_updated: 2026-11-04
+content_sha256: 5e7c108f9949f11751c2d0019fca52561e48c75d21885ff64c4a38b6c3287328
 ---
 
 # HowToGalaxy
 
 HowToGalaxy teaches galaxy morphology and the PyAutoGalaxy API **from first principles**,
 assuming no prior knowledge of galaxy structure or Bayesian inference. It is the on-ramp:
-five chapters of tutorials shipped as parallel Python scripts (`scripts/`) and Jupyter
+four core chapters and optional tutorials shipped as parallel Python scripts (`scripts/`) and Jupyter
 notebooks (`notebooks/`), one notebook per script. Primary audience: students, and
 scientists new to model-fitting.
 
@@ -46,20 +46,20 @@ Resolve `HowToGalaxy` the normal way (sibling clone → clone-on-demand from
 [Source-of-truth resolution](../../../AGENTS.md)) and read those files for the current
 tutorial rather than trusting a hand-written list.
 
-## The five chapters
+## The learning path
 
-The series is **26 tutorial scripts across five chapters**, plus
+The series is **24 tutorial scripts across four core chapters and an optional section**, plus
 **six simulator scripts** under `scripts/simulators/` that generate the teaching datasets
-(32 `.py` files in total, each tutorial with a matching notebook). Route by what the learner
+(each tutorial has a matching notebook). Route by what the learner
 is stuck on:
 
 | Chapter | Scripts | Teaches | Route here when the user… |
 |---|---|---|---|
 | `chapter_1_introduction` | 6 (`tutorial_0_visualization` … `tutorial_5_summary`) | Grids and galaxies, light profiles, simulated data, fitting, methods | …has never fitted a light profile, or asks what a Sersic index / chi-squared / PSF convolution *is* |
-| `chapter_2_modeling` | 10 (`tutorial_1_non_linear_search` … `tutorial_10_prior_passing`) | The non-linear search, practicalities, realism vs. complexity, dealing with failure, linear profiles, masking, results, speed, search chaining, prior passing | …can fit but the search fails, stalls, or returns something unphysical — or has a model too complex for one search |
-| `chapter_3_pixelizations` | 6 (`tutorial_1_pixelizations` … `tutorial_6_model_fit`) | Pixelisations, mappers, inversions, Bayesian regularisation | …has an irregular or clumpy galaxy no smooth profile fits |
+| `chapter_2_modeling` | 7 (`tutorial_1_non_linear_search` … `tutorial_7_summary`) | Non-linear search, practicalities and results, why modeling is hard, linear profiles, data and likelihoods, component-based search chaining | …can fit but the search fails, stalls, or returns something unphysical — or has a model too complex for one search |
+| `chapter_3_pixelizations` | 5 (`tutorial_1_pixelizations` … `tutorial_5_model_fit`) | Indexed mappings and inversions, choosing regularization by log evidence, fit problems, adaptive reconstruction, combined MGE/pixelization fits | …has an irregular or clumpy galaxy no smooth profile fits, or residuals that smoothing alone cannot resolve |
 | `chapter_4_scaling_up_galaxies` | 3 (`tutorial_1_extra_galaxies`, `tutorial_2_multi_galaxy`, `tutorial_3_cluster`) | Extra galaxies, multi-galaxy blends, cluster fields | …has blended neighbours or a crowded field |
-| `chapter_optional` | 1 (`tutorial_searches`) | The non-linear search zoo | …is choosing between samplers |
+| `chapter_optional` | 3 (`tutorial_need_for_speed`, `tutorial_prior_passing`, `tutorial_searches`) | Runtime, historical prior passing, alternative searches | …needs runtime guidance, is reading older prior-passing recipes, or is choosing between searches |
 
 Two caveats about chapter 1, both checked at the pinned commit:
 
@@ -71,13 +71,11 @@ Two caveats about chapter 1, both checked at the pinned commit:
   wants the methodology, the RTD `general/likelihood_function` page and
   `autogalaxy_workspace:scripts/imaging/likelihood_function.py` are the real material.
 
-Two chapters also carry an **extensionless prose file** — `chapter_2_modeling/tutorial_11_summary`
-and `chapter_3_pixelizations/introduction`. These are chapter narrative (what you just learnt /
-what is coming), not runnable tutorials: no `.py`, no notebook, and deliberately excluded from
-the counts above. Listing the directory makes `tutorial_11_summary` look like an eleventh
-tutorial; it is not, and the URL-building rules below do not apply to it — appending `.py`
-yields a 404. Chapter 1's summary is different: `tutorial_5_summary.py` *is* a real script and
-*is* counted in that chapter's 6.
+Chapter 3 also carries an **extensionless prose file**, `chapter_3_pixelizations/introduction`.
+It introduces the chapter and has no matching notebook; do not append `.py` or `.ipynb`
+to it. Chapter 1's `tutorial_5_summary.py` and chapter 2's `tutorial_7_summary.py` are
+real scripts and are included in the counts above. Optional prior passing is historical
+background; component-based search chaining in chapter 2 is the recommended approach.
 
 ## When to cite HowToGalaxy
 

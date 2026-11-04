@@ -7,9 +7,9 @@ sources:
       - skills/_style.md
       - skills/README.md
       - ROADMAP.md
-    pinned_commit: 239a61cf144c7dbed1a1a7c6b7e98d8835182d7c
-last_updated: 2026-08-07
-content_sha256: b8455d3ccf68f80d719ec1c2bf367e6a65cae7260ca20d0d495814507d4bcfec
+    pinned_commit: 0a331d4611df64e05802d3b42e0a379d2350fe00
+last_updated: 2026-11-04
+content_sha256: e8b1572657fdbfaea332373139437d7040ee116f3dfa4289eff1f447d531416b
 ---
 
 # Skill → external resource map
@@ -57,20 +57,20 @@ Default to `.ipynb` for student-leaning users and `.py` for returning PyAutoGala
 | `ag_setup_environment` | `chapter_1_introduction/tutorial_0_visualization` | `installation/overview` | `imaging/start_here.py` |
 | `ag_prepare_imaging_data` | `chapter_1_introduction/tutorial_2_data` | `overview/overview_2_new_user_guide` | `imaging/data_preparation/start_here.py` |
 | `ag_simulate_dataset` | `chapter_1_introduction/tutorial_1_grids_and_galaxies` | `overview/overview_1_start_here` | `imaging/simulator.py` |
-| `ag_build_imaging_model` | `chapter_2_modeling/tutorial_3_realism_and_complexity` | `general/model_cookbook` | `imaging/modeling.py` |
+| `ag_build_imaging_model` | `chapter_2_modeling/tutorial_3_why_modeling_is_hard` | `general/model_cookbook` | `imaging/modeling.py` |
 | `ag_configure_search` | `chapter_2_modeling/tutorial_1_non_linear_search` | `general/configs` | `guides/modeling/searches.py` |
 | `ag_run_search` | `chapter_2_modeling/tutorial_2_practicalities` | `overview/overview_2_new_user_guide` | `imaging/start_here.py` |
 | `ag_plot_fit` | `chapter_1_introduction/tutorial_3_fitting` | `api/plot` | `guides/plot/start_here.py` |
-| `ag_load_results` | `chapter_2_modeling/tutorial_7_results` | `api/fitting` | `guides/results/start_here.py` |
-| `ag_debug_fit_failure` | `chapter_2_modeling/tutorial_4_dealing_with_failure` | `general/likelihood_function` | `guides/modeling/bug_fix.py` |
-| `ag_basis_profiles` | `chapter_2_modeling/tutorial_5_linear_profiles` | `api/light` | `imaging/features/multi_gaussian_expansion/modeling.py` |
-| `ag_pixelization` | `chapter_3_pixelizations/tutorial_4_bayesian_regularization` | `api/pixelization` | `imaging/features/pixelization/modeling.py` |
+| `ag_load_results` | `chapter_2_modeling/tutorial_2_practicalities` | `api/fitting` | `guides/results/start_here.py` |
+| `ag_debug_fit_failure` | `chapter_2_modeling/tutorial_3_why_modeling_is_hard` | `general/likelihood_function` | `guides/modeling/bug_fix.py` |
+| `ag_basis_profiles` | `chapter_2_modeling/tutorial_4_linear_profiles` | `api/light` | `imaging/features/multi_gaussian_expansion/modeling.py` |
+| `ag_pixelization` | `chapter_3_pixelizations/tutorial_2_bayesian_regularization` | `api/pixelization` | `imaging/features/pixelization/modeling.py` |
 | `ag_light_model_extras` | `chapter_4_scaling_up_galaxies/tutorial_2_multi_galaxy` | `overview/overview_3_features` | `imaging/features/extra_galaxies/modeling.py` |
 | `ag_ellipse_fitting` | _ | `overview/overview_3_features` | `ellipse/modeling.py` |
-| `ag_multi_dataset` | `chapter_2_modeling/tutorial_5_linear_profiles` | `overview/overview_3_features` | `multi_dataset/start_here.py` |
+| `ag_multi_dataset` | `chapter_2_modeling/tutorial_4_linear_profiles` | `overview/overview_3_features` | `multi_dataset/start_here.py` |
 | `ag_build_interferometer_model` | `chapter_1_introduction/tutorial_3_fitting` | `overview/overview_3_features` | `interferometer/start_here.py` |
 | `ag_multi_galaxy_and_cluster` | `chapter_4_scaling_up_galaxies/tutorial_2_multi_galaxy` | `overview/overview_2_new_user_guide` | `cluster/start_here.py` |
-| `ag_chain_searches` | `chapter_2_modeling/tutorial_9_search_chaining` | `general/configs` | `guides/modeling/chaining.py` |
+| `ag_chain_searches` | `chapter_2_modeling/tutorial_6_search_chaining` | `general/configs` | `guides/modeling/chaining.py` |
 | `ag_ingest_paper` | _ | _ | _ |
 | `ag_to_notebook` | _ | _ | _ |
 | `ag_inspect_results_mcp` | _ | _ | _ |

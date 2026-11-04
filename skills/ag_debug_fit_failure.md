@@ -473,7 +473,7 @@ written down gets repeated.
 
 ## Further reading
 
-- **Student / new to galaxy morphology** — [HowToGalaxy: Dealing with failure](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_4_dealing_with_failure.ipynb):
+- **Student / new to galaxy morphology** — [HowToGalaxy: Why modeling is hard](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_2_modeling/tutorial_3_why_modeling_is_hard.ipynb):
   why searches fail on galaxy models, what a local maximum looks like in practice, and how
   model complexity and prior choice interact.
 - **General reference** — [RTD: Likelihood function](https://pyautogalaxy.readthedocs.io/en/latest/general/likelihood_function.html):
