@@ -7,9 +7,9 @@ sources:
       - skills/_style.md
       - skills/README.md
       - ROADMAP.md
-    pinned_commit: 0a331d4611df64e05802d3b42e0a379d2350fe00
-last_updated: 2026-11-04
-content_sha256: e8b1572657fdbfaea332373139437d7040ee116f3dfa4289eff1f447d531416b
+    pinned_commit: f48e9318cc73417823f57806b3b0eaffaabb0bed
+last_updated: 2026-11-08
+content_sha256: 412399e10660229a74be1e0cb0e0f26daf7d4bd50767af89c55ecf719de495cd
 ---
 
 # Skill → external resource map
@@ -69,7 +69,8 @@ Default to `.ipynb` for student-leaning users and `.py` for returning PyAutoGala
 | `ag_ellipse_fitting` | _ | `overview/overview_3_features` | `ellipse/modeling.py` |
 | `ag_multi_dataset` | `chapter_2_modeling/tutorial_4_linear_profiles` | `overview/overview_3_features` | `multi_dataset/start_here.py` |
 | `ag_build_interferometer_model` | `chapter_1_introduction/tutorial_3_fitting` | `overview/overview_3_features` | `interferometer/start_here.py` |
-| `ag_multi_galaxy_and_cluster` | `chapter_4_scaling_up_galaxies/tutorial_2_multi_galaxy` | `overview/overview_2_new_user_guide` | `cluster/start_here.py` |
+| `ag_multi_galaxy_and_cluster` — multi_galaxy rung (blended pair / compact multiple) | `chapter_4_scaling_up_galaxies/tutorial_2_multi_galaxy` | `overview/overview_2_new_user_guide` | `multi_galaxy/start_here.py` |
+| `ag_multi_galaxy_and_cluster` — cluster rung (BCG + catalogue members) | `chapter_4_scaling_up_galaxies/tutorial_3_cluster` | `overview/overview_2_new_user_guide` | `cluster/start_here.py` |
 | `ag_chain_searches` | `chapter_2_modeling/tutorial_6_search_chaining` | `general/configs` | `guides/modeling/chaining.py` |
 | `ag_ingest_paper` | _ | _ | _ |
 | `ag_to_notebook` | _ | _ | _ |
@@ -92,7 +93,7 @@ before it was recorded. A skill may cite an *extra* tutorial inline within a bul
 masking lecture under `ag_prepare_imaging_data`, the optional searches chapter under
 `ag_configure_search` — but the row holds the one primary cell per audience.
 
-The eight feature rows after them follow the same rule, with two honest gaps worth reading
+The feature rows after them (eight skills, nine rows) follow the same rule, with three notes worth reading
 before you "fix" a cell that looks wrong:
 
 - **`ag_ellipse_fitting`'s student cell is `_`.** The lecture series teaches light-profile
@@ -107,6 +108,15 @@ before you "fix" a cell that looks wrong:
   frame is where the lectures come closest to a contaminant. Each of those bullets says so in
   the skill, rather than implying a chapter exists that does not. Sharing a cell across two
   rows is allowed; inventing one is not.
+- **`ag_multi_galaxy_and_cluster` has two rows, one per regime rung.** It is one skill covering
+  two `autogalaxy_workspace` packages, and a single row could only point at one of them — which
+  sent a "two blended galaxies" request to the cluster workflow. Route by regime first (the
+  ladder and its decision rules are in [`index.md`](./index.md) "Route by regime first"): two
+  or a few co-dominant galaxies whose light overlaps take the **multi_galaxy** row; a BCG plus a
+  catalogued member population takes the **cluster** row. A "compact group" has no package of
+  its own — `autogalaxy_workspace` ships no `group/` folder — so it takes whichever row its
+  member count and catalogue put it on. The skill's `## Further reading` block leads with the
+  multi_galaxy cells and names the cluster script beside them.
 
 ## Template for the inserted skill block
 

@@ -526,10 +526,12 @@ scientific content of the fit.
 - **General reference** — [RTD: New user guide](https://pyautogalaxy.readthedocs.io/en/latest/overview/overview_2_new_user_guide.html):
   the decision tree that routes by scale of system — single galaxy, blended pair, cluster field —
   which is this skill's ladder in the upstream docs' own words.
-- **Experienced PyAutoGalaxy user** — [workspace: cluster/start_here.py](https://github.com/PyAutoLabs/autogalaxy_workspace/blob/main/scripts/cluster/start_here.py):
-  the two-tier catalogue composition this skill mirrors; its sibling
-  [multi_galaxy/start_here.py](https://github.com/PyAutoLabs/autogalaxy_workspace/blob/main/scripts/multi_galaxy/start_here.py)
-  is the blended-pair version.
+- **Experienced PyAutoGalaxy user** — [workspace: multi_galaxy/start_here.py](https://github.com/PyAutoLabs/autogalaxy_workspace/blob/main/scripts/multi_galaxy/start_here.py):
+  the blended-pair composition — one free MGE per galaxy — for two or a few co-dominant
+  galaxies; for a BCG plus a catalogued member population its sibling
+  [cluster/start_here.py](https://github.com/PyAutoLabs/autogalaxy_workspace/blob/main/scripts/cluster/start_here.py)
+  is the two-tier catalogue version (lecture: [HowToGalaxy: Cluster](https://github.com/PyAutoLabs/HowToGalaxy/blob/main/notebooks/chapter_4_scaling_up_galaxies/tutorial_3_cluster.ipynb)).
+  The citation map carries one row per rung.
 
 ## Agent procedural checklist
 

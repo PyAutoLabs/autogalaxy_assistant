@@ -15,9 +15,9 @@ sources:
       - scripts/cluster/
       - scripts/ellipse/
       - scripts/guides/
-    pinned_commit: d6db2643b9f2cd418efc9473f560dc2a2d459c73
-last_updated: 2026-08-01
-content_sha256: d4c107f2d472ac67b2ac0a8ee8ba2a701763fe74420d25131d980b6ce8c9b41b
+    pinned_commit: 81e3c634a16cb93a1275e12403458fce6648b915
+last_updated: 2026-11-08
+content_sha256: 872d2e07daf3ca7705f9bc4c81fce0a70ffb143206351d0845d1c7079578631d
 ---
 
 # autogalaxy_workspace
@@ -64,7 +64,7 @@ what is distinctive.
 | `scripts/imaging/` | One galaxy in CCD imaging (HST, JWST, ground-based). The largest group: `features/`, `data_preparation/`, `likelihood_function.py`, three simulators | `start_here.py` |
 | `scripts/interferometer/` | Visibilities in the uv-plane (e.g. ALMA), plus `casa_reduction.py` and its own `data_preparation/` | `start_here.py` |
 | `scripts/multi_dataset/` | One galaxy, several datasets fitted simultaneously — wavelengths, instruments, offsets | `start_here.py` |
-| `scripts/multi_galaxy/` | Two or more blended galaxies, each with a free light model | `start_here.py` |
+| `scripts/multi_galaxy/` | Two or more blended galaxies, each with a free light model; `features/extra_galaxies/` adds a lower tier of companions that are not subjects of the measurement | `start_here.py` |
 | `scripts/cluster/` | A cluster field: the brightest cluster galaxy modelled individually plus a member population driven by a catalogue CSV | `start_here.py` |
 | `scripts/ellipse/` | Non-parametric isophote fitting and multipoles — no light-profile model at all | **`modeling.py`** (see below) |
 | `scripts/guides/` | Reference guides rather than science cases: `profiles/`, `plot/`, `modeling/`, `results/`, `units/`, `advanced/`, `hpc/`, `data_structures.py`, `galaxies.py`, `using_jax.py` | `README.md`, then the sub-folder |
@@ -74,6 +74,15 @@ pattern: the entry point is `modeling.py`, with `multipoles.py`, `fit.py`, `data
 `plot.py` and `simulator.py` beside it. Route there directly — a citation to
 `ellipse/start_here.py` is a path that does not exist, and inventing it is exactly the
 failure this page is here to prevent.
+
+**Choosing between `imaging/`, `multi_galaxy/` and `cluster/` is a regime decision**, not a
+data-type one: the three form a ladder (single galaxy → blended galaxies → cluster field), and
+`scripts/multi_galaxy/README.md` carries the ladder table. Place the system on it with the
+decision rules in [`index.md`](./index.md) "Route by regime first" before reading the
+catalogue. **There is no `scripts/group/`** — `autolens_workspace` has one, this workspace does
+not — so a "compact group" routes to `multi_galaxy/` (a handful of co-dominant members) or
+`cluster/` (a population large enough to need a catalogue tier), and a citation to a `group/`
+path is invented.
 
 The top-level `start_here.py` at the repo root is a different thing again: a single-page
 tour of the whole API (galaxies, profiles, fitting, JAX), and the best first read for

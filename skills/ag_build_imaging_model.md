@@ -37,10 +37,20 @@ wrong answer rather than an obvious failure. Simulated data is exempt.
 
 ## Ask
 
-- *"One galaxy, or several whose light blends?"* The only structural choice. This skill
-  assumes a single target with optional contaminating neighbours; two or more co-dominant
-  galaxies is a different skill,
-  [`ag_multi_galaxy_and_cluster`](./ag_multi_galaxy_and_cluster.md).
+- *"One galaxy, or several whose light blends?"* The only structural choice, and it is a
+  regime decision — place the system on the ladder before composing anything (decision rules:
+  [`../wiki/core/external/index.md`](../wiki/core/external/index.md) "Route by regime first"):
+  - **One subject, faint or distant neighbours** — this skill; the neighbours are
+    contaminants handled by [`ag_light_model_extras`](./ag_light_model_extras.md)
+    (`autogalaxy_workspace:scripts/imaging/features/extra_galaxies/modeling.py`).
+  - **Two or a few co-dominant galaxies whose light overlaps** — an interacting or projected
+    pair, a compact multiple — leave this skill for the blended-pair branch of
+    [`ag_multi_galaxy_and_cluster`](./ag_multi_galaxy_and_cluster.md)
+    (`autogalaxy_workspace:scripts/multi_galaxy/start_here.py`).
+  - **A BCG plus tens to hundreds of members with a catalogue** — the cluster branch of the
+    same skill (`autogalaxy_workspace:scripts/cluster/start_here.py`).
+  - **A "compact group"** has no workspace package of its own: a handful of co-dominant members
+    is the blended-pair branch, a population that needs a catalogue tier is the cluster branch.
 - *"A single Sersic to start, or straight to a bulge-plus-disk decomposition?"* Single Sersic
   first is almost always the right answer, even when you want the decomposition: it converges
   fast, tells you the galaxy's overall size and concentration, and gives you something to
