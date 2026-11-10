@@ -120,7 +120,7 @@ code yourself. See [`modes/start_here.md`](modes/start_here.md).
 
 If you are new to galaxy structure and morphology, particularly an undergraduate or early-stage PhD student, start
 your prompt with `Teacher mode.` The assistant will explain the fundamentals of fitting a galaxy's light in more
-detail, and link you to relevant, human-readable documentation so you can see what **PyAutoGalaxy** is doing.
+detail, and link you to relevant guides and examples so you can see what **PyAutoGalaxy** is doing.
 
 ### More about the assistant
 
