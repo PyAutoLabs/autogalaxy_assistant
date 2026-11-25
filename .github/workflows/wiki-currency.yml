@@ -70,7 +70,19 @@ jobs:
           VER="${{ inputs.stack_version }}"
           if [ -n "$VER" ]; then
             echo "Installing autogalaxy==$VER (pulls the pinned autonerves/autoarray/autofit)."
-            pip install "autogalaxy==$VER"
+            # PyPI's CDN can serve this runner a stale index minutes after the upload
+            # (2026.11.22.1: PyAutoHands' wait_for_released_stack saw the release, this
+            # runner did not). Retry the exact pin, bypassing pip's cache; never fall
+            # back to an older or unpinned install (autolens_assistant#193).
+            for attempt in $(seq 1 10); do
+              pip install --no-cache-dir "autogalaxy==$VER" && break
+              if [ "$attempt" -eq 10 ]; then
+                echo "::error::autogalaxy==$VER not installable from PyPI after 10 attempts"
+                exit 1
+              fi
+              echo "autogalaxy==$VER not installable yet (attempt $attempt/10); retrying in 30 s"
+              sleep 30
+            done
           else
             echo "Installing the latest released autogalaxy."
             pip install autogalaxy
