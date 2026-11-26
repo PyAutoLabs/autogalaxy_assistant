@@ -1,11 +1,11 @@
 {
   "_comment": "API baseline for autogalaxy_assistant - see autoassistant/audit_skill_apis.py and skills/ag_audit_skill_apis.md. Regenerate with --write-baseline.",
-  "generated": "2026-11-25",
+  "generated": "2026-11-26",
   "versions": {
-    "autonerves": "2026.11.25.1",
-    "autoarray": "2026.11.25.1",
-    "autofit": "2026.11.25.1",
-    "autogalaxy": "2026.11.25.1"
+    "autonerves": "2026.11.26.1",
+    "autoarray": "2026.11.26.1",
+    "autofit": "2026.11.26.1",
+    "autogalaxy": "2026.11.26.1"
   },
   "api_surface": {
     "autonerves": {
@@ -21,8 +21,8 @@
       "n_symbols": 179
     },
     "autogalaxy": {
-      "hash": "aa3a324a0ae273cb6f55cd6c608eaa40d403883d0573baed63c5b1fe9afdbd83",
-      "n_symbols": 143
+      "hash": "d0cdb1817394904a08b2a7632032717623979cf5bfd1496f33d6f8ded240cee4",
+      "n_symbols": 145
     },
     "autogalaxy.plot": {
       "hash": "8e6b5d5cc6b1b65fa5c3e8285749050d7b3bae6d8fbd1d05f6fc73532d78502d",
